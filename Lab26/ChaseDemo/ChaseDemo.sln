@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChaseDemo", "ChaseDemo\ChaseDemo.vcxproj", "{FCFD6E34-2AA8-45EC-832A-437E93478E96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Debug|x64.ActiveCfg = Debug|x64
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Debug|x64.Build.0 = Debug|x64
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Debug|x86.ActiveCfg = Debug|Win32
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Debug|x86.Build.0 = Debug|Win32
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Release|x64.ActiveCfg = Release|x64
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Release|x64.Build.0 = Release|x64
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Release|x86.ActiveCfg = Release|Win32
+		{FCFD6E34-2AA8-45EC-832A-437E93478E96}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA8CD1D6-BD02-491B-919C-7AAF6A3CFDD8}
+	EndGlobalSection
+EndGlobal

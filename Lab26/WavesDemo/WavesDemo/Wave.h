@@ -1,0 +1,45 @@
+/**********************************************************************************
+// Wave (Arquivo de Cabeçalho)
+//
+// Criação:		06 Ago 2019
+// Atualização:	07 Ago 2019
+// Compilador:	Visual C++ 2019
+//
+// Descrição:	Cria uma onda de inimigos
+//
+**********************************************************************************/
+
+#ifndef _WAVESDEMO_WAVE_H_
+#define _WAVESDEMO_WAVE_H_
+
+// --------------------------------------------------------------------------------
+
+#include "Object.h"
+#include "Sprite.h"
+#include "Timer.h"
+#include "Random.h"
+
+// --------------------------------------------------------------------------------
+
+class Wave : public Object
+{
+private:
+	int numX, numY;				// número de inimigos que cabem na tela
+	float posX, posY;			// posição dos inimigos 
+	IntRand position;			// valor aleatório para posição
+	FloatRand delay;			// valor aleatório para tempo
+	Timer timer;				// medidor de tempo
+	float waveDelay;			// atraso para a próxima onda
+	bool newWave;				// enviar nova onda
+
+public:
+	Wave();						// construtor
+	~Wave();					// destrutor
+
+	void Update();				// atualização
+	void Draw();				// desenho
+};
+
+// ------------------------------------------------------------------------------
+
+#endif

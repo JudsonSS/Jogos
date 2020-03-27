@@ -1,0 +1,8 @@
+// PacMan
+// Criação:		03 Jan 2013
+// Atualização:	03 Jan 2013
+// Descrição:   Nível 2 (Food)
+//
+// Informações de posição da comida
+// posX posY
+
