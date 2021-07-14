@@ -1,11 +1,11 @@
 /**********************************************************************************
 // PalindroWin
 // 
-// Criação:		09 Jun 2011
-// Atualização:	14 Jul 2021
-// Compilador:	Visual C++ 2019
+// Criação:     09 Jun 2011
+// Atualização: 14 Jul 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exemplo de um programa completo para Windows. Exemplifica a 
+// Descrição:   Exemplo de um programa completo para Windows. Exemplifica a 
 //              criação de botão, caixa de texto, rótulo, caixa de grupo e 
 //              faz o tratamento da entrada do usuário. A aplicação descobre 
 //              se uma palavra é um palíndromo.

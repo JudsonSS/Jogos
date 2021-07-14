@@ -1,11 +1,11 @@
 /**********************************************************************************
 // HellowWindow
 // 
-// Criação:		06 Mai 2011
-// Atualização:	14 Jul 2021
-// Compilador:	Visual C++ 2019
+// Criação:     06 Mai 2011
+// Atualização: 14 Jul 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Esqueleto básico de criação de uma janela no Windows 
+// Descrição:   Esqueleto básico de criação de uma janela no Windows 
 //              usando a API Win32. Este esqueleto pode ser usado como ponto
 //              de partida para criação de qualquer aplicação.
 //
