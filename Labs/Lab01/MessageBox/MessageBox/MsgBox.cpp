@@ -1,8 +1,8 @@
 /**********************************************************************************
 // MsgBox
 // 
-// Criação:     06 Mai 2011
-// Atualização:	26 Abr 2019
+// Criação:		06 Mai 2011
+// Atualização:	14 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Exemplo de utilização da função MessageBox da API Win32.

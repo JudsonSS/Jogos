@@ -2,7 +2,7 @@
 // HellowWindow
 // 
 // Criação:		06 Mai 2011
-// Atualização:	26 Abr 2019
+// Atualização:	14 Jul 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Esqueleto básico de criação de uma janela no Windows 
@@ -27,7 +27,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
      MSG          msg;         // mensagem
      WNDCLASS     wndclass;    // classe da janela
 
-	 // Definindo uma classe de janela chamada "BasicWindow" 
+     // Definindo uma classe de janela chamada "BasicWindow" 
      wndclass.style         = CS_HREDRAW | CS_VREDRAW;
      wndclass.lpfnWndProc   = WinProc;
      wndclass.cbClsExtra    = 0;
@@ -39,14 +39,14 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
      wndclass.lpszMenuName  = NULL;
      wndclass.lpszClassName = "BasicWindow";
 
-	 // Registrando a classe "BasicWindow"
+     // Registrando a classe "BasicWindow"
      if (!RegisterClass (&wndclass))
      {
           MessageBox (NULL, "Erro na criação da janela!", "Aplicação", MB_ICONERROR);
           return 0 ;
      }
 
-	 // Criando uma janela baseada na classe "BasicWindow" 
+     // Criando uma janela baseada na classe "BasicWindow" 
      hwnd = CreateWindow ("BasicWindow",			  // classe da janela
                           "Aplicação",		          // título da janela
                           WS_OVERLAPPEDWINDOW,        // estilo da janela
@@ -59,19 +59,19 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
                           hInstance,                  // identificador da aplicação
                           NULL);                      // parâmetros de criação
      
-	 // Mostra e atualiza a janela
+     // Mostra e atualiza a janela
      ShowWindow(hwnd, nCmdShow);
      UpdateWindow(hwnd);
      
-	 // Tratamento de mensagens destinadas a janela da aplicação
+     // Tratamento de mensagens destinadas a janela da aplicação
      while (GetMessage(&msg, NULL, 0, 0))
      {
           TranslateMessage(&msg);
           DispatchMessage(&msg);
      }
 
-	 // fim do programa
-     return msg.wParam;
+     // fim do programa
+     return int(msg.wParam);
 }
 
 //-------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ LRESULT CALLBACK WinProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           return 0;
           
      case WM_DESTROY:
-		 PostQuitMessage(0);
+         PostQuitMessage(0);
          return 0;
      }
      return DefWindowProc(hwnd, message, wParam, lParam);
