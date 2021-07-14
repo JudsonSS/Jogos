@@ -4,7 +4,7 @@ Este repositório contém todo o material utilizado no curso de Programação de
 
 No curso, eu apresento passo a passo a construção de um motor para criação de jogos 2D. Cada aula é ilustrada com código que implementa uma pequena parte do motor. O código é desenvolvido em C++ usando as APIs Win32 e DirectX 11 no Windows 10. O material fornecido são projetos do Visual Studio 2019.
 
-Um dos objetivos do curso é motivar os alunos, mostrar que é possível construir jogos a partir do conhecimento que eles adquirem nos 3 primeiros semestres do curso. O único pré-requisito é saber programar de forma orientada a objetos e estar disposto a fazer isso usando a linguagem C++.  
+Um dos objetivos do curso é motivar os alunos e mostrar que é possível construir jogos a partir do conhecimento que eles adquirem nos 3 primeiros semestres do curso. O único pré-requisito é saber programar de forma orientada a objetos e estar disposto a fazer isso usando a linguagem C++.  
 
 A numeração dos laboratórios (Labs) coincidem com a sequência das aulas (Slides): 
 
@@ -40,4 +40,3 @@ A numeração dos laboratórios (Labs) coincidem com a sequência das aulas (Sli
 29. Distribuição do Jogo
 
 O motor desenvolvido é didático e foca em clareza de apresentação no lugar de desempenho, sempre que os dois objetivos são conflitantes. Estou constantemente tentando melhorar o motor, seja na sua arquitetura, desempenho ou facilidade de uso. Se tiverem sujestões de melhoria fiquem a vontade para contribuir com o projeto.
- 
