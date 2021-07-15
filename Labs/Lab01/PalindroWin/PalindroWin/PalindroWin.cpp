@@ -81,15 +81,15 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     int yWndPos = GetSystemMetrics(SM_CYSCREEN)/2-120;
 
     // cria a janela principal
-    hwnd = CreateWindow ("BasicWindow",						        // classe da janela
-                         "Palíndromo",						        // título da janela
-                         WS_OVERLAPPED | WS_SYSMENU,                // estilo da janela
-                         xWndPos, yWndPos,							// posição x, y inicial
-                         400, 220,									// largura e comprimento iniciais
-                         NULL,										// identificador do objeto pai
-                         NULL,										// identificador do menu
-                         hInstance,									// identificador da aplicação
-                         NULL) ;									// parâmetros de criação
+    hwnd = CreateWindow ("BasicWindow",                  // classe da janela
+                         "Palíndromo",                   // título da janela
+                         WS_OVERLAPPED | WS_SYSMENU,     // estilo da janela
+                         xWndPos, yWndPos,               // posição x, y inicial
+                         400, 220,                       // largura e comprimento iniciais
+                         NULL,                           // identificador do objeto pai
+                         NULL,                           // identificador do menu
+                         hInstance,                      // identificador da aplicação
+                         NULL);                          // parâmetros de criação
 
     // mostra e atualiza a janela
     ShowWindow (hwnd, nCmdShow);
@@ -131,64 +131,64 @@ LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
         // Groupbox
         hwndGroup = CreateWindow(
-            "BUTTON",							    // classe
-            "Resultado",						    // título
-            WS_CHILD | WS_VISIBLE | BS_GROUPBOX,	// estilo do objeto
-            clientRect.left+10,						// posição x inicial
-            clientRect.top+10,						// posição y inicial
-            clientRect.right-20,					// largura inicial
-            100,									// comprimento inicial
-            hwnd,									// identificador do pai 
-            HMENU (GROUPBOX_ID),					// identificador do objeto
-            hInstanceApp,							// identificador da aplicação
-            NULL);									// parâmetros extras
+            "BUTTON",                                   // classe
+            "Resultado",                                // título
+            WS_CHILD | WS_VISIBLE | BS_GROUPBOX,        // estilo do objeto
+            clientRect.left+10,                         // posição x inicial
+            clientRect.top+10,                          // posição y inicial
+            clientRect.right-20,                        // largura inicial
+            100,                                        // comprimento inicial
+            hwnd,                                       // identificador do pai 
+            HMENU (GROUPBOX_ID),                        // identificador do objeto
+            hInstanceApp,                               // identificador da aplicação
+            NULL);                                      // parâmetros extras
 
         // Configura a fonte usada no Groupbox
         SendMessage (hwndGroup, WM_SETFONT, (WPARAM)appFont, TRUE);
 
         // Label
         hwndLabel = CreateWindowEx(
-            NULL,									// estilos extras
-            "STATIC",							    // classe
-            "Palavra:",						        // título
-            WS_CHILD | WS_VISIBLE,					// estilo do objeto
-            40,140,									// posição x, y inicial
-            140,24,									// largura e comprimento inicial
-            hwnd,									// identificador do pai
-            HMENU (LABEL_TEXT_ID),					// identificador do objeto
-            hInstanceApp,							// identificador da aplicação
-            NULL);									// parâmetros extras
+            NULL,                                       // estilos extras
+            "STATIC",                                   // classe
+            "Palavra:",                                 // título
+            WS_CHILD | WS_VISIBLE,                      // estilo do objeto
+            40,140,                                     // posição x, y inicial
+            140,24,                                     // largura e comprimento inicial
+            hwnd,                                       // identificador do pai
+            HMENU (LABEL_TEXT_ID),                      // identificador do objeto
+            hInstanceApp,                               // identificador da aplicação
+            NULL);                                      // parâmetros extras
 
         // Configura a fonte usada no Label
         SendMessage (hwndLabel, WM_SETFONT, (WPARAM)appFont, TRUE);
 
         // Edit box
         hwndEdit = CreateWindowEx(
-            WS_EX_CLIENTEDGE,						// estilos extras
-            "EDIT",							        // classe
-            "",								        // título
-            WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL,	// estilo do objeto
-            100,138,								// posição x, y inicial
-            130,20,									// largura e comprimento inicial
-            hwnd,									// manipulador pai
-            HMENU (EDIT_TEXT_ID),					// identificador do objeto
-            hInstanceApp,							// identificador da aplicação
-            NULL);									// parâmetros extras
+            WS_EX_CLIENTEDGE,                           // estilos extras
+            "EDIT",                                     // classe
+            "",                                         // título
+            WS_CHILD | WS_VISIBLE | ES_AUTOHSCROLL,     // estilo do objeto
+            100,138,                                    // posição x, y inicial
+            130,20,                                     // largura e comprimento inicial
+            hwnd,                                       // manipulador pai
+            HMENU (EDIT_TEXT_ID),                       // identificador do objeto
+            hInstanceApp,                               // identificador da aplicação
+            NULL);                                      // parâmetros extras
 
         // Configura a fonte usada na Edit box
         SendMessage (hwndEdit, WM_SETFONT, (WPARAM)appFont, TRUE);
 
         // Button
         hwndButton = CreateWindow(
-            "BUTTON",							    // classe
-            "Verificar",						    // título
-            WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,  // estilo do objeto
-            255,135,								// posição x, y inicial
-            100,24,									// largura e comprimento inicial
-            hwnd,									// manipulador pai
-            HMENU (BUTTON_ID),						// identificador do objeto
-            hInstanceApp,							// identificador da aplicação
-            NULL);									// parâmetros extra		
+            "BUTTON",                                   // classe
+            "Verificar",                                // título
+            WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,      // estilo do objeto
+            255,135,                                    // posição x, y inicial
+            100,24,                                     // largura e comprimento inicial
+            hwnd,                                       // manipulador pai
+            HMENU (BUTTON_ID),                          // identificador do objeto
+            hInstanceApp,                               // identificador da aplicação
+            NULL);                                      // parâmetros extra		
         
         SendMessage (hwndButton, WM_SETFONT, (WPARAM)appFont, TRUE);
 
