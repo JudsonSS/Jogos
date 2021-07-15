@@ -31,14 +31,14 @@
 //--------------------------------------------------------------------------------
 
 // Variáveis globais 
-bool      resultClean  = true;	// tela de resultado está limpa
-HINSTANCE hInstanceApp;			// identificador da aplicação
-RECT      clientRect;			// dimensões da área cliente da janela
-HWND      hwndGroup;			// identificador para group box
-HWND      hwndLabel;			// identificador para label 
-HWND      hwndEdit;				// identificador para edit control
-HWND      hwndButton;			// identificador para button
-HFONT     appFont;				// fonte da aplicação
+bool      resultClean  = true;      // tela de resultado está limpa
+HINSTANCE hInstanceApp;             // identificador da aplicação
+RECT      clientRect;               // dimensões da área cliente da janela
+HWND      hwndGroup;                // identificador para group box
+HWND      hwndLabel;                // identificador para label 
+HWND      hwndEdit;                 // identificador para edit control
+HWND      hwndButton;               // identificador para button
+HFONT     appFont;                  // fonte da aplicação
 
 //--------------------------------------------------------------------------------
 
