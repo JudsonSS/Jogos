@@ -39,4 +39,4 @@ A numeração dos laboratórios (Labs) coincidem com a sequência das aulas (Sli
 28. Movimentação do Segundo Plano
 29. Distribuição do Jogo
 
-O motor desenvolvido é didático e foca em clareza de apresentação no lugar de desempenho, sempre que os dois objetivos são conflitantes. Estou constantemente tentando melhorar o motor, seja na sua arquitetura, desempenho ou facilidade de uso. Se tiverem sujestões de melhoria fiquem a vontade para contribuir com o projeto.
+O motor desenvolvido é didático e foca em clareza de apresentação no lugar de desempenho, sempre que os dois objetivos são conflitantes. Estou constantemente tentando melhorar o motor, seja na sua arquitetura, desempenho ou facilidade de uso. Se tiverem sugestões de melhoria fiquem a vontade para contribuir com o projeto.
