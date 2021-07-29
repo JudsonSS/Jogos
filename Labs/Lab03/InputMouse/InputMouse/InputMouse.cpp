@@ -32,6 +32,7 @@ int mouseX = 0, mouseY = 0;             // posição do mouse
 bool mouseLB = false;                   // botão esquerdo do mouse pressionado
 bool mouseMB = false;                   // botão do meio do mouse pressionado
 bool mouseRB = false;                   // botão direito do mouse pressionado
+short mouseWheel = 0;					// valor da roda do mouse
 stringstream text;                      // texto a ser exibido na tela
 
 //--------------------------------------------------------------------------------
@@ -105,8 +106,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
              GetWindowExStyle(hwnd));
 
          // atualiza posição da janela
-         int windowPosX = (GetSystemMetrics(SM_CXSCREEN) / 2) - ((winRect.right - winRect.left) / 2);
-         int windowPosY = (GetSystemMetrics(SM_CYSCREEN) / 2) - ((winRect.bottom - winRect.top) / 2);
+         int windowPosX = GetSystemMetrics(SM_CXSCREEN) / 2 - (winRect.right - winRect.left) / 2;
+         int windowPosY = GetSystemMetrics(SM_CYSCREEN) / 2 - (winRect.bottom - winRect.top) / 2;
 
          // redimensiona janela com uma chamada a MoveWindow
          MoveWindow(
@@ -149,6 +150,10 @@ LRESULT CALLBACK WinProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
          mouseX = LOWORD(lParam);
          mouseY = HIWORD(lParam);
          return 0;
+     case WM_MOUSEWHEEL:
+         mouseWheel = GET_WHEEL_DELTA_WPARAM(wParam);
+         InvalidateRect(hwnd, NULL, TRUE);
+         return 0;
      case WM_LBUTTONDOWN:
          mouseLB = true;
          InvalidateRect(hwnd, NULL, TRUE);
@@ -182,7 +187,7 @@ LRESULT CALLBACK WinProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
          DrawText(hdc, text.str().c_str(), -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
          rect.bottom -= 100;
          DrawText(hdc, "Posição do Click", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
-         
+
          // botão do mouse
          rect.top += 150;
          if (mouseLB)
@@ -191,6 +196,14 @@ LRESULT CALLBACK WinProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
              DrawText(hdc, "RIGHT", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
          if (mouseMB)
              DrawText(hdc, "MIDDLE", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+
+         // rotação da roda do mouse 
+         rect.top += 50;
+         if (mouseWheel > 0)
+             DrawText(hdc, "Rolagem para frente", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+         if (mouseWheel < 0)
+             DrawText(hdc, "Rolagem para trás", -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+
          EndPaint(hwnd, &ps);
          return 0;
 
