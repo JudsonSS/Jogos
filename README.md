@@ -12,7 +12,7 @@ A numeração dos laboratórios (Labs) coincidem com a sequência das aulas (Sli
 01. Programação para Windows
 02. Configuração da Janela
 03. Teclado e Mouse
-04. Laço de Tempo-Real
+04. Arquitetura de um Jogo
 05. Motor de Jogo
 06. Direct3D
 07. Taxa de Atualização
