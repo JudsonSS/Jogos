@@ -15,28 +15,28 @@
 // -------------------------------------------------------------------------------
 // Inicialização de membros estáticos da classe
 bool Window::windowKeys[256] = { 0 };                       // estado do teclado/mouse
-int	 Window::windowMouseX = 0;                              // posição do mouse no eixo x
-int	 Window::windowMouseY = 0;                              // posição do mouse no eixo y
+int  Window::windowMouseX = 0;                              // posição do mouse no eixo x
+int  Window::windowMouseY = 0;                              // posição do mouse no eixo y
 
 // -------------------------------------------------------------------------------
 // Construtor
 
 Window::Window()
 {
-    hInstance		= GetModuleHandle(NULL);                // identificador da aplicação
-    windowHandle	= 0;                                    // identificador da janela do jogo
-    windowWidth		= GetSystemMetrics(SM_CXSCREEN);        // a janela ocupa toda a tela (tela cheia)
-    windowHeight	= GetSystemMetrics(SM_CYSCREEN);        // a janela ocupa toda a tela (tela cheia)
-    windowIcon		= LoadIcon(NULL, IDI_APPLICATION);      // ícone padrão de uma aplicação
-    windowCursor	= LoadCursor(NULL, IDC_ARROW);          // cursor padrão de uma aplicação
-    windowColor	    = RGB(0,0,0);                           // cor de fundo padrão é preta
-    windowTitle		= string("Windows Game");               // título padrão da janela
-    windowStyle		= WS_POPUP | WS_VISIBLE;                // estilo para tela cheia
-    windowMode		= FULLSCREEN;                           // modo padrão é tela cheia
-    windowPosX		= 0;                                    // posição inicial da janela no eixo x
-    windowPosY		= 0;                                    // posição inicial da janela no eixo y
+    hInstance       = GetModuleHandle(NULL);                // identificador da aplicação
+    windowHandle    = 0;                                    // identificador da janela do jogo
+    windowWidth     = GetSystemMetrics(SM_CXSCREEN);        // a janela ocupa toda a tela (tela cheia)
+    windowHeight    = GetSystemMetrics(SM_CYSCREEN);        // a janela ocupa toda a tela (tela cheia)
+    windowIcon      = LoadIcon(NULL, IDI_APPLICATION);      // ícone padrão de uma aplicação
+    windowCursor    = LoadCursor(NULL, IDC_ARROW);          // cursor padrão de uma aplicação
+    windowColor     = RGB(0,0,0);                           // cor de fundo padrão é preta
+    windowTitle     = string("Windows Game");               // título padrão da janela
+    windowStyle     = WS_POPUP | WS_VISIBLE;                // estilo para tela cheia
+    windowMode      = FULLSCREEN;                           // modo padrão é tela cheia
+    windowPosX      = 0;                                    // posição inicial da janela no eixo x
+    windowPosY      = 0;                                    // posição inicial da janela no eixo y
     windowCenterX   = windowWidth/2.0f;                     // centro da janela no eixo x
-    windowCenterY	= windowHeight/2.0f;                    // centro da janela no eixo y
+    windowCenterY   = windowHeight/2.0f;                    // centro da janela no eixo y
 }
 
 // -------------------------------------------------------------------------------
@@ -105,16 +105,16 @@ bool Window::Create()
     
     // definindo uma classe de janela chamada "GameWindow"
     wndClass.cbSize         = sizeof(WNDCLASSEX);
-    wndClass.style			= CS_DBLCLKS | CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
-    wndClass.lpfnWndProc	= Window::WinProc;
-    wndClass.cbClsExtra		= 0;
-    wndClass.cbWndExtra		= 0;
-    wndClass.hInstance		= hInstance;
-    wndClass.hIcon			= windowIcon;
-    wndClass.hCursor		= windowCursor; 
-    wndClass.hbrBackground	= (HBRUSH) CreateSolidBrush(windowColor);
-    wndClass.lpszMenuName	= NULL;
-    wndClass.lpszClassName	= "GameWindow";
+    wndClass.style          = CS_DBLCLKS | CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
+    wndClass.lpfnWndProc    = Window::WinProc;
+    wndClass.cbClsExtra     = 0;
+    wndClass.cbWndExtra     = 0;
+    wndClass.hInstance      = hInstance;
+    wndClass.hIcon          = windowIcon;
+    wndClass.hCursor        = windowCursor; 
+    wndClass.hbrBackground  = (HBRUSH) CreateSolidBrush(windowColor);
+    wndClass.lpszMenuName   = NULL;
+    wndClass.lpszClassName  = "GameWindow";
     wndClass.hIconSm        = windowIcon;
 
     // registrando "GameWindow"

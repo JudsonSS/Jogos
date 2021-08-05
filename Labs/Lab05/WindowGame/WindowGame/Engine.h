@@ -27,7 +27,7 @@
 class Engine
 {
 private:
-    int Loop();							// inicia o laço de tempo real
+    int Loop();                         // inicia o laço de tempo real
 
 public:
     static Game   * game;               // jogo a ser executado

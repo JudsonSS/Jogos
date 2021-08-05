@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Game (Arquivo de Cabeçalho)
 // 
-// Criação:		08 Dez 2012
-// Atualização:	05 Ago 2021
-// Compilador:	Visual C++ 2019
+// Criação:     08 Dez 2012
+// Atualização: 05 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Uma classe abstrata para representar um jogo.
+// Descrição:   Uma classe abstrata para representar um jogo.
 //
 //              Para criar um jogo o programador deve criar uma classe derivada
 //              de Game e sobrescrever os métodos Init, Update, Draw e Finalize.

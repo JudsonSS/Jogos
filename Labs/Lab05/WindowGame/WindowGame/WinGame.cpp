@@ -1,11 +1,11 @@
 /**********************************************************************************
 // WinGame 
 // 
-// Criação:		19 Mai 2007
-// Atualização:	04 Ago 2021
-// Compilador:	Visual C++ 2019
+// Criação:     19 Mai 2007
+// Atualização: 04 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Um jogo para Windows é uma classe derivada de Game.
+// Descrição:   Um jogo para Windows é uma classe derivada de Game.
 //              Crie uma classe derivada e sobrescreva os métodos Init, 
 //              Update, Draw e Finalize.
 //

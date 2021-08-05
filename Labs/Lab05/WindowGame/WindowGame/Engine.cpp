@@ -57,9 +57,9 @@ int Engine::Start(Game * level)
 
 int Engine::Loop()
 {
-    MSG  msg = { 0 };	// mensagem do Windows
-    HDC  hdc;			// contexto do dispositivo
-    RECT rect;			// área cliente da tela
+    MSG  msg = { 0 };   // mensagem do Windows
+    HDC  hdc;           // contexto do dispositivo
+    RECT rect;          // área cliente da tela
 
     // captura contexto do dispositivo
     hdc = GetDC(window->Id());
