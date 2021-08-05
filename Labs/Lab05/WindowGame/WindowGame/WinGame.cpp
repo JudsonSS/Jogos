@@ -11,6 +11,7 @@
 //
 **********************************************************************************/
 
+#include "Resources.h"
 #include "Engine.h"
 #include "Game.h"
 #include <sstream>
@@ -81,6 +82,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	engine->window->Size(960, 540);
 	engine->window->Color(240, 240, 140);
 	engine->window->Title("Window Game");
+	engine->window->Icon(IDI_ICON);
+	engine->window->Cursor(IDC_CURSOR);
 
 	// cria e inicia o jogo
 	engine->Start(new WinGame());

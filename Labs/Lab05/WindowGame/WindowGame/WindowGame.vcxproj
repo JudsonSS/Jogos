@@ -154,8 +154,12 @@
   <ItemGroup>
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

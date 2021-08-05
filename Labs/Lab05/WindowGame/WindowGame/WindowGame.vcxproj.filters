@@ -13,6 +13,9 @@
     <Filter Include="Game">
       <UniqueIdentifier>{40d65d31-fa52-46be-8550-dbe052d60415}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Arquivos de Recurso">
+      <UniqueIdentifier>{bde5318c-6384-43d8-8766-fac466c9c12e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -41,5 +44,13 @@
     <ClInclude Include="Window.h">
       <Filter>Engine\Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Engine\Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Engine\Arquivos de Recurso</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
