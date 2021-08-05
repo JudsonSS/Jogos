@@ -2,7 +2,7 @@
 // Game (Código Fonte)
 //
 // Criação:		08 Dez 2012
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Uma classe abstrata para representar um jogo.

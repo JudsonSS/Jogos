@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:		19 Mai 2007
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe abstrai todos os detalhes de configuração de
@@ -10,8 +10,8 @@
 //
 **********************************************************************************/
 
-#ifndef _DESENVJOGOS_WINDOW_H_
-#define _DESENVJOGOS_WINDOW_H_
+#ifndef _PROGJOGOS_WINDOW_H_
+#define _PROGJOGOS_WINDOW_H_
 
 // ---------------------------------------------------------------------------------
 // Inclusões
@@ -70,7 +70,6 @@ public:
 	string Title() const;									// retorna título da janela
 	
 	void ShowCursor(bool show);								// habilita ou desabilita a exbição do cursor
-	void CloseOnEscape();									// fecha a janela pelo pressionamento da tecla ESC
 	void Close();											// fecha janela imediatamente
 
 	bool KeyDown(int vkcode);								// verifica se uma tecla/botão está pressionado
@@ -144,10 +143,6 @@ inline string Window::Title() const
 // habilita ou desabilita a exbição do cursor
 inline void Window::ShowCursor(bool show) 
 { ::ShowCursor(show); }
-
-// fecha a janela pelo pressionamento da tecla ESC
-inline void Window::CloseOnEscape()
-{ if (KeyDown(VK_ESCAPE)) PostMessage(windowHandle, WM_DESTROY,0,0); }
 
 // fecha a janela imediatamente 
 inline void Window::Close()

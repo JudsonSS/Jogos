@@ -2,7 +2,7 @@
 // Window (Código Fonte)
 // 
 // Criação:		19 Mai 2007
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A classe abstrai todos os detalhes de configuração de

@@ -2,7 +2,7 @@
 // Engine (Código Fonte)
 //
 // Criação:		15 Mai 2014
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A função da Engine é rodar jogos criados a partir da classe
@@ -36,9 +36,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	if (game)
-		delete game;
-
+	delete game;
 	delete window;
 }
 

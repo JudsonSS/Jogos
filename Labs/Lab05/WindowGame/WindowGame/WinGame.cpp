@@ -2,7 +2,7 @@
 // WinGame 
 // 
 // Criação:		19 Mai 2007
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Um jogo para Windows é uma classe derivada de Game.
@@ -44,8 +44,6 @@ void WinGame::Init()
 
 void WinGame::Update()
 {
-	window->CloseOnEscape();
-
 	if (window->KeyDown(VK_LBUTTON))
 		window->Close();
 
@@ -74,10 +72,8 @@ void WinGame::Finalize()
 //                                  WinMain                                      
 // ------------------------------------------------------------------------------
 
-int APIENTRY WinMain(_In_ HINSTANCE hInstance, 
-	                 _In_opt_ HINSTANCE hPrevInstance, 
-	                 _In_ LPSTR lpCmdLine, 
-	                 _In_ int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
+	                 _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	// cria motor e configura a janela
 	Engine * engine = new Engine();
@@ -87,8 +83,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
 	engine->window->Title("Window Game");
 
 	// cria e inicia o jogo
-	Game * game = new WinGame();
-	engine->Start(game);
+	engine->Start(new WinGame());
 }
 
 // ----------------------------------------------------------------------------

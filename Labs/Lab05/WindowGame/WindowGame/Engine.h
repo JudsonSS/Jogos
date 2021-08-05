@@ -2,7 +2,7 @@
 // Engine (Arquivo de Cabeçalho)
 //
 // Criação:		15 Mai 2014
-// Atualização:	14 Mai 2019
+// Atualização:	04 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	A função da Engine é rodar jogos criados a partir da classe 
@@ -14,8 +14,8 @@
 //
 **********************************************************************************/
 
-#ifndef _DESENVJOGOS_ENGINE_H_
-#define _DESENVJOGOS_ENGINE_H_
+#ifndef _PROGJOGOS_ENGINE_H_
+#define _PROGJOGOS_ENGINE_H_
 
 // ---------------------------------------------------------------------------------
 
