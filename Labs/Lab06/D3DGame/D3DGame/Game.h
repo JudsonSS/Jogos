@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Game (Arquivo de Cabeçalho)
 // 
-// Criação:		08 Dez 2012
-// Atualização:	17 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     08 Dez 2012
+// Atualização: 05 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Uma class abstrata para representar um jogo.
+// Descrição:   Uma classe abstrata para representar um jogo.
 //
 //              Para criar um jogo o programador deve criar uma classe derivada
 //              de Game e sobrescrever os métodos Init, Update, Draw e Finalize.
@@ -14,8 +14,8 @@
 //
 **********************************************************************************/
 
-#ifndef _DESENVJOGOS_GAME_H_
-#define _DESENVJOGOS_GAME_H_
+#ifndef _PROGJOGOS_GAME_H_
+#define _PROGJOGOS_GAME_H_
 
 // ---------------------------------------------------------------------------------
 
@@ -29,19 +29,19 @@ class Game
 	// públicos para as classes derivadas, ou seja, as classes
 	// derivadas de Game serão capazes de acessar estes membros.
 protected:
-	 static Window * window;					// janela do jogo
+	static Window* & window;                    // janela do jogo
 
 public:
-	Game();										// construtor
-	virtual ~Game();							// destrutor
+	Game();                                     // construtor
+	virtual ~Game();                            // destrutor
 
 	// Estes métodos são puramente virtuais, isto é, devem ser 
 	// implementados em todas as classes derivas de Game.
 
-	virtual void Init() = 0;					// inicialização do jogo
-	virtual void Update() = 0;					// atualização do jogo
-	virtual void Draw() = 0;					// desenho da cena
-	virtual void Finalize() = 0;				// finalização do jogo
+	virtual void Init() = 0;                    // inicialização do jogo
+	virtual void Update() = 0;                  // atualização do jogo
+	virtual void Draw() = 0;                    // desenho da cena
+	virtual void Finalize() = 0;                // finalização do jogo
 };
 
 // ---------------------------------------------------------------------------------

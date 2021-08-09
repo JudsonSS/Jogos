@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Engine (Código Fonte)
 //
-// Criação:		15 Mai 2014
-// Atualização:	17 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     15 Mai 2014
+// Atualização: 08 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	A função da Engine é rodar jogos criados a partir da classe
+// Descrição:   A função da Engine é rodar jogos criados a partir da classe
 //              abstrata Game. Todo jogo deve ser uma classe derivada de Game
 //              e portanto deve implementar as funções membro Init, Update, Draw
 //              e Finalize, que serão chamadas pelo motor em um laço de tempo real.
@@ -22,87 +22,86 @@ using std::stringstream;
 // ------------------------------------------------------------------------------
 // Inicialização de variáveis estáticas da classe
 
-Window   * Engine::window   = nullptr;		// janela do jogo
-Graphics * Engine::graphics = nullptr;		// dispositivo gráfico
+Game     * Engine::game     = nullptr;        // jogo em execução
+Window   * Engine::window   = nullptr;        // janela do jogo
+Graphics * Engine::graphics = nullptr;        // dispositivo gráfico
 
 // -------------------------------------------------------------------------------
 
 Engine::Engine()
 {
-	window     = new Window();
-	graphics   = new Graphics();
-	game       = nullptr;
+    window     = new Window();
+    graphics   = new Graphics();
 }
 
 // -------------------------------------------------------------------------------
 
 Engine::~Engine()
 {
-	if (game)
-		delete game;
-
-	delete graphics;
-	delete window;
+    delete game;
+    delete graphics;
+    delete window;
 }
 
 // -----------------------------------------------------------------------------
 
-int Engine::Start(Game * gameLevel)
+int Engine::Start(Game * level)
 {
-	game = gameLevel;
+    game = level;
 
-	// cria janela do jogo
-	window->Create();
+    // cria janela do jogo
+    window->Create();
 
-	// inicializa dispositivo gráfico
-	graphics->Initialize(window);
+    // inicializa dispositivo gráfico
+    graphics->Initialize(window);
 
-	return Loop();
+    return Loop();
 }
 
 // -------------------------------------------------------------------------------
 
 int Engine::Loop()
 {
-	// inicialização do jogo
-	game->Init();
+    // inicialização do jogo
+    game->Init();
 
-	// mensagens do Windows
-	MSG  msg = { 0 };
+    // mensagens do Windows
+    MSG  msg = { 0 };
 
-	// laço principal do jogo
-	do
-	{
-		// testa se tem mensagem do windows para tratar
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		else
-		{			
-			// atualização do jogo 
-			game->Update();
+    // laço principal do jogo
+    do
+    {
+        // testa se tem mensagem do windows para tratar
+        if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
+        else
+        {            
+            // atualização do jogo 
+            game->Update();
 
-			// limpa a tela para o próximo quadro
-			graphics->Clear();
+            // limpa a tela para o próximo quadro
+            graphics->Clear();
 
-			// desenha o jogo
-			game->Draw();
+            // desenha o jogo
+            game->Draw();
 
-			// apresenta o jogo na tela (troca backbuffer/frontbuffer)
-			graphics->Present();
-			
-			Sleep(16);
-		}
+            // apresenta o jogo na tela (troca backbuffer/frontbuffer)
+            graphics->Present();
+            
+            // controle de FPS (quebra galho)
+            Sleep(16); 
+        }
 
-	} while (msg.message != WM_QUIT);
+    } while (msg.message != WM_QUIT);
 
-	// finalização do jogo
-	game->Finalize();
+    // finalização do jogo
+    game->Finalize();
 
-	// encerra aplicação
-	return int(msg.wParam);
+    // encerra aplicação
+    return int(msg.wParam);
 }
 
 // -----------------------------------------------------------------------------

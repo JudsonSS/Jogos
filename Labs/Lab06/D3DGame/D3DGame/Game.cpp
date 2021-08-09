@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Game (Código Fonte)
 //
-// Criação:		08 Dez 2012
-// Atualização:	17 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     08 Dez 2012
+// Atualização: 05 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Uma class abstrata para representar um jogo.
+// Descrição:   Uma classe abstrata para representar um jogo.
 //
 //              Para criar um jogo o programador deve criar uma classe derivada
 //              de Game e sobrescrever os métodos Init, Update, Draw e Finalize.
@@ -20,18 +20,12 @@
 // -------------------------------------------------------------------------------
 // Inicialização de membros estáticos da classe
 
-Window * Game::window = nullptr;	// ponteiro para a janela
+Window* & Game::window = Engine::window;            // ponteiro para a janela
 
 // -------------------------------------------------------------------------------
 
 Game::Game()
 {
-	if (!window)
-	{
-		// assume que a instância da engine é  
-		// criada antes da instância do jogo
-		window = Engine::window;
-	}
 }
 
 // -------------------------------------------------------------------------------
