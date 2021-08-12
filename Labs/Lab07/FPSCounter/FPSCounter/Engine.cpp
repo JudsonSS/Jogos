@@ -99,9 +99,8 @@ int Engine::Loop()
     // mensagens do Windows
     MSG  msg = { 0 };
 
-    // controle da tecla Pause (VK_PAUSE) 
-    // registra novo pressionamento somente após liberação da tecla
-    bool pauseCtrl = true;
+    // controle da tecla Pause (VK_PAUSE)
+    bool pauseKeyCtrl = true;
 
     // loop principal do jogo
     do
@@ -118,12 +117,12 @@ int Engine::Loop()
             // Pausa/Resume Jogo
             // -----------------------------------------------
 
-            if (pauseCtrl)
+            if (pauseKeyCtrl)
             {
                 if (window->KeyDown(VK_PAUSE))
                 {
                     paused = !paused;
-                    pauseCtrl = false;
+                    pauseKeyCtrl = false;
 
                     if (paused)
                         timer.Stop();
@@ -133,8 +132,10 @@ int Engine::Loop()
             }
             else
             {
+                // registra novo pressionamento somente 
+                // após liberação da tecla Pause
                 if (window->KeyUp(VK_PAUSE))
-                    pauseCtrl = true;
+                    pauseKeyCtrl = true;
             }
 
             // -----------------------------------------------
@@ -158,6 +159,7 @@ int Engine::Loop()
             }
             else
             {
+                // tela de pausa
                 game->OnPause();
             }
 

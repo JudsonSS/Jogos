@@ -13,6 +13,9 @@
 #include "Resources.h"
 #include "Engine.h"
 #include "Game.h"
+#include "Timer.h"
+#include <sstream>
+using std::stringstream;
 
 // ------------------------------------------------------------------------------
 
