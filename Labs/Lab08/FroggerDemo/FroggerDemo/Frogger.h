@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Frogger (Arquivo de Cabeçalho)
 // 
-// Criação:		19 Dez 2012
-// Atualização:	24 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     19 Dez 2012
+// Atualização: 14 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Define o objeto Sapo no jogo Frogger
+// Descrição:   Define o objeto Sapo no jogo Frogger
 //
 **********************************************************************************/
 
@@ -15,25 +15,25 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de object
-#include "Sprite.h"			// interface de sprites
+#include "Types.h"             // tipos específicos da engine
+#include "Object.h"            // interface de object
+#include "Sprite.h"            // interface de sprites
 
 // ---------------------------------------------------------------------------------
 
 class Frogger : public Object
 {
 private:
-	Sprite * sprite;
-	bool ctrlUp;
-	bool ctrlDown;
+    Sprite * sprite;
+    bool ctrlUp;
+    bool ctrlDown;
 
 public:
-	Frogger();
-	~Frogger();
+    Frogger();
+    ~Frogger();
 
-	void Update();
-	void Draw();
+    void Update();
+    void Draw();
 };
 
 // ---------------------------------------------------------------------------------
