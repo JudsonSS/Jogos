@@ -172,39 +172,59 @@ bool Window::Create()
 
 LRESULT CALLBACK Window::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    switch(msg)
+    switch (msg)
     {
-    case WM_MOUSEMOVE:          // movimento do mouse registrado
+        // tecla pressionada
+    case WM_KEYDOWN:
+        windowKeys[wParam] = true;
+        return 0;
+
+        // tecla liberada
+    case WM_KEYUP:
+        windowKeys[wParam] = false;
+        return 0;
+
+        // movimento do mouse
+    case WM_MOUSEMOVE:
         windowMouseX = GET_X_LPARAM(lParam);
         windowMouseY = GET_Y_LPARAM(lParam);
         return 0;
 
-    case WM_KEYDOWN:            // tecla do teclado pressionada
-    case WM_LBUTTONDOWN:        // botão esquerdo do mouse pressionado
-    case WM_MBUTTONDOWN:        // botão do meio do mouse pressionado
-    case WM_RBUTTONDOWN:        // botão direito do mouse pressionado
-    case WM_LBUTTONDBLCLK:      // duplo click do botão esquerdo do mouse
-    case WM_MBUTTONDBLCLK:      // duplo click do botão do meio do mouse
-    case WM_RBUTTONDBLCLK:      // duplo click do botão direito do mouse
-        windowKeys[wParam] = true;
+        // botão esquerdo do mouse pressionado
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDBLCLK:
+        windowKeys[VK_LBUTTON] = true;
         return 0;
 
-    case WM_KEYUP:              // tecla do teclado liberada
-    case WM_LBUTTONUP:          // botão esquerdo do mouse liberado
-    case WM_MBUTTONUP:          // botão do meio do mouse liberado
-    case WM_RBUTTONUP:          // botão direito do mouse liberado
-        windowKeys[wParam] = false;
+        // botão do meio do mouse pressionado
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONDBLCLK:
+        windowKeys[VK_MBUTTON] = true;
         return 0;
 
-    // descomente as linhas abaixo para impedir que ALT-F4 feche a janela
-    //case WM_SYSKEYDOWN:
-    //	if (wParam == VK_F4)
-    //		return 0;
-    //	break;
+        // botão direito do mouse pressionado
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONDBLCLK:
+        windowKeys[VK_RBUTTON] = true;
+        return 0;
+
+        // botão esquerdo do mouse liberado
+    case WM_LBUTTONUP:
+        windowKeys[VK_LBUTTON] = false;
+        return 0;
+
+        // botão do meio do mouse liberado
+    case WM_MBUTTONUP:
+        windowKeys[VK_MBUTTON] = false;
+        return 0;
+
+        // botão direito do mouse liberado
+    case WM_RBUTTONUP:
+        windowKeys[VK_RBUTTON] = false;
+        return 0;
 
         // a janela foi destruida
-    case WM_DESTROY: 
-        // envia uma mensagem WM_QUIT para encerrar o loop da aplicação
+    case WM_DESTROY:
         PostQuitMessage(0);
         return 0;
     }

@@ -150,34 +150,58 @@ bool Window::Create()
 
 LRESULT CALLBACK Window::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    switch(msg)
+    switch (msg)
     {
-    // movimentação do mouse
-    case WM_MOUSEMOVE:          
+        // tecla pressionada
+    case WM_KEYDOWN:
+        windowKeys[wParam] = true;
+        return 0;
+
+        // tecla liberada
+    case WM_KEYUP:
+        windowKeys[wParam] = false;
+        return 0;
+
+        // movimento do mouse
+    case WM_MOUSEMOVE:
         windowMouseX = GET_X_LPARAM(lParam);
         windowMouseY = GET_Y_LPARAM(lParam);
         return 0;
 
-    // pressionamento de teclas
-    case WM_KEYDOWN:            // tecla do teclado
-    case WM_LBUTTONDOWN:        // botão esquerdo do mouse
-    case WM_MBUTTONDOWN:        // botão do meio do mouse
-    case WM_RBUTTONDOWN:        // botão direito do mouse
-    case WM_LBUTTONDBLCLK:      // duplo click do botão esquerdo do mouse
-    case WM_MBUTTONDBLCLK:      // duplo click do botão do meio do mouse
-    case WM_RBUTTONDBLCLK:      // duplo click do botão direito do mouse
-        windowKeys[wParam] = true;
+        // botão esquerdo do mouse pressionado
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONDBLCLK:
+        windowKeys[VK_LBUTTON] = true;
         return 0;
 
-    // liberação de teclas
-    case WM_KEYUP:              // tecla do teclado
-    case WM_LBUTTONUP:          // botão esquerdo do mouse 
-    case WM_MBUTTONUP:          // botão do meio do mouse 
-    case WM_RBUTTONUP:          // botão direito do mouse 
-        windowKeys[wParam] = false;
+        // botão do meio do mouse pressionado
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONDBLCLK:
+        windowKeys[VK_MBUTTON] = true;
         return 0;
 
-    // mudança de foco da janela
+        // botão direito do mouse pressionado
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONDBLCLK:
+        windowKeys[VK_RBUTTON] = true;
+        return 0;
+
+        // botão esquerdo do mouse liberado
+    case WM_LBUTTONUP:
+        windowKeys[VK_LBUTTON] = false;
+        return 0;
+
+        // botão do meio do mouse liberado
+    case WM_MBUTTONUP:
+        windowKeys[VK_MBUTTON] = false;
+        return 0;
+
+        // botão direito do mouse liberado
+    case WM_RBUTTONUP:
+        windowKeys[VK_RBUTTON] = false;
+        return 0;
+
+        // mudança de foco da janela
     case WM_SETFOCUS:
         Engine::Resume();
         return 0;
@@ -185,7 +209,7 @@ LRESULT CALLBACK Window::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
         Engine::Pause();
         return 0;
 
-    // a janela foi destruida
+        // a janela foi destruida
     case WM_DESTROY:
         PostQuitMessage(0);
         return 0;
