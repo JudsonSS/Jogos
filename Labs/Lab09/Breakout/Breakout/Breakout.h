@@ -1,11 +1,11 @@
 /**********************************************************************************
 // D3DBreakout (Arquivo de Cabeçalho)
 //
-// Criação:		26 Mar 2012
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     26 Mar 2012
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exercício sobre uso da classe Scene para gerenciar objetos
+// Descrição:   Exercício sobre uso da classe Scene para gerenciar objetos
 //
 **********************************************************************************/
 
@@ -19,20 +19,20 @@
 class Breakout : public Game
 {
 private:
-	Sprite * backg;				// plano de fundo
-	Image * tile1;				// bloco verde
-	Image * tile2;				// bloco cinza
-	Image * tile3;				// bloco vermelho
-	Image * tile4;				// bloco roxo
-	Image * tile5;				// bloco amarelo
+    Sprite * backg;             // plano de fundo
+    Image * tile1;              // bloco verde
+    Image * tile2;              // bloco cinza
+    Image * tile3;              // bloco vermelho
+    Image * tile4;              // bloco roxo
+    Image * tile5;              // bloco amarelo
 
 public:
-	static Scene * scene;		// cena do jogo
+    static Scene * scene;       // cena do jogo
 
-	void Init();
-	void Update();
-	void Draw();
-	void Finalize();
+    void Init();                // inicialização
+    void Update();              // atualização
+    void Draw();                // desenho
+    void Finalize();            // finalização
 };
 
 // ------------------------------------------------------------------------------

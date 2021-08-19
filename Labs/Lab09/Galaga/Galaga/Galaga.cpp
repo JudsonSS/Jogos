@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Galaga (Código Fonte)
 // 
-// Criação:		23 Set 2011
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Set 2011
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Usa a classe Scene para gerenciar muitos objetos na tela
+// Descrição:   Usa a classe Scene para gerenciar muitos objetos na tela
 //
 **********************************************************************************/
 
@@ -25,156 +25,161 @@ Scene * Galaga::scene = nullptr;
 
 void Galaga::Init()
 {
-	// cria cena do jogo
-	scene = new Scene();
+    // ------------------------------
+    // cria cena do jogo
+    scene = new Scene();
 
-	// ------------------------------
-	// cria sprite do fundo e título
+    // ------------------------------
+    // cria sprite do fundo e título
 
-	title = new Sprite("Resources/Galaga.png");
-	backg = new Sprite("Resources/space.png");
+    title = new Sprite("Resources/Galaga.png");
+    backg = new Sprite("Resources/space.png");
 
-	// ------------------------------
-	// cria jogador
-	
-	Player * player = new Player();
-	scene->Add(player);
+    // ------------------------------
+    // cria jogador
+    
+    scene->Add(new Player());
 
-	// ------------------------------
-	// cria alienígenas
+    // ------------------------------
+    // cria alienígenas
 
-	float offset = 80;
-	float posY   = 260;
+    float offset = 80;
+    float posY   = 260;
 
-	Alien * alien;
-	alien = new Alien("Resources/Alien1.png");
-	alien->MoveTo(0, posY);
-	scene->Add(alien);
+    Alien * alien;
+    alien = new Alien("Resources/Alien1.png");
+    alien->MoveTo(0, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien2.png");
-	alien->MoveTo(offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien2.png");
+    alien->MoveTo(offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien3.png");
-	alien->MoveTo(2 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien3.png");
+    alien->MoveTo(2 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien4.png");
-	alien->MoveTo(3 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien4.png");
+    alien->MoveTo(3 * offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien1.png");
-	alien->MoveTo(4 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien1.png");
+    alien->MoveTo(4 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien2.png");
-	alien->MoveTo(5 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien2.png");
+    alien->MoveTo(5 * offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien3.png");
-	alien->MoveTo(6 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien3.png");
+    alien->MoveTo(6 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien4.png");
-	alien->MoveTo(7 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien4.png");
+    alien->MoveTo(7 * offset, posY + 30);
+    scene->Add(alien);
 
-	// ------------------------------
+    // ------------------------------
 
-	posY = 360;
+    posY = 360;
 
-	alien = new Alien("Resources/Alien4.png");
-	alien->MoveTo(0, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien4.png");
+    alien->MoveTo(0, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien3.png");
-	alien->MoveTo(offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien3.png");
+    alien->MoveTo(offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien2.png");
-	alien->MoveTo(2 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien2.png");
+    alien->MoveTo(2 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien1.png");
-	alien->MoveTo(3 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien1.png");
+    alien->MoveTo(3 * offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien4.png");
-	alien->MoveTo(4 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien4.png");
+    alien->MoveTo(4 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien3.png");
-	alien->MoveTo(5 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien3.png");
+    alien->MoveTo(5 * offset, posY + 30);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien2.png");
-	alien->MoveTo(6 * offset, posY);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien2.png");
+    alien->MoveTo(6 * offset, posY);
+    scene->Add(alien);
 
-	alien = new Alien("Resources/Alien1.png");
-	alien->MoveTo(7 * offset, posY + 30);
-	scene->Add(alien);
+    alien = new Alien("Resources/Alien1.png");
+    alien->MoveTo(7 * offset, posY + 30);
+    scene->Add(alien);
 }
 
 // ------------------------------------------------------------------------------
 
 void Galaga::Update()
 {
-	window->CloseOnEscape();
+    // sai com o pressionamento do ESC
+    if (window->KeyDown(VK_ESCAPE))
+        window->Close();
 
-	// atualiza objetos da cena
-	scene->Update();
+    // atualiza objetos da cena
+    scene->Update();
 } 
 
 // ------------------------------------------------------------------------------
 
 void Galaga::Draw()
 {
-	// desenha pano de fundo e título do jogo
-	backg->Draw(0, 0, Layer::BACK);
-	title->Draw(window->CenterX() - title->Width()/2.0f, 30.0f, Layer::FRONT);
+    // desenha pano de fundo
+    backg->Draw(0, 0, Layer::BACK);
 
-	// desenha cena
-	scene->Draw();
+    // desenha título do jogo
+    title->Draw(window->CenterX() - title->Width()/2.0f, 30.0f, Layer::FRONT);
+
+    // desenha cena
+    scene->Draw();
 } 
 
 // ------------------------------------------------------------------------------
 
 void Galaga::Finalize()
 {
-	// apaga sprites
-	delete backg;
-	delete title;
+    // apaga sprites
+    delete backg;
+    delete title;
 
-	// apaga cena do jogo
-	delete scene;
+    // apaga cena do jogo
+    delete scene;
 }
 
 // ------------------------------------------------------------------------------
 //                                  WinMain                                      
 // ------------------------------------------------------------------------------
 
-int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
+                     _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
-	Engine * engine = new Engine();
+    Engine * engine = new Engine();
 
-	// configura e inicia o jogo
-	engine->window->Mode(WINDOWED);
-	engine->window->Size(640, 720);
-	engine->window->Color(0, 0, 0);
-	engine->window->Title("Galaga");
-	engine->window->Icon(IDI_ICON);
-	engine->window->Cursor(IDC_CURSOR);
+    // configura e inicia o jogo
+    engine->window->Mode(WINDOWED);
+    engine->window->Size(640, 640);
+    engine->window->Color(0, 0, 0);
+    engine->window->Title("Galaga");
+    engine->window->Icon(IDI_ICON);
+    engine->window->Cursor(IDC_CURSOR);
 
-	// configura dispositivo gráfico
-	//engine->graphics->VSync(true);
+    // configura dispositivo gráfico
+    //engine->graphics->VSync(true);
 
-	// inicia o jogo
-	int status = engine->Start(new Galaga());
+    // inicia o jogo
+    int status = engine->Start(new Galaga());
 
-	// destrói o motor e o jogo
-	delete engine;
-	return status;
+    // destrói o motor e o jogo
+    delete engine;
+    return status;
 }
 
 // ----------------------------------------------------------------------------

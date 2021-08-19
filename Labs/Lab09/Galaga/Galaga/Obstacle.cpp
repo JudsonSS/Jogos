@@ -1,42 +1,41 @@
 /**********************************************************************************
-// Missile (Código Fonte)
+// Obstacle (Código Fonte)
 // 
-// Criação:     21 Dez 2012
-// Atualização: 18 Ago 2021
+// Criação:     19 Dez 2012
+// Atualização: 14 Ago 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Mísseis do jogo Galaga
+// Descrição:   Obstáculos do jogo Frogger
 //
 **********************************************************************************/
 
-#include "Missile.h"
-#include "Galaga.h"
+#include "Obstacle.h"
 
 // ---------------------------------------------------------------------------------
 
-Missile::Missile(Image * img)
+Obstacle::Obstacle(Image * img, float speed)
 {
     sprite = new Sprite(img);
-    vel    = 250;
+    vel    = speed;
 }
 
 // ---------------------------------------------------------------------------------
 
-Missile::~Missile()
+Obstacle::~Obstacle()
 {
     delete sprite;
 }
 
 // ---------------------------------------------------------------------------------
 
-void Missile::Update()
+void Obstacle::Update()
 {
-    // míssil se move apenas no eixo y
-    Translate(0, -vel * gameTime);
-
-    // remove mísseis que saem da janela
-    if (y < 0)
-        Galaga::scene->Remove();
+    // objeto caminha no eixo x
+    Translate(-vel * gameTime, 0.0f);
+    
+    // passa objeto de um lado da tela para o outro
+    if (int(x) + sprite->Width() < 0)
+        MoveTo(float(window->Width() + sprite->Width()), y);
 }
 
 // ---------------------------------------------------------------------------------

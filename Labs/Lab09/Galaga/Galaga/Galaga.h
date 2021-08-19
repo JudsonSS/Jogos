@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Galaga (Arquivo de Cabeçalho)
 //
-// Criação:		23 Set 2011
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Set 2011
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Usa a classe Scene para gerenciar muitos objetos na tela
+// Descrição:   Usa a classe Scene para gerenciar muitos objetos na tela
 //
 **********************************************************************************/
 
@@ -18,16 +18,16 @@
 class Galaga : public Game
 {
 private:
-	Sprite * backg = nullptr;
-	Sprite * title = nullptr;
+    Sprite * backg = nullptr;
+    Sprite * title = nullptr;
 
 public:
-	static Scene * scene;
+    static Scene * scene;
 
-	void Init();
-	void Update();
-	void Draw();
-	void Finalize();
+    void Init();
+    void Update();
+    void Draw();
+    void Finalize();
 };
 
 // ------------------------------------------------------------------------------

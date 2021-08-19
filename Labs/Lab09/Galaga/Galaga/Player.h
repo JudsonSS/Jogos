@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Player (Arquivo de Cabeçalho)
 // 
-// Criação:		21 Dez 2012
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     21 Dez 2012
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Player do jogo Galaga
+// Descrição:   Player do jogo Galaga
 //
 **********************************************************************************/
 
@@ -15,26 +15,26 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de object
-#include "Sprite.h"			// interface de sprites
+#include "Types.h"              // tipos específicos da engine
+#include "Object.h"             // interface de object
+#include "Sprite.h"             // interface de sprites
 
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
 {
 private:
-	Sprite * sprite;		// sprite do player
-	Image  * missile;		// imagem do míssil
-	float vel;				// velocidade horizontal do player
-	bool keyCtrl;			// controla pressionamento de tecla
+    Sprite * sprite;            // sprite do player
+    Image  * missile;           // imagem do míssil
+    float vel;                  // velocidade horizontal do player
+    bool keyCtrl;               // controla pressionamento de tecla
 
 public:
-	Player();
-	~Player();
+    Player();
+    ~Player();
 
-	void Update();
-	void Draw();
+    void Update();
+    void Draw();
 };
 
 // ---------------------------------------------------------------------------------

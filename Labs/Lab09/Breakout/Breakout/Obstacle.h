@@ -1,45 +1,45 @@
 /**********************************************************************************
-// Alien (Arquivo de Cabeçalho)
+// Obstacle (Arquivo de Cabeçalho)
 // 
-// Criação:     21 Dez 2012
-// Atualização: 18 Ago 2021
+// Criação:     19 Dez 2012
+// Atualização: 14 Ago 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Alienígena do jogo Galaga
+// Descrição:   Obstáculos do jogo Frogger
 //
 **********************************************************************************/
 
-#ifndef _GALAGA_ALIEN_H_
-#define _GALAGA_ALIEN_H_
+#ifndef _FROGGER_OBSTACLE_H_
+#define _FROGGER_OBSTACLE_H_
 
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"          // tipos específicos da engine
-#include "Object.h"         // interface de object
-#include "Sprite.h"         // interface de sprites
-#include <string>           // string da biblioteca STL
-using std::string;          // usa string sem std::
+#include "Types.h"            // tipos específicos da engine
+#include "Object.h"           // interface de object
+#include "Sprite.h"           // interface de sprites
+#include "Image.h"            // interface de image
 
 // ---------------------------------------------------------------------------------
 
-class Alien : public Object
+class Obstacle : public Object
 {
 private:
     Sprite * sprite;
     float vel;
 
 public:
-    Alien(string filename);
-    ~Alien();
+    Obstacle(Image * img, float speed);
+    ~Obstacle();
 
     void Update();
     void Draw();
 };
 
 // ---------------------------------------------------------------------------------
+// Funções Membro Inline
 
-inline void Alien::Draw()
+inline void Obstacle::Draw()
 { sprite->Draw(x,y,z); }
 
 // ---------------------------------------------------------------------------------

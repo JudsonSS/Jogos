@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Missile (Arquivo de Cabeçalho)
 // 
-// Criação:		21 Dez 2012
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     21 Dez 2012
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Mísseis do jogo Galaga
+// Descrição:   Mísseis do jogo Galaga
 //
 **********************************************************************************/
 
@@ -15,25 +15,25 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de object
-#include "Sprite.h"			// interface de sprites
-#include "Image.h"			// interface de image
+#include "Types.h"              // tipos específicos da engine
+#include "Object.h"             // interface de object
+#include "Sprite.h"             // interface de sprites
+#include "Image.h"              // interface de image
 
 // ---------------------------------------------------------------------------------
 
 class Missile : public Object
 {
 private:
-	Sprite * sprite;
-	float vel;
+    Sprite * sprite;
+    float vel;
 
 public:
-	Missile(Image * img);
-	~Missile();
+    Missile(Image * img);
+    ~Missile();
 
-	void Update();
-	void Draw();
+    void Update();
+    void Draw();
 };
 
 // ---------------------------------------------------------------------------------

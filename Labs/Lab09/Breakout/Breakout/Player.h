@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Player (Arquivo de Cabeçalho)
 // 
-// Criação:		22 Dez 2012
-// Atualização: 28 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     22 Dez 2012
+// Atualização: 18 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Player do jogo Breakout
+// Descrição:   Player do jogo Breakout
 //
 **********************************************************************************/
 
@@ -15,9 +15,9 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de Object
-#include "Sprite.h"			// interface de Sprites
+#include "Types.h"          // tipos específicos da engine
+#include "Object.h"         // interface de Object
+#include "Sprite.h"         // interface de Sprites
 
 // ---------------------------------------------------------------------------------
 
