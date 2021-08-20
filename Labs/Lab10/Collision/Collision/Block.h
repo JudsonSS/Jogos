@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Block (Arquivo de Cabeçalho)
 // 
-// Criação:		22 Dez 2012
-// Atualização:	31 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     22 Dez 2012
+// Atualização: 20 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Bloco do jogo Breakout
+// Descrição:   Bloco do jogo Breakout
 //
 **********************************************************************************/
 
@@ -15,26 +15,26 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de Object
-#include "Sprite.h"			// interface de Sprites
+#include "Types.h"              // tipos específicos da engine
+#include "Object.h"             // interface de Object
+#include "Sprite.h"             // interface de Sprites
 
 // ---------------------------------------------------------------------------------
 
 class Block : public Object
 {
 private:
-	Sprite * sprite;		// sprite do player
+    Sprite * sprite;            // sprite do bloco
 
 public:
-	float velX;				// velocidade horizontal
-	float velY;				// velocidade vertical
+    float velX;                 // velocidade horizontal
+    float velY;                 // velocidade vertical
 
-	Block(Image * img);
-	~Block();
+    Block(Image * img);         // construtor
+    ~Block();                   // destrutor
 
-	void Update();
-	void Draw();
+    void Update();              // atualização do objeto
+    void Draw();                // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------

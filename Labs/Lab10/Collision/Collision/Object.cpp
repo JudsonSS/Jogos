@@ -1,15 +1,15 @@
 /**********************************************************************************
 // Object (Código Fonte)
 //
-// Criação:		01 Out 2007
-// Atualização:	31 Mai 2019
-// Compilador:	Visual C++ 2019
+// Criação:     01 Out 2007
+// Atualização: 20 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Essa é a classe base para todos objetos do jogo.
+// Descrição:   Essa é a classe base para todos objetos do jogo.
 //
-//				Um objeto do jogo é qualquer coisa que possámos querer desenhar
-//				ou interagir dentro do jogo. Por exemplo, um soldado, um prédio,
-//				um projétil, uma forma geométrica, etc.
+//              Um objeto do jogo é qualquer coisa que possámos querer desenhar
+//              ou interagir dentro do jogo. Por exemplo, um soldado, um prédio,
+//              um projétil, uma forma geométrica, etc.
 //
 **********************************************************************************/
 
@@ -19,28 +19,25 @@
 // -------------------------------------------------------------------------------
 // Inicialização de variáveis estáticas da classe
 
-// apontador para a janela do jogo
-Window * Object::window   = nullptr;				// ponteiro para a janela
-float &  Object::gameTime = Engine::frameTime;		// tempo do último quadro
+Window* & Object::window   = Engine::window;        // ponteiro para a janela
+Game*   & Object::game     = Engine::game;          // ponteiro para o jogo
+float   & Object::gameTime = Engine::frameTime;     // tempo do último quadro
 
 // -------------------------------------------------------------------------------
 
 Object::Object()
 {
-	// posição do objeto
-	x = y = 0.0f;
+    // posição do objeto
+    posX = posY = 0.0f;
 
-	// profundidade do objeto
-	z = 0.5f;
+    // profundidade do objeto
+    posZ = 0.5f;
 
-	//tipo do objeto
-	type = 0;
+    //tipo do objeto
+    type = 0;
 
-	// bounding box do objeto
-	bbox = nullptr;
-
-	if (!window)
-		window = Engine::window;
+    // bounding box do objeto
+    bbox = nullptr;
 }
 
 // -------------------------------------------------------------------------------
@@ -53,35 +50,35 @@ Object::~Object()
 
 void Object::Translate(float dx, float dy, float dz)
 {
-	x += dx;
-	y += dy;
-	z += dz;
+    posX += dx;
+    posY += dy;
+    posZ += dz;
 
-	if (bbox)
-		bbox->Translate(dx, dy);
+    if (bbox)
+        bbox->Translate(dx, dy);
 }
 
 // -------------------------------------------------------------------------------
 
 void Object::MoveTo(float px, float py, float pz)
 {
-	x = px;
-	y = py;
-	z = pz;
+    posX = px;
+    posY = py;
+    posZ = pz;
 
-	if (bbox)
-		bbox->MoveTo(px, py);
+    if (bbox)
+        bbox->MoveTo(px, py);
 }
 
 // -------------------------------------------------------------------------------
 
 void Object::MoveTo(float px, float py)
 {
-	x = px;
-	y = py;
+    posX = px;
+    posY = py;
 
-	if (bbox)
-		bbox->MoveTo(px, py);
+    if (bbox)
+        bbox->MoveTo(px, py);
 }
 
 // -------------------------------------------------------------------------------

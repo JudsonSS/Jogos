@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Player (Arquivo de Cabeçalho)
 // 
-// Criação:		22 Dez 2012
-// Atualização:	11 Mar 2016
-// Compilador:	Visual C++ 14
+// Criação:     22 Dez 2012
+// Atualização: 20 Ago 2021
+// Compilador:  Visual C++ 14
 //
-// Descrição:	Player do jogo Breakout
+// Descrição:   Player do jogo Breakout
 //
 **********************************************************************************/
 
@@ -15,32 +15,32 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de Object
-#include "Sprite.h"			// interface de Sprites
+#include "Types.h"                      // tipos específicos da engine
+#include "Object.h"                     // interface de Object
+#include "Sprite.h"                     // interface de Sprites
 
 // ---------------------------------------------------------------------------------
 // Constantes Globais
 
-enum PLAYERSTATE {PLAYING, STOPED};	
+enum PLAYERSTATE {PLAYING, STOPED};    
 
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
 {
 private:
-	Sprite * sprite;				
-	float vel;						
+    Sprite * sprite;                    // sprite do jogador       
+    float vel;                          // velocidade do jogador
 
 public:
-	uint state;
+    uint state;                         // estado do jogo
 
-	Player();
-	~Player();
+    Player();                           // construtor
+    ~Player();                          // destrutor
 
-	void OnCollision(Object * obj);
-	void Update();
-	void Draw();
+    void OnCollision(Object * obj);     // tratamento de colisão
+    void Update();                      // atualização do objeto
+    void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
