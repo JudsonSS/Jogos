@@ -45,7 +45,7 @@ void WinGame::Init()
 
 void WinGame::Update()
 {
-	if (window->KeyDown(VK_LBUTTON))
+	if (window->KeyDown(VK_ESCAPE))
 		window->Close();
 
 	textMouse.str("");

@@ -2,7 +2,7 @@
 // ProgWindows
 // 
 // Criação:     06 Mai 2011
-// Atualização: 21 Jul 2021
+// Atualização: 14 Jul 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Esqueleto básico de criação de uma janela no Windows 
@@ -59,10 +59,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
                           hInstance,                    // identificador da aplicação
                           NULL);                        // parâmetros de criação
      
-     // Mostra a janela
+     // Mostra e atualiza a janela
      ShowWindow(hwnd, nCmdShow);
-     
-     // Envia uma mensagem WM_PAINT para a janela
      UpdateWindow(hwnd);
      
      // Tratamento de mensagens destinadas a janela da aplicação

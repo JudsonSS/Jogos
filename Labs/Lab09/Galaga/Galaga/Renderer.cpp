@@ -443,7 +443,7 @@ void Renderer::Render()
         { return a->depth > b->depth; } );
 
     // quantidades de sprites a serem renderizados
-    uint spriteVectorSize = spriteVector.size();
+    uint spriteVectorSize = uint(spriteVector.size());
 
     if (spriteVectorSize == 0)
         return;

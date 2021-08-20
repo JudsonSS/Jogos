@@ -91,7 +91,7 @@ void Window::Print(string text, int x, int y, COLORREF color)
     SetBkMode(xdc, TRANSPARENT);
 
     // mostra o texto
-    TextOut(xdc, x, y, text.c_str(), text.size());
+    TextOut(xdc, x, y, text.c_str(), int(text.size()));
 
     // libera o contexto do dispositivo
     ReleaseDC(windowHandle, xdc);
