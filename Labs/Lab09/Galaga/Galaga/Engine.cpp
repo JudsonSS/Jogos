@@ -56,13 +56,25 @@ int Engine::Start(Game* level)
     game = level;
 
     // cria janela do jogo
-    window->Create();
+    if (!window->Create())
+    {
+        MessageBox(nullptr, "Falha na criação da janela", "Engine", MB_OK);
+        return EXIT_FAILURE;
+    }
 
     // inicializa dispositivo gráfico
-    graphics->Initialize(window);
+    if (!graphics->Initialize(window))
+    {
+        MessageBox(window->Id(), "Falha na inicialização do dispositivo gráfico", "Engine", MB_OK);
+        return EXIT_FAILURE;
+    }
 
     // inicializa renderizador de sprites
-    renderer->Initialize(window, graphics);
+    if (!renderer->Initialize(window, graphics))
+    {
+        MessageBox(window->Id(), "Falha na criação do renderizador", "Engine", MB_OK);
+        return EXIT_FAILURE;
+    }
 
     // ajusta a resolução do Sleep para 1 milisegundo
     // requer uso da biblioteca winmm.lib

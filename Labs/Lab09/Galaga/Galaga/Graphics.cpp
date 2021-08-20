@@ -109,7 +109,17 @@ bool Graphics::Initialize(Window * window)
             &device,                        // guarda o dispositivo D3D criado
             &featureLevel,                  // versão do Direct3D utilizada
             &context))                      // contexto do dispositivo D3D
-        return false;
+    {
+        // sistema não suporta dispositivo D3D11
+        // fazendo a criação de um WARP Device que 
+        // implementa um rasterizador em software
+        if FAILED(D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_WARP,
+            NULL, createDeviceFlags, NULL, 0, D3D11_SDK_VERSION,
+            &device, &featureLevel, &context))
+            return false;
+
+        OutputDebugString("---> Usando Adaptador WARP: não há suporte ao D3D11\n");
+    }
 
     // -------------------------------
     // Cor de Fundo do Direct3D

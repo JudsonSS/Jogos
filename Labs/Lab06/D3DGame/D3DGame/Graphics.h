@@ -2,7 +2,7 @@
 // Graphics (Arquivo de Cabeçalho)
 // 
 // Criação:     06 Abr 2011
-// Atualização: 08 Ago 2021
+// Atualização: 20 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Graphics é uma classe que faz uso das funções do Direct3D para 
@@ -26,13 +26,10 @@
 class Graphics
 {
 private:
-    static ID3D11Device        * d3dDev;                    // dispositivo gráfico
-    static ID3D11DeviceContext * d3dDevContext;             // contexto do dispositivo gráfico
-    D3D_FEATURE_LEVEL            featureLevel;              // nível de recursos D3D suportados pelo hardware
     IDXGISwapChain             * swapChain;                 // swap chain             
     ID3D11RenderTargetView     * renderTargetView;          // render target view do backbuffer
     ID3D11BlendState           * blendState;                // configuração da mistura de cores
-    static D3D11_VIEWPORT        viewport;                  // viewport
+    D3D_FEATURE_LEVEL            featureLevel;              // nível de recursos D3D suportados pelo hardware
     float                        bgColor[4];                // cor de fundo do backbuffer
     bool                         vSync;                     // vertical sync 
 
@@ -40,9 +37,9 @@ public:
     Graphics();                                             // constructor
     ~Graphics();                                            // destructor
 
-    static ID3D11Device * Device();                         // retorna dispositivo Direct3D
-    static ID3D11DeviceContext * Context();                 // retorna o contexto do dispositivo D3D
-    static const D3D11_VIEWPORT Viewport();                 // retorna a viewport utilizada
+    static ID3D11Device        * device;                    // dispositivo gráfico
+    static ID3D11DeviceContext * context;                   // contexto do dispositivo gráfico
+    static D3D11_VIEWPORT        viewport;                  // viewport
 
     void VSync(bool state);                                 // liga/desliga vertical sync
     void Clear();                                           // limpa o backbuffer com a cor de fundo
@@ -53,31 +50,19 @@ public:
 // --------------------------------------------------------------------------------
 // Métodos Inline
 
-// retorna dispositivo Direct3D
-inline ID3D11Device * Graphics::Device()
-{ return d3dDev; }
-
-// retorna o contexto do dispositivo D3D
-inline ID3D11DeviceContext * Graphics::Context()
-{ return d3dDevContext; }
-
-// retorna a viewport utilizada
-inline const D3D11_VIEWPORT Graphics::Viewport()
-{ return viewport; }
-
 // liga/desliga vertical sync
 inline void Graphics::VSync(bool state)
 { vSync = state; }
 
 // limpa o bacbuffer para o próximo quadro
 inline void Graphics::Clear()
-{ d3dDevContext->ClearRenderTargetView(renderTargetView, bgColor); }
+{ context->ClearRenderTargetView(renderTargetView, bgColor); }
 
 // apresenta desenho na tela (troca backbuffer com frontbuffer)
 inline void Graphics::Present()
 {
     swapChain->Present(vSync, NULL);
-    d3dDevContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
+    context->OMSetRenderTargets(1, &renderTargetView, nullptr);
 }
 
 // --------------------------------------------------------------------------------

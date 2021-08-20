@@ -2,7 +2,7 @@
 // Engine (Código Fonte)
 //
 // Criação:     15 Mai 2014
-// Atualização: 08 Ago 2021
+// Atualização: 20 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   A função da Engine é rodar jogos criados a partir da classe
@@ -50,10 +50,18 @@ int Engine::Start(Game * level)
     game = level;
 
     // cria janela do jogo
-    window->Create();
+    if (!window->Create())
+    {
+        MessageBox(nullptr, "Falha na criação da janela", "Engine", MB_OK);
+        return EXIT_FAILURE;
+    }
 
     // inicializa dispositivo gráfico
-    graphics->Initialize(window);
+    if (!graphics->Initialize(window))
+    {
+        MessageBox(window->Id(), "Falha na inicialização do dispositivo gráfico", "Engine", MB_OK);
+        return EXIT_FAILURE;
+    }
 
     return Loop();
 }

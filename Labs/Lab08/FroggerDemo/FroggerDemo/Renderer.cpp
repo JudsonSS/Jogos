@@ -100,7 +100,7 @@ bool Renderer::Initialize(Window * window, Graphics * graphics)
     //-------------------------------
     // Vertex Shader
     //-------------------------------
-
+    
     // carrega bytecode do vertex shader (HLSL)
     ID3DBlob * vShader = nullptr;
     if FAILED(D3DReadFileToBlob(L"Shaders/Vertex.cso", &vShader))
