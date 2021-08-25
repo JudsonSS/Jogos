@@ -1,6 +1,6 @@
 // PacMan
-// Criação:		01 Jan 2013
-// Atualização:	23 Mai 2014
+// Criação:     01 Jan 2013
+// Atualização: 25 Ago 2021
 // Descrição:   Nível 1 (Pivôs)
 //
 // Informações dos pivôs:
@@ -42,7 +42,7 @@
 0 1 1 1 614 360
 1 0 0 1 705 360
 0 1 1 1 883 360
-	
+    
 // linha 5 
 0 1 1 1 76 450
 1 1 1 0 163 450

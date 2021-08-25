@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Pivot (Código Fonte)
 // 
-// Criação:		01 Jan 2013
-// Atualização: 04 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     01 Jan 2013
+// Atualização: 25 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Ponto de mudança de direção para o jogador e fantasmas
+// Descrição:   Ponto de mudança de direção para o jogador e fantasmas
 //
 **********************************************************************************/
 
@@ -16,20 +16,20 @@
 
 Pivot::Pivot(bool l, bool r, bool u, bool d)
 {
-	left  = l;
-	right = r;
-	up    = u;
-	down  = d;
+    left  = l;
+    right = r;
+    up    = u;
+    down  = d;
 
-	bbox = new Rect(-4, -4, 4, 4);
-	type = PIVOT;
+    bbox = new Rect(-4, -4, 4, 4);
+    type = PIVOT;
 }
 
 // ---------------------------------------------------------------------------------
 
 Pivot::~Pivot()
 {
-	delete bbox;
+    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Ghost (Código Fonte)
 // 
-// Criação:		01 Jan 2013
-// Atualização: 04 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     01 Jan 2013
+// Atualização: 25 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Fantasmas do PacMan
+// Descrição:   Fantasmas do PacMan
 //
 **********************************************************************************/
 
@@ -17,7 +17,7 @@
 
 Ghost::Ghost(Player * p)
 {
-	type = GHOST;
+    type = GHOST;
 }
 
 // ---------------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Food (Arquivo de Cabeçalho)
 // 
-// Criação:		03 Jan 2013
-// Atualização: 04 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     03 Jan 2013
+// Atualização: 25 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Comida do PacMan
+// Descrição:   Comida do PacMan
 //
 **********************************************************************************/
 
@@ -15,23 +15,23 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"						// tipos específicos da engine
-#include "Object.h"						// interface de Object
-#include "Sprite.h"						// interface de Sprites
+#include "Types.h"                      // tipos específicos da engine
+#include "Object.h"                     // interface de Object
+#include "Sprite.h"                     // interface de Sprites
 
 // ---------------------------------------------------------------------------------
 
 class Food : public Object
 {
 private:
-	Sprite * sprite = nullptr;			// sprite da comida
+    Sprite * sprite = nullptr;          // sprite da comida
 
 public:
-	Food();								// construtor
-	~Food();							// destrutor
+    Food();                             // construtor
+    ~Food();                            // destrutor
 
-	void Update();						// atualização do objeto
-	void Draw();						// desenho do objeto
+    void Update();                      // atualização do objeto
+    void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------

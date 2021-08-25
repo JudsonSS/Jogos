@@ -1,11 +1,11 @@
 /**********************************************************************************
 // PacMan (Arquivo de Cabeçalho)
 //
-// Criação:		01 Jan 2013
-// Atualização: 04 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     01 Jan 2013
+// Atualização: 25 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exercício sobre detecção de colisão
+// Descrição:   Exercício sobre detecção de colisão
 //
 **********************************************************************************/
 
@@ -16,11 +16,11 @@
 
 enum PacManObjects
 {
-	PLAYER,
-	GHOST,
-	FOOD,
-	SPECIAL,
-	PIVOT
+    PLAYER,
+    GHOST,
+    FOOD,
+    SPECIAL,
+    PIVOT
 };
 
 // ------------------------------------------------------------------------------
