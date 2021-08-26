@@ -2,7 +2,7 @@
 // Animation
 // 
 // Criação:		10 Abr 2012
-// Atualização: 06 Jun 2019
+// Atualização: 26 Ago 2021
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Exemplo de uso da classe Animation
