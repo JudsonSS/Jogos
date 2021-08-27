@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Explosion (Arquivo de Cabeçalho)
 //
-// Criação:		20 Jan 2013
-// Atualização: 06 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     20 Jan 2013
+// Atualização: 27 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Animação de uma explosão
+// Descrição:   Animação de uma explosão
 //
 **********************************************************************************/
 
@@ -15,23 +15,23 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"						// tipos específicos da engine
-#include "Object.h"						// interface de Object
-#include "Animation.h"					// animação de sprites
+#include "Types.h"                      // tipos específicos da engine
+#include "Object.h"                     // interface de Object
+#include "Animation.h"                  // animação de sprites
 
 // ---------------------------------------------------------------------------------
 
 class Explosion : public Object
 {
 private:
-	Animation * anim;					// animação de explosão
+    Animation * anim;                   // animação de explosão
 
 public:
-	Explosion(TileSet * tiles);			// construtor
-	~Explosion();						// destrutor
+    Explosion(TileSet * tiles);         // construtor
+    ~Explosion();                       // destrutor
 
-	void Update();						// atualização do objeto
-	void Draw();						// desenho do objeto
+    void Update();                      // atualização do objeto
+    void Draw();                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------

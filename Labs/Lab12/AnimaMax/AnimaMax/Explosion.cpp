@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Explosion (Código Fonte)
 //
-// Criação:		20 Jan 2013
-// Atualização: 06 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     20 Jan 2013
+// Atualização: 27 Ago 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Animação de uma explosão
+// Descrição:   Animação de uma explosão
 //
 **********************************************************************************/
 
@@ -16,23 +16,23 @@
 
 Explosion::Explosion(TileSet * tiles)
 {
-	anim = new Animation(tiles, 0.060f, false);
+    anim = new Animation(tiles, 0.060f, false);
 }
 
 // ---------------------------------------------------------------------------------
 
 Explosion::~Explosion()
 {
-	delete anim;
+    delete anim;
 }
 
 // ---------------------------------------------------------------------------------
 
 void Explosion::Update()
 {
-	anim->NextFrame();
-	if (anim->Inactive())
-		AnimaMax::scene->Delete();
+    anim->NextFrame();
+    if (anim->Inactive())
+        AnimaMax::scene->Delete();
 }
 
 // ---------------------------------------------------------------------------------
