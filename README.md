@@ -20,7 +20,7 @@ A numeração dos laboratórios (Labs) coincidem com a sequência das aulas (Sli
 09. Gerenciador de Cena
 10. Detecção de Colisão
 11. Construção do Jogo: PacMan
-12. Animação
+12. Animação de Sprites
 13. Animação de Personagens
 14. Exibição de Texto
 15. Reprodução de Áudio
