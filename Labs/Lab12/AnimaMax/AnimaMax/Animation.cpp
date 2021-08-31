@@ -2,7 +2,7 @@
 // Animation (Código Fonte)
 // 
 // Criação:     28 Set 2011
-// Atualização: 27 Ago 2021
+// Atualização: 31 Ago 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Classe para animar sequências em folha de sprites
@@ -49,11 +49,16 @@ void Animation::NextFrame()
         frame++;
 
         // volta ao primeiro quadro se o loop da animação estiver ativado
-        if (animLoop && frame > endFrame)
-            frame = 0;
+        if (frame > endFrame)
+        {
+            if (animLoop)
+                frame = 0;
+            else
+                frame = endFrame + 1;
+        }
 
         // começa a contar o tempo do novo frame
-        timer.Start();        
+        timer.Start();
     }
 }
 
