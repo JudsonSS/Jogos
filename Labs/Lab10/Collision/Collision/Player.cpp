@@ -18,7 +18,7 @@
 Player::Player()
 {
     // tamanho do player é 100x20
-    bbox = new Rect(0, 0, 99, 19);
+    BBox(new Rect(0, 0, 99, 19));
 
     // bounding box alternativa: experimente usar 
     // uma combinação de retângulos e círculos
@@ -64,7 +64,6 @@ Player::Player()
 Player::~Player()
 {
     delete sprite;
-    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------

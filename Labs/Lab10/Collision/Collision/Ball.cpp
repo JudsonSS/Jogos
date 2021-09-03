@@ -2,7 +2,7 @@
 // Ball (Arquivo de Cabeçalho)
 // 
 // Criação:     22 Dez 2012
-// Atualização: 20 Ago 2021
+// Atualização: 02 Set 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Bola do jogo Breakout
@@ -21,7 +21,7 @@ Ball::Ball(Player * p)
     player = p;
 
     // tamanho da bola é 12x12
-    bbox = new Rect(0, 0, 11, 11);
+    BBox(new Rect(0, 0, 11, 11));
     
     // bounding box alternativa: experimente  
     // usar o círculo no lugar do retângulo
@@ -48,7 +48,6 @@ Ball::Ball(Player * p)
 Ball::~Ball()
 {
     delete sprite;
-    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------

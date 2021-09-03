@@ -17,7 +17,7 @@
 Block::Block(Image * img)
 {
     // tamanho do bloco é 60x24
-    bbox = new Rect(0, 0, 59, 23);
+    BBox(new Rect(0, 0, 59, 23));
 
     // sprite do bloco
     sprite  = new Sprite(img);
@@ -35,7 +35,6 @@ Block::Block(Image * img)
 Block::~Block()
 {
     delete sprite;
-    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------
