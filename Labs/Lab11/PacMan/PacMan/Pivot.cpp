@@ -21,7 +21,7 @@ Pivot::Pivot(bool l, bool r, bool u, bool d)
     up    = u;
     down  = d;
 
-    bbox = new Rect(-4, -4, 4, 4);
+    BBox(new Rect(-4, -4, 4, 4));
     type = PIVOT;
 }
 
@@ -29,7 +29,6 @@ Pivot::Pivot(bool l, bool r, bool u, bool d)
 
 Pivot::~Pivot()
 {
-    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------

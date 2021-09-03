@@ -2,7 +2,7 @@
 // Object (Arquivo de Cabeçalho)
 //
 // Criação:     01 Out 2007
-// Atualização: 20 Ago 2021
+// Atualização: 02 Set 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Essa é a classe base para todos objetos do jogo.
@@ -29,6 +29,7 @@ class Object
 {
 private:
     float posX, posY, posZ;     // coordenadas do objeto
+    Geometry* bbox;             // bounding box do objeto
 
 protected:
     static Window* & window;    // janela do jogo
@@ -40,7 +41,6 @@ protected:
     const float & z = posZ;     // coordenada z do objeto
 
     uint type;                  // tipo do objeto
-    Geometry* bbox;             // bounding box do objeto
 
 public:
     Object();                   // construtor
@@ -64,6 +64,9 @@ public:
 
     // retorna tipo do objeto
     virtual uint Type() const;
+
+    // muda a bounding box do objeto
+    virtual void BBox(Geometry* bb);
 
     // retorna a bounding box do objeto
     virtual Geometry* BBox() const;

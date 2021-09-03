@@ -23,7 +23,7 @@ Player::Player()
     spriteD = new Sprite("Resources/PacManD.png");
 
     // imagem do pacman é 48x48 (com borda transparente de 4 pixels)
-    bbox = new Rect(-20, -20, 20, 20);
+    BBox(new Rect(-20, -20, 20, 20));
     MoveTo(480.0f, 450.0f);
     type = PLAYER;
 }
@@ -36,7 +36,6 @@ Player::~Player()
     delete spriteR;
     delete spriteU;
     delete spriteD;
-    delete bbox;
 }
 
 // ---------------------------------------------------------------------------------
