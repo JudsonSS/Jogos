@@ -48,17 +48,27 @@ void Animation::NextFrame()
     {
         frame++;
 
-        // volta ao primeiro quadro se o loop da animação estiver ativado
+        // se chegou ao fim da animação
         if (frame > endFrame)
         {
+            // se a animação estiver em loop
             if (animLoop)
+            {
+                // volta ao primeiro quadro 
                 frame = 0;
+                timer.Start();
+            }
             else
-                frame = endFrame + 1;
+            {
+                // fica no último quadro
+                frame = endFrame;
+            }
         }
-
-        // começa a contar o tempo do novo frame
-        timer.Start();
+        else
+        {
+            // começa a contar o tempo do novo frame
+            timer.Start();
+        }
     }
 }
 
