@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Sound (Código Fonte)
 // 
-// Criação:		14 Out 2011
-// Atualização:	25 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     14 Out 2011
+// Atualização: 11 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Representa um som no formato WAVE
+// Descrição:   Representa um som no formato WAVE
 //
 **********************************************************************************/
 
@@ -22,47 +22,47 @@
 
 Sound::Sound(string fileName)
 {
-	// limpa os registros, zerando todos os bits
-	ZeroMemory(&soundFormat, sizeof(soundFormat));
-	ZeroMemory(&soundBuffer, sizeof(soundBuffer));
+    // limpa os registros, zerando todos os bits
+    ZeroMemory(&soundFormat, sizeof(soundFormat));
+    ZeroMemory(&soundBuffer, sizeof(soundBuffer));
 
-	// abre o arquivo de som para leitura
-	HANDLE hFile = CreateFile(fileName.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+    // abre o arquivo de som para leitura
+    HANDLE hFile = CreateFile(fileName.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
 
-	// localiza o bloco 'RIFF' dentro do arquivo de som
-	DWORD dwChunkSize;
-	DWORD dwChunkPosition; 
-	FindChunk(hFile, fourccRIFF, dwChunkSize, dwChunkPosition );
-	
-	// verifica se o arquivo é do tipo WAVE
-	DWORD filetype;
-	ReadChunkData(hFile, &filetype, sizeof(DWORD), dwChunkPosition);
-	if (filetype != fourccWAVE)
-		return;
+    // localiza o bloco 'RIFF' dentro do arquivo de som
+    DWORD dwChunkSize;
+    DWORD dwChunkPosition; 
+    FindChunk(hFile, fourccRIFF, dwChunkSize, dwChunkPosition );
+    
+    // verifica se o arquivo é do tipo WAVE
+    DWORD filetype;
+    ReadChunkData(hFile, &filetype, sizeof(DWORD), dwChunkPosition);
+    if (filetype != fourccWAVE)
+        return;
 
-	// localiza o bloco 'fmt' e copia seu conteúdo para um registro WAVEFORMATEXTENSIBLE
-	FindChunk(hFile, fourccFMT, dwChunkSize, dwChunkPosition );
-	ReadChunkData(hFile, &soundFormat, dwChunkSize, dwChunkPosition );
+    // localiza o bloco 'fmt' e copia seu conteúdo para um registro WAVEFORMATEXTENSIBLE
+    FindChunk(hFile, fourccFMT, dwChunkSize, dwChunkPosition );
+    ReadChunkData(hFile, &soundFormat, dwChunkSize, dwChunkPosition );
 
-	// localiza o bloco 'data' e lê seu conteúdo para o registro XAUDIO2_BUFFER
-	FindChunk(hFile, fourccDATA, dwChunkSize, dwChunkPosition );
-	BYTE * pDataBuffer = new BYTE[dwChunkSize];
-	ReadChunkData(hFile, pDataBuffer, dwChunkSize, dwChunkPosition);
+    // localiza o bloco 'data' e lê seu conteúdo para o registro XAUDIO2_BUFFER
+    FindChunk(hFile, fourccDATA, dwChunkSize, dwChunkPosition );
+    BYTE * pDataBuffer = new BYTE[dwChunkSize];
+    ReadChunkData(hFile, pDataBuffer, dwChunkSize, dwChunkPosition);
 
-	// preenche o registro XAUDIO2_BUFFER
-	soundBuffer.AudioBytes = dwChunkSize;		// tamanho do buffer de audio em bytes
-	soundBuffer.pAudioData = pDataBuffer;		// os dados (bits) do audio
-	soundBuffer.Flags = XAUDIO2_END_OF_STREAM;	// este será o único buffer para a "Source Voice"
+    // preenche o registro XAUDIO2_BUFFER
+    soundBuffer.AudioBytes = dwChunkSize;        // tamanho do buffer de audio em bytes
+    soundBuffer.pAudioData = pDataBuffer;        // os dados (bits) do audio
+    soundBuffer.Flags = XAUDIO2_END_OF_STREAM;   // fim do buffer para a "Source Voice"
 
-	// fecha arquivo
-	CloseHandle(hFile);
+    // fecha arquivo
+    CloseHandle(hFile);
 }
 
 // ---------------------------------------------------------------------------------
 
 Sound::~Sound()
 {
-	delete [] soundBuffer.pAudioData;	
+    delete [] soundBuffer.pAudioData;    
 }
 
 // ---------------------------------------------------------------------------------

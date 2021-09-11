@@ -1,16 +1,16 @@
 /**********************************************************************************
 // Platformer (Arquivo de Cabeçalho)
 //
-// Criação:		05 Out 2011
-// Atualização:	25 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     05 Out 2011
+// Atualização: 02 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exemplo de jogo estilo platforma
+// Descrição:   Exemplo de jogo estilo platforma
 //
 **********************************************************************************/
 
-#ifndef _GRAVITYGUY_H_
-#define _GRAVITYGUY_H_
+#ifndef _PLATFORMER_H_
+#define _PLATFORMER_H_
 
 // ---------------------------------------------------------------------------------
 // Inclusões
@@ -26,16 +26,16 @@
 class Platformer : public Game
 {
 private:
-	Player * player = nullptr;		// personagem controlado pelo jogador
-	Background * backg = nullptr;	// pano de fundo do jogo
+    Player * player = nullptr;      // jogador
+    Background * backg = nullptr;   // pano de fundo
 
 public:
-	static Scene * scene;			// gerenciador de cena
+    static Scene * scene;           // gerenciador de cena
 
-	void Init();					// inicializa jogo
-	void Update();					// atualiza lógica do jogo
-	void Draw();					// desenha jogo
-	void Finalize();				// finaliza jogo
+    void Init();                    // inicialização
+    void Update();                  // atualização
+    void Draw();                    // desenho
+    void Finalize();                // finalização
 };
 
 // ---------------------------------------------------------------------------------
