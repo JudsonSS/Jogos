@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Sound Distance (Arquivo de Cabeçalho)
 // 
-// Criação:		14 Out 2011
-// Atualização:	28 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     14 Out 2011
+// Atualização: 19 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Ajusta volume pela distância do som
+// Descrição:   Ajusta volume pela distância do som
 //
 **********************************************************************************/
 
@@ -34,19 +34,19 @@ enum Sounds {PULSE, EXPLOSION};
 class SoundDist : public Game
 {
 private:
-	Sprite * backg   = nullptr;		// background do jogo
-	
-	bool keyCtrl  = false;			// controle de teclas	
-	bool viewBBox = false;			// visualiza bounding box
+    Sprite * backg = nullptr;       // background do jogo
+
+    bool keyCtrl  = false;          // controle de teclas    
+    bool viewBBox = false;          // visualiza bounding box
 
 public:
-	static Audio * audio;			// sistema de áudio	
-	static Scene * scene;			// cema do jogo
+    static Audio * audio;           // sistema de áudio    
+    static Scene * scene;           // cema do jogo
 
-	void Init();					// inicializa jogo
-	void Update();					// atualiza lógica do jogo
-	void Draw();					// desenha jogo
-	void Finalize();				// finaliza jogo
+    void Init();                    // inicializa jogo
+    void Update();                  // atualiza lógica do jogo
+    void Draw();                    // desenha jogo
+    void Finalize();                // finaliza jogo
 };
 
 // ------------------------------------------------------------------------------

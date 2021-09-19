@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Animation (Código Fonte)
 // 
-// Criação:		28 Set 2011
-// Atualização: 11 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     28 Set 2011
+// Atualização: 08 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Classe para animar seqüências em folha de sprites
+// Descrição:   Classe para animar sequências em folha de sprites
 //
 **********************************************************************************/
 
@@ -16,87 +16,87 @@
 // ---------------------------------------------------------------------------------
 
 Animation::Animation(TileSet * tiles, float delay, bool repeat) : 
-	tileSet(tiles), 
-	animDelay(delay), 
-	animLoop(repeat)
+    tileSet(tiles), 
+    animDelay(delay), 
+    animLoop(repeat)
 {
-	// sempre inicia a animação pelo primeiro quadro
-	frame = iniFrame = 0;
+    // sempre inicia a animação pelo primeiro quadro
+    frame = iniFrame = 0;
 
-	// o último quadro é sempre um a menos que o número de quadros
-	endFrame = tileSet->Size() - 1;
+    // o último quadro é sempre um a menos que o número de quadros
+    endFrame = tileSet->Size() - 1;
 
-	// configura sprite
-	sprite.scale     = 1.0f;
-	sprite.rotation  = 0.0f;
-	sprite.width     = tileSet->TileWidth();
-	sprite.height    = tileSet->TileHeight();
-	sprite.texSize.x = float(tileSet->TileWidth())  / tileSet->Width();
-	sprite.texSize.y = float(tileSet->TileHeight()) / tileSet->Height();
-	sprite.texture   = tileSet->View();
-	
-	// animação iniciada (começa a contar o tempo)
-	timer.Start();		
+    // configura sprite
+    sprite.scale     = 1.0f;
+    sprite.rotation  = 0.0f;
+    sprite.width     = tileSet->TileWidth();
+    sprite.height    = tileSet->TileHeight();
+    sprite.texSize.x = float(tileSet->TileWidth())  / tileSet->Width();
+    sprite.texSize.y = float(tileSet->TileHeight()) / tileSet->Height();
+    sprite.texture   = tileSet->View();
+    
+    // animação iniciada (começa a contar o tempo)
+    timer.Start();                
 
-	// nenhuma seqüência selecionada
-	sequence = nullptr;
+    // nenhuma sequência selecionada
+    sequence = nullptr;
 }
 
 // --------------------------------------------------------------------------------
 
 Animation::~Animation()
 {
-	if (!table.empty())
-	{
-		// liberando memória dos vetores dinâmicos de sequências
-		for (const auto & [id,seq] : table)
-			delete seq.first;
-	}
+    if (!table.empty())
+    {
+        // liberando memória dos vetores dinâmicos de sequências
+        for (const auto & [id,seq] : table)
+            delete seq.first;
+    }
 }
 
 // --------------------------------------------------------------------------------
 
 void Animation::Add(uint id, uint * seq, uint seqSize)
 {
-	// cria nova seqüência de animação
-	AnimSeq newSeq(new uint[seqSize], seqSize);
+    // cria nova sequência de animação
+    AnimSeq newSeq(new uint[seqSize], seqSize);
 
-	// copia vetor com a seqüência de quadros da animação
-	memcpy(newSeq.first, seq, sizeof(uint) * seqSize);
+    // copia vetor com a sequência de quadros
+    memcpy(newSeq.first, seq, sizeof(uint) * seqSize);
 
-	// insere nova seqüência
-	table[id] = newSeq;
+    // insere nova sequência
+    table[id] = newSeq;
 
-	// seleciona seqüência recém inserida
-	sequence = newSeq.first;
+    // seleciona sequência recém inserida
+    sequence = newSeq.first;
 
-	// inicia animação pelo primeiro quadro da seqüência
-	iniFrame = frame = 0;
+    // inicia animação pelo primeiro quadro da sequência
+    iniFrame = frame = 0;
 
-	// o último quadro é sempre um a menos que o número de quadros
-	endFrame = seqSize - 1;
+    // o último quadro é sempre um a menos que o número de quadros
+    endFrame = seqSize - 1;
 }
 
 // --------------------------------------------------------------------------------
 
 void Animation::Select(uint id)
 {
-	const auto & [seq, size] = table[id];
+    const auto & [seq, size] = table[id];
 
-	// se uma nova sequência for selecionada
-	if (sequence != seq)
-	{
-		// aponta para nova seqüência
-		sequence = seq;
+    // se uma nova sequência for selecionada
+    if (sequence != seq)
+    {
+        // aponta para nova sequência
+        sequence = seq;
 
-		// reinicia a sequência
-		iniFrame = 0;
-		endFrame = size - 1;
+        // reinicia a sequência
+        iniFrame = 0;
+        endFrame = size - 1;
 
-		// se o frame atual está fora da sequência
-		if (frame > endFrame)
-			frame = 0;
-	}
+        // se o frame atual está fora da sequência
+        if (frame > endFrame)
+            frame = 0;
+    }
 }
 
 
@@ -104,35 +104,51 @@ void Animation::Select(uint id)
 
 void Animation::NextFrame()
 {
-	// passa para o próximo quadro após espaço de tempo estipulado em animDelay
-	if (timer.Elapsed(animDelay))
-	{
-		frame++;
+    // passa para o próximo quadro após espaço de tempo estipulado em animDelay
+    if (timer.Elapsed(animDelay))
+    {
+        frame++;
 
-		// volta para o primeiro quadro se estiver usando o modo ENDLESS
-		if (animLoop && frame > endFrame)
-			frame = 0;
-
-		// frame iniciado (começa a contar o tempo)
-		timer.Start();		
-	}
+        // se chegou ao fim da animação
+        if (frame > endFrame)
+        {
+            // se a animação estiver em loop
+            if (animLoop)
+            {
+                // volta ao primeiro quadro 
+                frame = 0;
+                timer.Start();
+            }
+            else
+            {
+                // fica no último quadro
+                frame = endFrame;
+            }
+        }
+        else
+        {
+            // começa a contar o tempo do novo frame
+            timer.Start();
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------
 
 void Animation::Draw(uint aFrame, float x, float y, float z, Color color)
 {
-	// configura dados básicos
-	sprite.x = x;
-	sprite.y = y;
-	sprite.depth = z;
+    // configura dados básicos
+    sprite.x = x;
+    sprite.y = y;
+    sprite.depth = z;
+    sprite.color = color;
 
-	// configura coordenadas da textura do sprite
-	sprite.texCoord.x = (aFrame % tileSet->Columns()) * sprite.texSize.x;
-	sprite.texCoord.y = (aFrame / tileSet->Columns()) * sprite.texSize.y;
+    // configura coordenadas da textura do sprite
+    sprite.texCoord.x = (aFrame % tileSet->Columns()) * sprite.texSize.x;
+    sprite.texCoord.y = (aFrame / tileSet->Columns()) * sprite.texSize.y;
 
-	// adiciona o sprite na lista de desenho
-	Engine::renderer->Draw(sprite);
+    // adiciona o sprite na lista de desenho
+    Engine::renderer->Draw(sprite);
 }
 
 // --------------------------------------------------------------------------------

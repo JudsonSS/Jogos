@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Player (Arquivo de Cabeçalho)
 // 
-// Criação:		07 Fev 2013
-// Atualização:	28 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Fev 2013
+// Atualização: 19 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Player usado em SoundDistance
+// Descrição:   Player usado em SoundDistance
 //
 **********************************************************************************/
 
@@ -15,27 +15,27 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"			// tipos específicos da engine
-#include "Object.h"			// interface de object
-#include "Sprite.h"			// interface de sprites
+#include "Types.h"          // tipos específicos da engine
+#include "Object.h"         // interface de object
+#include "Sprite.h"         // interface de sprites
 
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
 {
 private:
-	Sprite  * sprite;		// sprite do player
-	Image   * missile;		// imagem do míssil
-	TileSet * explo;		// quadros da explosão
-	float vel;				// velocidade horizontal do player
-	bool keyCtrl;			// controla pressionamento de tecla
+    Sprite  * sprite;       // sprite do player
+    Image   * missile;      // imagem do míssil
+    TileSet * explo;        // quadros da explosão
+    float vel;              // velocidade horizontal do player
+    bool keyCtrl;           // controla pressionamento de tecla
 
 public:
-	Player();
-	~Player();
+    Player();               // construtor
+    ~Player();              // destrutor
 
-	void Update();
-	void Draw();
+    void Update();          // atualização
+    void Draw();            // desenho
 };
 
 // ---------------------------------------------------------------------------------

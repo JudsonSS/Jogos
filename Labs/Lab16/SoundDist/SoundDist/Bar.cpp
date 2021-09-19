@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Bar (Código Fonte)
 // 
-// Criação:		07 Fev 2013
-// Atualização:	27 Jun 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Fev 2013
+// Atualização: 19 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Barra utilizada em SoundDist
+// Descrição:   Barra utilizada em SoundDist
 //
 **********************************************************************************/
 
@@ -15,20 +15,19 @@
 
 Bar::Bar()
 {
-	sprite = new Sprite("Resources/Bar.png");
+    sprite = new Sprite("Resources/Bar.png");
 
-	bbox = new Rect(-sprite->Width() / 2.0f,
-		            -sprite->Height() / 2.0f,
-					sprite->Width() / 2.0f,
-					sprite->Height() / 2.0f);
+    BBox(new Rect(-sprite->Width() / 2.0f,
+                  -sprite->Height() / 2.0f,
+                   sprite->Width() / 2.0f,
+                   sprite->Height() / 2.0f));
 }
 
 // ---------------------------------------------------------------------------------
 
 Bar::~Bar()
 {
-	delete bbox;
-	delete sprite;
+    delete sprite;
 }
 
 // ---------------------------------------------------------------------------------
