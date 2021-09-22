@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Ball (Arquivo de Cabeçalho)
 //
-// Criação:		28 Jun 2019
-// Atualização:	03 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     28 Jun 2019
+// Atualização: 22 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objeto Balão
+// Descrição:   Objeto Balão
 //
 **********************************************************************************/
 
@@ -14,11 +14,11 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Types.h"										// tipos específicos da engine
-#include "Object.h"										// interface de um objeto
-#include "Sprite.h"										// desenho de sprites
-#include "TileSet.h"									// folha de sprites para a animação
-#include "Animation.h"									// animação de sprites
+#include "Types.h"                                      // tipos específicos da engine
+#include "Object.h"                                     // interface de um objeto
+#include "Sprite.h"                                     // desenho de sprites
+#include "TileSet.h"                                    // folha de sprites para a animação
+#include "Animation.h"                                  // animação de sprites
 
 
 // ---------------------------------------------------------------------------------
@@ -26,18 +26,18 @@
 class Ball : public Object
 {
 private:
-	Sprite * sprite;									// sprite do balão
-	TileSet * tiles;									// quadros do estouro do balão
-	Color color;										// cor do balão
-	float vel;											// velocidade para subir
+    Sprite * sprite;                                    // sprite do balão
+    TileSet * tiles;                                    // quadros do estouro do balão
+    Color color;                                        // cor do balão
+    float vel;                                          // velocidade para subir
 
 public:
-	Ball(Image * img, TileSet * pop, Color tint);		// construtor
-	~Ball();											// destrutor
+    Ball(Image * img, TileSet * pop, Color tint);       // construtor
+    ~Ball();                                            // destrutor
 
-	void OnCollision(Object* obj);						// resolução da colisão
-	void Update();										// atualização do objeto
-	void Draw();										// desenho do objeto
+    void OnCollision(Object* obj);                      // resolução da colisão
+    void Update();                                      // atualização do objeto
+    void Draw();                                        // desenho do objeto
 };
 
 // ---------------------------------------------------------------------------------
