@@ -2,7 +2,7 @@
 // Window (Arquivo de Cabeçalho)
 // 
 // Criação:     19 Mai 2007
-// Atualização: 22 Set 2021
+// Atualização: 23 Set 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   A classe abstrai todos os detalhes de configuração de
@@ -50,6 +50,7 @@ private:
     static bool windowCtrl[256];                            // controle da liberação de teclas
     static int  windowMouseX;                               // posição do mouse eixo x
     static int  windowMouseY;                               // posição do mouse eixo y
+    static int  windowMouseWheel;                           // giro da roda do mouse
     
 public:
     Window();                                               // construtor de Window
@@ -78,6 +79,7 @@ public:
     bool KeyPress(int vkcode);                              // registra um pressionamento por vez
     float MouseX();                                         // retorna posição x do mouse
     float MouseY();                                         // retorna posição y do mouse
+    int MouseWheel();                                       // retorna giro da roda do mouse
 
     COLORREF Color();                                       // retorna a cor de fundo da janela
     void Color(int r, int g, int b);                        // define a cor de fundo da janela
@@ -164,6 +166,10 @@ inline float Window::MouseX()
 // retorna a posição do mouse no eixo y
 inline float Window::MouseY()
 { return float(windowMouseY); }
+
+// retorna giro da roda do mouse
+inline int Window::MouseWheel()
+{ return windowMouseWheel; }
 
 // -----------------------------------------------------------
 

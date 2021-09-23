@@ -41,7 +41,7 @@ private:
     Mouse  * mouse = nullptr;         // objeto mouse
     
     Item * menu[MaxItens] = { 0 };    // itens do menu
-
+    
     bool viewBBox = false;            // visualiza bounding box
     
 public:

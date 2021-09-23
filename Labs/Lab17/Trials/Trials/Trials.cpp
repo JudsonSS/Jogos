@@ -23,14 +23,14 @@ void Trials::Init()
     audio = new Audio();
 
     // carrega sons e música
-    audio->Add(EVOLUTION, "Resources/Evolution.wav");
-    audio->Play(EVOLUTION, true);    
+    audio->Add(EVOLUTION, "Resources/Evolution.wav");    
 
     // cria sprites
     backg = new Sprite("Resources/Trials.jpg");
     
     // cria objeto mouse
     mouse = new Mouse();
+    scene->Add(mouse, MOVING);
 
     // cria itens de menu
     menu[0] = new Item(570, 250, SINGLE,      "Resources/SinglePlayer.png");
@@ -39,6 +39,14 @@ void Trials::Init()
     menu[3] = new Item(570, 435, LEADERBOARD, "Resources/Leaderboards.png");
     menu[4] = new Item(570, 490, OPTIONS,     "Resources/HelpOptions.png");
     menu[5] = new Item(570, 545, EXIT,        "Resources/ExitGame.png");
+
+    // adiciona itens na cena
+    for (int i = 0; i < MaxItens; ++i)
+        scene->Add(menu[i], STATIC);
+
+    // inicia com música
+    audio->Volume(EVOLUTION, 2.0f);
+    audio->Play(EVOLUTION, true);
 }
 
 // ------------------------------------------------------------------------------
@@ -59,7 +67,6 @@ void Trials::Update()
         {
             menu[i]->Select();
 
-            // executa ações do menu 
             if (mouse->Clicked())
             {
                 switch (menu[i]->Type())
@@ -94,8 +101,7 @@ void Trials::Draw()
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
 
     // desenha itens do menu
-    for (int i = 0; i < MaxItens; ++i)
-        menu[i]->Draw();
+    scene->Draw();
 
     // desenha bounding box dos menus
     if (viewBBox)
@@ -106,17 +112,12 @@ void Trials::Draw()
 
 void Trials::Finalize()
 {
-    // remove gerenciadores
-    delete scene;
-    delete audio;
-
     // remove sprites
     delete backg;
 
-    // remove objetos
-    delete mouse;
-    for (int i = 0; i < MaxItens; ++i)
-        delete menu[i];
+    // remove sistemas
+    delete scene;
+    delete audio;
 }
 
 

@@ -19,6 +19,7 @@ bool Window::windowKeys[256] = { 0 };                       // estado do teclado
 bool Window::windowCtrl[256] = { 0 };                       // controle de teclado/mouse
 int  Window::windowMouseX = 0;                              // posição do mouse no eixo x
 int  Window::windowMouseY = 0;                              // posição do mouse no eixo y
+int  Window::windowMouseWheel = 0;                          // giro da roda do mouse
 
 // -------------------------------------------------------------------------------
 // Construtor
@@ -178,6 +179,10 @@ LRESULT CALLBACK Window::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
     case WM_MOUSEMOVE:
         windowMouseX = GET_X_LPARAM(lParam);
         windowMouseY = GET_Y_LPARAM(lParam);
+        return 0;
+
+    case WM_MOUSEWHEEL:
+        windowMouseWheel = GET_WHEEL_DELTA_WPARAM(wParam);
         return 0;
 
         // tecla pressionada
