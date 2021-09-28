@@ -1,11 +1,11 @@
 /**********************************************************************************
 // GameOver (Arquivo de Cabeçalho)
 // 
-// Criação:		14 Fev 2013
-// Atualização:	04 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     14 Fev 2013
+// Atualização: 27 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Fim do jogo
+// Descrição:   Fim do jogo
 //              
 **********************************************************************************/
 
@@ -22,13 +22,13 @@
 class GameOver : public Game
 {
 private:
-	Sprite * title;					// tela de fim
+    Sprite * title = nullptr;       // tela de fim
 
 public:
-	void Init();					// inicialização do nível
-	void Update();					// lógica da tela de fim
-	void Draw();					// desenho da tela
-	void Finalize();				// finalização do nível
+    void Init();                    // inicialização do nível
+    void Update();                  // lógica da tela de fim
+    void Draw();                    // desenho da tela
+    void Finalize();                // finalização do nível
 };
 
 // ------------------------------------------------------------------------------

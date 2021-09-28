@@ -1,17 +1,16 @@
 /**********************************************************************************
-// Level1 (Código Fonte) 
-// 
-// Criação:     14 Fev 2013
+// Level2 (Código Fonte)
+//
+// Criação:     27 Set 2021
 // Atualização: 27 Set 2021
 // Compilador:  Visual C++ 2019
 //
-// Descrição:   Nível 1 do jogo
+// Descrição:   Nível 2 do jogo
 //
 **********************************************************************************/
 
 #include "GravityGuy.h"
 #include "Home.h"
-#include "Level1.h"
 #include "Level2.h"
 #include "GameOver.h"
 #include "Player.h"
@@ -26,17 +25,18 @@ using std::string;
 // ------------------------------------------------------------------------------
 // Inicializa membros estáticos da classe
 
-Scene * Level1::scene = nullptr;
+Scene* Level2::scene = nullptr;
 
 // ------------------------------------------------------------------------------
 
-void Level1::Init()
+void Level2::Init()
 {
     // cria gerenciador de cena
     scene = new Scene();
 
     // pano de fundo do jogo
-    backg = new Background(Color{ 1,1,1,1 });
+    Color dark{ 0.4f, 0.4f, 0.4f, 1.0f };
+    backg = new Background(dark);
     scene->Add(backg, STATIC);
 
     // adiciona jogador na cena
@@ -46,13 +46,12 @@ void Level1::Init()
     // plataformas
     // ----------------------
 
-    Platform * plat;
+    Platform* plat;
     float posX, posY;
     uint  platType;
-    Color white { 1,1,1,1 };
 
     ifstream fin;
-    fin.open("Level1.txt");
+    fin.open("Level2.txt");
 
     fin >> posX;
     while (!fin.eof())
@@ -61,7 +60,7 @@ void Level1::Init()
         {
             // lê linha com informações da plataforma
             fin >> posY; fin >> platType;
-            plat = new Platform(posX, posY, platType, white);
+            plat = new Platform(posX, posY, platType, dark);
             scene->Add(plat, STATIC);
         }
         else
@@ -78,17 +77,15 @@ void Level1::Init()
 
     // ----------------------
 
-    // inicia com música
-    GravityGuy::audio->Frequency(MUSIC, 0.94f);
-    GravityGuy::audio->Frequency(TRANSITION, 1.0f);
-    GravityGuy::audio->Play(MUSIC);
+    GravityGuy::audio->Frequency(MUSIC, 1.0f);
+    GravityGuy::audio->Frequency(TRANSITION, 0.85f);
 }
 
 // ------------------------------------------------------------------------------
 
-void Level1::Update()
+void Level2::Update()
 {
-    if (window->KeyPress(VK_ESCAPE))
+    if (window->KeyPress(VK_ESCAPE) || GravityGuy::player->Level() == 2 || window->KeyPress('N'))
     {
         GravityGuy::audio->Stop(MUSIC);
         GravityGuy::NextLevel<Home>();
@@ -99,22 +96,17 @@ void Level1::Update()
         GravityGuy::audio->Stop(MUSIC);
         GravityGuy::NextLevel<GameOver>();
         GravityGuy::player->Reset();
-
-    }
-    else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
-    {
-        GravityGuy::NextLevel<Level2>();
     }
     else
     {
         scene->Update();
         scene->CollisionDetection();
-    }    
+    }
 }
 
 // ------------------------------------------------------------------------------
 
-void Level1::Draw()
+void Level2::Draw()
 {
     backg->Draw();
     scene->Draw();
@@ -125,7 +117,7 @@ void Level1::Draw()
 
 // ------------------------------------------------------------------------------
 
-void Level1::Finalize()
+void Level2::Finalize()
 {
     scene->Remove(GravityGuy::player, MOVING);
     delete scene;

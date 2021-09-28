@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Platform (Arquivo de Cabeçalho)
 // 
-// Criação:		21 Abr 2012
-// Atualização:	04 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     21 Abr 2012
+// Atualização: 27 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Plataformas do jogo
+// Descrição:   Plataformas do jogo
 //
 **********************************************************************************/
 
@@ -14,34 +14,37 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Types.h"										// tipos específicos da engine
-#include "Object.h"										// interface de Object
-#include "Sprite.h"										// desenho de sprites
+#include "Types.h"                                      // tipos específicos da engine
+#include "Object.h"                                     // interface de Object
+#include "Sprite.h"                                     // desenho de sprites
 
 // ---------------------------------------------------------------------------------
 
-enum PLATTYPES { SMALL, MEDIUM, LARGE };
+enum PLATTYPES { SMALL, MEDIUM, LARGE, FINISH };
 
 // ---------------------------------------------------------------------------------
 
 class Platform : public Object
 {
 private:
-	Sprite * platform;									// sprite da plataforma
+    Sprite * platform = nullptr;            // sprite da plataforma
+    Color color;                            // cor da plataforma
 
 public:
-	Platform(float posX, float posY, uint platType);	// construtor	
-	~Platform();										// destrutor
+    Platform(float posX, float posY, 
+             uint platType, 
+             Color tint);                   // construtor    
+    ~Platform();                            // destrutor
 
-	void Update();										// atualização do objeto
-	void Draw();										// desenho do objeto
+    void Update();                          // atualização do objeto
+    void Draw();                            // desenho do objeto
 }; 
 
 // ---------------------------------------------------------------------------------
 // Função Membro Inline
 
 inline void Platform::Draw()
-{ platform->Draw(x, y, z); }
+{ platform->Draw(x, y, z, 1.0f, 0.0f, color); }
 
 // ---------------------------------------------------------------------------------
 

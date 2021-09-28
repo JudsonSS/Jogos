@@ -1,11 +1,11 @@
 /**********************************************************************************
 // GravityGuy (Código Fonte)
 // 
-// Criação:		05 Out 2011
-// Atualização:	04 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     05 Out 2011
+// Atualização: 27 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Jogo estilo platformer usando a engine do curso
+// Descrição:   Jogo estilo plataforma usando a engine do curso
 //
 **********************************************************************************/
 
@@ -17,53 +17,61 @@
 // ------------------------------------------------------------------------------
 
 // inicializa membros estáticos da classe
-Game * GravityGuy::level = nullptr;
-Audio * GravityGuy::audio = nullptr;
-bool GravityGuy::viewBBox = false;
+Game*   GravityGuy::level = nullptr;
+Player* GravityGuy::player = nullptr;
+Audio*  GravityGuy::audio = nullptr;
+bool    GravityGuy::viewBBox = false;
 
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Init() 
 {
-	// cria sistema de áudio
-	audio = new Audio();
-	audio->Add(MENU, "Resources/Menu.wav");
-	audio->Add(MUSIC, "Resources/Music.wav");
-	audio->Add(TRANSITION, "Resources/Transition.wav");
+    // cria sistema de áudio
+    audio = new Audio();
+    audio->Add(MENU, "Resources/Menu.wav");
+    audio->Add(MUSIC, "Resources/Music.wav");
+    audio->Add(TRANSITION, "Resources/Transition.wav");
 
-	viewBBox = false;
-	level = new Home();
-	level->Init();
+    // bounding box não visível
+    viewBBox = false;
+
+    // cria jogador
+    player = new Player();
+
+    // inicializa nível de abertura do jogo
+    level = new Home();
+    level->Init();
 }
 
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Update()
 {
-	// habilita/desabilita visualização da bounding box
-	if (window->KeyCtrl('B'))
-		viewBBox = !viewBBox;	
+    // habilita/desabilita visualização da bounding box
+    if (window->KeyPress('B'))
+        viewBBox = !viewBBox;    
 
-	// atualiza nível
-	level->Update();
+    // atualiza nível
+    level->Update();
 } 
 
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Draw()
 {
-	// desenha nível
-	level->Draw();
+    // desenha nível
+    level->Draw();
 } 
 
 // ------------------------------------------------------------------------------
 
 void GravityGuy::Finalize()
 {
-	level->Finalize();
+    level->Finalize();
 
-	delete audio;
-	delete level;
+    delete player;
+    delete audio;
+    delete level;
 }
 
 
@@ -73,24 +81,22 @@ void GravityGuy::Finalize()
 
 int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
-	Engine * engine = new Engine();
+    Engine * engine = new Engine();
 
-	// configura janela
-	engine->window->Mode(WINDOWED);
-	engine->window->Size(600, 300);
-	engine->window->Color(30, 50, 80);
-	engine->window->Title("Gravity Guy");
-	engine->window->Icon(IDI_ICON);
-	engine->window->Cursor(IDC_CURSOR);
+    // configura o motor
+    engine->window->Mode(WINDOWED);
+    engine->window->Size(600, 300);
+    engine->window->Color(30, 50, 80);
+    engine->window->Title("Gravity Guy");
+    engine->window->Icon(IDI_ICON);
+    engine->window->Cursor(IDC_CURSOR);
+    //engine->graphics->VSync(true);
 
-	// configura dispositivo gráfico
-	//engine->graphics->VSync(true);
+    // inicia o jogo
+    int status = engine->Start(new GravityGuy());
 
-	// inicia o jogo
-	int status = engine->Start(new GravityGuy());
-
-	delete engine;
-	return status;
+    delete engine;
+    return status;
 }
 
 // ----------------------------------------------------------------------------

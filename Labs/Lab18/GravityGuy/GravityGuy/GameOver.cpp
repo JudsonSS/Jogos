@@ -1,11 +1,11 @@
 /**********************************************************************************
 // GameOver (Arquivo de Cabeçalho)
 // 
-// Criação:		14 Fev 2013
-// Atualização:	04 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     14 Fev 2013
+// Atualização: 27 Set 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Fim do jogo
+// Descrição:   Fim do jogo
 //
 **********************************************************************************/
 
@@ -18,29 +18,29 @@
 
 void GameOver::Init()
 {
-	title = new Sprite("Resources/GameOver.png");
+    title = new Sprite("Resources/GameOver.png");
 }
 
 // ----------------------------------------------------------------------
 
 void GameOver::Update()
 {
-	if (window->KeyCtrl(VK_ESCAPE) || window->KeyCtrl(VK_RETURN))
-		GravityGuy::NextLevel<Home>();
+    if (window->KeyPress(VK_ESCAPE) || window->KeyPress(VK_RETURN))
+        GravityGuy::NextLevel<Home>();
 }
 
 // ----------------------------------------------------------------------
 
 void GameOver::Draw()
 {
-	title->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
+    title->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
 }
 
 // ----------------------------------------------------------------------
 
 void GameOver::Finalize()
 {
-	delete title;
+    delete title;
 }
 
 // ----------------------------------------------------------------------
