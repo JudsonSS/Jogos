@@ -77,7 +77,7 @@ void Level2::Init()
 
     // ----------------------
 
-    GravityGuy::audio->Frequency(MUSIC, 1.0f);
+    GravityGuy::audio->Frequency(MUSIC, 1.00f);
     GravityGuy::audio->Frequency(TRANSITION, 0.85f);
 }
 

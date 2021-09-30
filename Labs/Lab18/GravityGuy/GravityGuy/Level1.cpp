@@ -99,7 +99,6 @@ void Level1::Update()
         GravityGuy::audio->Stop(MUSIC);
         GravityGuy::NextLevel<GameOver>();
         GravityGuy::player->Reset();
-
     }
     else if (GravityGuy::player->Level() == 1 || window->KeyPress('N'))
     {
