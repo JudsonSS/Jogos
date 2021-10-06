@@ -2,7 +2,7 @@
 // Jump (Arquivo de Cabeçalho)
 // 
 // Criação:     10 Jul 2019
-// Atualização: 30 Set 2021
+// Atualização: 05 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Exercício de uso da classe Controller
@@ -18,9 +18,10 @@
 #include "Sprite.h"
 #include "TileSet.h"
 #include "Animation.h"
+#include "Controller.h"
 #include "Resources.h"
-#include <list>
-using std::list;
+#include <vector>
+using std::vector;
 
 // ------------------------------------------------------------------------------
 
@@ -41,9 +42,8 @@ private:
     
     Timer jumpTimer;                    // controla tempo do pulo
     Timer dotTimer;                     // controla exibição do rastro
-    
-    list<Coord> trail;                  // lista de coordenadas
 
+    vector<Coord> trail;                // vetor de coordenadas
     bool jumping = false;               // personagem está pulando
     float velX = 0;                     // velocidade horizontal
     float velY = 0;                     // velocidade vertical

@@ -263,31 +263,31 @@ void Demo::Draw()
         int pov = 0;
 
         // mostra nome e valor de cada componente
-        for (const auto & i : joyParts)
+        for (const auto & comp : joyParts)
         {
             text.str("");
 
-            if (i.guid == GUID_XAxis)
-                text << i.name << ": " << gamepad->Axis(AxisX);
-            else if (i.guid == GUID_YAxis)
-                text << i.name << ": " << gamepad->Axis(AxisY);
-            else if (i.guid == GUID_ZAxis)
-                text << i.name << ": " << gamepad->Axis(AxisZ);
-            else if (i.guid == GUID_RxAxis)
-                text << i.name << ": " << gamepad->Axis(AxisRX);
-            else if (i.guid == GUID_RyAxis)
-                text << i.name << ": " << gamepad->Axis(AxisRY);
-            else if (i.guid == GUID_RzAxis)
-                text << i.name << ": " << gamepad->Axis(AxisRZ);
-            else if (i.guid == GUID_Button)
-                text << i.name << ": " << gamepad->ButtonDown(bt++);
-            else if (i.guid == GUID_POV)
-                text << i.name << ": " << gamepad->Dpad(pov++);
-            else if (i.guid == GUID_Slider)
-                text << i.name << ": " << gamepad->Slider(0);
-            else if (i.guid == GUID_Unknown)
+            if (comp.guid == GUID_XAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisX);
+            else if (comp.guid == GUID_YAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisY);
+            else if (comp.guid == GUID_ZAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisZ);
+            else if (comp.guid == GUID_RxAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisRX);
+            else if (comp.guid == GUID_RyAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisRY);
+            else if (comp.guid == GUID_RzAxis)
+                text << comp.name << ": " << gamepad->Axis(AxisRZ);
+            else if (comp.guid == GUID_Button)
+                text << comp.name << ": " << gamepad->ButtonDown(bt++);
+            else if (comp.guid == GUID_POV)
+                text << comp.name << ": " << gamepad->Dpad(pov++);
+            else if (comp.guid == GUID_Slider)
+                text << comp.name << ": " << gamepad->Slider(0);
+            else if (comp.guid == GUID_Unknown)
                 text << "Controller Unknown";
-            else if (i.guid == GUID_Key)
+            else if (comp.guid == GUID_Key)
                 text << "Controller Key";
 
             sysFont->Draw(242.0f, posY, text.str(), Color(0.28f, 0.28f, 0.28f, 1.0f));

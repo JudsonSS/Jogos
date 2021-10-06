@@ -2,7 +2,7 @@
 // Controller (Arquivo de Cabeçalho)
 // 
 // Criação:     09 Nov 2011
-// Atualização: 30 Set 2021
+// Atualização: 05 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Faz a leitura de controles
@@ -103,7 +103,7 @@ public:
     
     bool ButtonDown(int button);                // verifica se um botão do controle está pressionado
     bool ButtonUp(int button);                  // verifica se um botão do controle está liberado
-    bool ButtonCtrl(int button);                // registra novo pressionamento somente após liberação
+    bool ButtonPress(int button);               // registra novo pressionamento somente após liberação
     long Axis(int axis);                        // retorna o movimento de um eixo do controle
     long Slider(int slider);                    // retorna movimento do slider
     long Dpad(int pov = 0);                     // retorna o movimento do D-pad

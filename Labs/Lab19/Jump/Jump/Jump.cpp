@@ -2,7 +2,7 @@
 // Jump (Código Fonte)
 //
 // Criação:     10 Jul 2019
-// Atualização: 30 Set 2021
+// Atualização: 05 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Exercício de uso da classe Controller
@@ -39,7 +39,7 @@ void Jump::Update()
         if (dotTimer.Elapsed(0.1f))
         {
             // adiciona coordenada atual no rastro
-            trail.insert(trail.end(), { posX - 40, posY + 70 });
+            trail.push_back({ posX - 40, posY + 70 });
             dotTimer.Reset();
         }
 
@@ -66,6 +66,7 @@ void Jump::Update()
             {
                 // descida
                 velY = 100.0f;
+
             }
             else
             {
@@ -76,14 +77,14 @@ void Jump::Update()
     }
     else
     {
-        if (window->KeyPress(VK_SPACE))
+         if (window->KeyPress(VK_SPACE))
         {
             // inicia pulo
             velX = 100;
-            velY = -100;
+            velY = -200;
             
             // adiciona coordenada atual no rastro
-            trail.insert(trail.end(), { posX - 40, posY + 70 });
+            trail.push_back({ posX - 40, posY + 70 });
             
             // salva posição atual
             oldX = posX;

@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Controller (Código Fonte)
 // 
-// Criação:        09 Nov 2011
-// Atualização: 30 Set 2021
-// Compilador:    Visual C++ 2019
+// Criação:     09 Nov 2011
+// Atualização: 05 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:    Faz a leitura de controles
+// Descrição:   Faz a leitura de controles
 //
 **********************************************************************************/
 
@@ -29,11 +29,11 @@ Controller::Controller()
 
     // cria o objeto direct input
     DirectInput8Create(
-        GetModuleHandle(NULL),        // identificador da janela
-        DIRECTINPUT_VERSION,        // versão do direct input
-        IID_IDirectInput8,            // identificador da interface
-        (void **) &dInput,            // objeto direct input
-        NULL);                        // sempre nulo
+        GetModuleHandle(NULL),       // identificador da janela
+        DIRECTINPUT_VERSION,         // versão do direct input
+        IID_IDirectInput8,           // identificador da interface
+        (void **) &dInput,           // objeto direct input
+        NULL);                       // sempre nulo
 
     // busca por dispositivos conectados usando a função callback EnumerateControllers
     dInput->EnumDevices(
@@ -214,7 +214,7 @@ bool Controller::XboxUpdateState(int ctrl)
 
 // ---------------------------------------------------------------------------------
 
-bool Controller::ButtonCtrl(int button)
+bool Controller::ButtonPress(int button)
 {
     if (joyCtrl[button])
     {
