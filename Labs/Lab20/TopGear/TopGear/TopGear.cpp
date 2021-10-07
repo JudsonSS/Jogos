@@ -1,11 +1,11 @@
 /**********************************************************************************
 // TopGear (Código Fonte)
 //
-// Criação:		11 Jul 2019
-// Atualização:	15 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     11 Jul 2019
+// Atualização: 06 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exemplificando o uso da escala
+// Descrição:   Uso da escala em um jogo estilo TopGear
 //
 **********************************************************************************/
 
@@ -25,85 +25,78 @@ float   TopGear::speed = 1000.0f;
 
 void TopGear::Init()
 {
-	// cria gerenciadores
-	scene = new Scene();
-	audio = new Audio();
+    // cria gerenciadores
+    scene = new Scene();
+    audio = new Audio();
 
-	// carregar músicas e efeitos sonoros
-	audio->Add(MUSIC, "Resources/Soundtrack.wav");
-	audio->Add(ENGINE, "Resources/CarEngine.wav");
-	audio->Add(COLLISION, "Resources/Collision.wav");
+    // carregar músicas e efeitos sonoros
+    audio->Add(MUSIC, "Resources/Soundtrack.wav");
+    audio->Add(ENGINE, "Resources/CarEngine.wav");
+    audio->Add(COLLISION, "Resources/Collision.wav");
 
-	// carrega sprites e imagens
-	sky = new Sprite("Resources/Sky.png");
-	track = new Sprite("Resources/Track.png");
+    // carrega sprites e imagens
+    sky = new Sprite("Resources/Sky.png");
+    track = new Sprite("Resources/Track.png");
 
-	// cria e adiciona jogador na cena
-	Player * player = new Player();
-	scene->Add(player, MOVING);
+    // cria e adiciona jogador na cena
+    Player * player = new Player();
+    scene->Add(player, MOVING);
 
-	// cria e adiciona linhas da pista na cena
-	Stripes * stripes = new Stripes();
-	scene->Add(stripes, STATIC);
+    // cria e adiciona linhas da pista na cena
+    Stripes * stripes = new Stripes();
+    scene->Add(stripes, STATIC);
 
-	// cria e adiciona carros adversários na cena
-	Cars * cars = new Cars();
-	scene->Add(cars, STATIC);
+    // cria e adiciona carros adversários na cena
+    Cars * cars = new Cars();
+    scene->Add(cars, STATIC);
 
-	// inicia música e motor do carro
-	audio->Volume(ENGINE, 0.25f);
-	audio->Play(MUSIC, true);	
-	audio->Play(ENGINE, true);
+    // inicia música e motor do carro
+    audio->Volume(ENGINE, 0.25f);
+    audio->Play(MUSIC, true);    
+    audio->Play(ENGINE, true);
 }
 
 // ------------------------------------------------------------------------------
 
 void TopGear::Update()
 {
-	// sai com o pressionamento do ESC
-	window->CloseOnEscape();
+    // sai com o pressionamento do ESC
+    if (window->KeyDown(VK_ESCAPE))
+        window->Close();
 
-	// atualiza a cena 
-	scene->Update();
-	scene->CollisionDetection();
+    // atualiza a cena 
+    scene->Update();
+    scene->CollisionDetection();
 
-	// habilita/desabilita bounding box
-	if (window->KeyCtrl('B'))
-		viewBBox = !viewBBox;
+    // habilita/desabilita bounding box
+    if (window->KeyPress('B'))
+        viewBBox = !viewBBox;
 } 
 
 // ------------------------------------------------------------------------------
 
 void TopGear::Draw()
 {
-	// desenha o pano de fundo
-	track->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
-	sky->Draw(window->CenterX(), window->CenterY(), Layer::MIDFRONT);
-	
-	// desenha a cena
-	scene->Draw();
+    // desenha o pano de fundo
+    track->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
+    sky->Draw(window->CenterX(), window->CenterY(), Layer::UPPER);
+    
+    // desenha a cena
+    scene->Draw();
 
-	// desenha bounding box dos objetos
-	if (viewBBox)
-	{
-		Engine::renderer->BeginPixels();
-		scene->Begin();
-		Object* obj = nullptr;
-		while (obj = scene->Next())
-			if (obj->bbox)
-				Engine::renderer->Draw(obj->bbox, 0xffff00ff);
-		Engine::renderer->EndPixels();
-	}
+    // desenha bounding box dos objetos
+    if (viewBBox)
+        scene->DrawBBox();
 } 
 
 // ------------------------------------------------------------------------------
 
 void TopGear::Finalize()
 {
-	delete track;
-	delete sky;
-	delete scene;
-	delete audio;
+    delete track;
+    delete sky;
+    delete scene;
+    delete audio;
 }
 
 
@@ -111,26 +104,25 @@ void TopGear::Finalize()
 //                                  WinMain                                      
 // ------------------------------------------------------------------------------
 
-int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
+int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
+                     _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
-	Engine * engine = new Engine();
+    Engine * engine = new Engine();
 
-	// configura janela
-	engine->window->Mode(WINDOWED);
-	engine->window->Size(960, 540);
-	engine->window->Color(0, 0, 0);
-	engine->window->Title("Top Gear");
-	engine->window->Icon(IDI_ICON);
-	engine->window->Cursor(IDC_CURSOR);
+    // configura motor
+    engine->window->Mode(WINDOWED);
+    engine->window->Size(960, 540);
+    engine->window->Color(0, 0, 0);
+    engine->window->Title("Top Gear");
+    engine->window->Icon(IDI_ICON);
+    engine->window->Cursor(IDC_CURSOR);
+    //engine->graphics->VSync(true);
 
-	// configura dispositivo gráfico
-	//engine->graphics->VSync(true);
+    // inicia o jogo
+    int status = engine->Start(new TopGear());
 
-	// inicia o jogo
-	int status = engine->Start(new TopGear());
-
-	delete engine;
-	return status;
+    delete engine;
+    return status;
 }
 
 // ----------------------------------------------------------------------------

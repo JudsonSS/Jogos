@@ -1,11 +1,11 @@
 /**********************************************************************************
 // TopGear (Arquivo de Cabeçalho)
 //
-// Criação:		11 Jul 2019
-// Atualização:	15 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     11 Jul 2019
+// Atualização: 06 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exemplificando o uso da escala 
+// Descrição:   Uso da escala em um jogo estilo TopGear
 //
 **********************************************************************************/
 
@@ -30,20 +30,20 @@ enum SoundIds { MUSIC, ENGINE, COLLISION };
 class TopGear : public Game
 {
 private:
-	Scene * scene = nullptr;			// gerenciador de cena
-	Sprite * sky = nullptr;				// desenho do céu
-	Sprite * track = nullptr;			// desenho da pista
+    Scene * scene = nullptr;            // gerenciador de cena
+    Sprite * sky = nullptr;             // desenho do céu
+    Sprite * track = nullptr;           // desenho da pista
 
-	bool viewBBox = false;				// visualização da bbox
+    bool viewBBox = false;              // visualização da bbox
 
 public:
-	static Audio * audio;				// gerenciador de áudio
-	static float speed;					// velocidade do carro
+    static Audio * audio;               // gerenciador de áudio
+    static float speed;                 // velocidade do carro
 
-	void Init();						// inicializa jogo
-	void Update();						// atualiza lógica do jogo
-	void Draw();						// desenha jogo
-	void Finalize();					// finaliza jogo
+    void Init();                        // inicialização
+    void Update();                      // atualização
+    void Draw();                        // desenho
+    void Finalize();                    // finalização
 };
 
 // ---------------------------------------------------------------------------------
