@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Missile (Código Fonte)
 // 
-// Criação:		23 Nov 2011
-// Atualização:	16 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Nov 2011
+// Atualização: 13 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Define uma classe para um míssil/projétil
+// Descrição:   Define uma classe para um míssil/projétil
 //
 **********************************************************************************/
 
@@ -16,45 +16,47 @@
 
 Missile::Missile(Plane * plane, Image * img)
 {
-	// inicializa sprite
-	sprite = new Sprite(img);
+    // inicializa sprite
+    sprite = new Sprite(img);
 
-	// inicializa vetor velocidade
-	speed.angle = plane->Angle();
-	speed.magnitude = 500;
-	
-	// usa mesma rotação do avião
-	rotation = plane->rotation;
-	
-	// move para posição
-	MoveTo(plane->X(), plane->Y());
+    // inicializa vetor velocidade
+    speed.angle = plane->Angle();
+    speed.magnitude = 500;
+    
+    // usa mesma rotação do avião
+    RotateTo(plane->Rotation());
+    
+    // move para posição
+    MoveTo(plane->X(), plane->Y());
 }
 
 // ------------------------------------------------------------------------------
 
 Missile::~Missile()
 {
-	delete sprite;
+    delete sprite;
 }
 
 // -------------------------------------------------------------------------------
 
 void Missile::Update()
 {
-	Translate(speed.XCom() * gameTime, -speed.YCom() * gameTime);
-	
-	if (x > window->Width() || x < 0 || y > window->Height() || y < 0)
-	{
-		Vector2D::audio->Play(EXPLOSION);
-		Vector2D::scene->Delete();
-	}
+    // desloca míssil pelas componentes do vetor speed
+    Translate(speed.X() * gameTime, -speed.Y() * gameTime);
+    
+    // se o míssil sair da janela
+    if (x > window->Width() || x < 0 || y > window->Height() || y < 0)
+    {
+        Vector2D::audio->Play(EXPLOSION);
+        Vector2D::scene->Delete();
+    }
 }
 
 // -------------------------------------------------------------------------------
 
 void Missile::Draw()
 {
-	sprite->Draw(x, y, z, scale, rotation);
+    sprite->Draw(x, y, z, scale, rotation);
 }
 
 // -------------------------------------------------------------------------------

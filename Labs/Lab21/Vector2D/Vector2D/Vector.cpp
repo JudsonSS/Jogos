@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Vector (Codigo Fonte)
 // 
-// Criação:		18 Nov 2011
-// Atualização:	16 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     18 Nov 2011
+// Atualização: 13 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Classe para representar um vetor
+// Descrição:   Classe para representar um vetor
 //
 **********************************************************************************/
 
@@ -19,34 +19,34 @@ const double Vector::PI = 3.1415926535;
 
 Vector::Vector()
 {
-	angle     = 0;
-	magnitude = 0;
+    angle     = 0;
+    magnitude = 0;
 }
 
 // ------------------------------------------------------------------------------
 
 Vector::Vector(float ang, float mag)
 {
-	angle     = ang;
-	magnitude = mag;
+    angle     = ang;
+    magnitude = mag;
 }
 
 // ------------------------------------------------------------------------------
 
 void Vector::Rotate(float theta)
 {
-	angle -= theta;
+    angle -= theta;
 
-	// mantém o ângulo entre 0 e 359 graus
-	while (angle < 0 || angle >= 360)
-		angle += (angle >= 360 ? -360.0f : 360.0f);
+    // mantém o ângulo entre 0 e 359 graus
+    while (angle < 0 || angle >= 360)
+        angle += (angle >= 360 ? -360.0f : 360.0f);
 }
 
 // ------------------------------------------------------------------------------
 
 void Vector::Scale(float factor)
 {
-	magnitude *= factor;
+    magnitude *= factor;
 }
 
 // ------------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Vector2D (Arquivo de Cabeçalho)
 //
-// Criação:		11 Nov 2011
-// Atualização:	16 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     11 Nov 2011
+// Atualização: 13 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Exemplo de utilização da classe Vector
+// Descrição:   Exemplo de utilização da classe Vector
 //
 **********************************************************************************/
 
@@ -30,21 +30,21 @@ enum SoundIDs { PULSE, EXPLOSION };
 class Vector2D : public Game
 {
 private:
-	Sprite * backg = nullptr;			// pano de fundo
-	Sprite * infoBox = nullptr;			// caixa de informações
-	Sprite * keyMap = nullptr;			// caixa para teclas de atalho	
-	Plane * plane = nullptr;			// objeto avião
-	
-	float bgScale = 0.0f;				// escala do pano de fundo
+    Sprite * backg = nullptr;           // pano de fundo
+    Sprite * infoBox = nullptr;         // caixa de informações
+    Sprite * keyMap = nullptr;          // caixa para teclas de atalho    
+    Plane * plane = nullptr;            // objeto avião
+    
+    float bgScale = 0.0f;               // escala do pano de fundo
 
 public:
-	static Scene * scene;				// gerenciador de cena 
-	static Audio * audio;				// sistema de áudio
+    static Scene * scene;               // gerenciador de cena 
+    static Audio * audio;               // sistema de áudio
 
-	void Init();						// inicialização
-	void Update();						// atualização
-	void Draw();						// desenho
-	void Finalize();					// finalização
+    void Init();                        // inicialização
+    void Update();                      // atualização
+    void Draw();                        // desenho
+    void Finalize();                    // finalização
 };
 
 // ---------------------------------------------------------------------------------

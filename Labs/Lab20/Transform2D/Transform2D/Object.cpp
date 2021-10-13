@@ -2,7 +2,7 @@
 // Object (Código Fonte)
 //
 // Criação:     01 Out 2007
-// Atualização: 06 Out 2021
+// Atualização: 07 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Essa é a classe base para todos objetos do jogo.
@@ -51,9 +51,9 @@ void Object::BBox(Geometry* bb)
         delete bbox;
 
     bbox = bb;
-    bbox->Translate(x, y);
-    bbox->Rotate(rotationAngle);
-    bbox->Scale(scaleFactor);    
+    bbox->MoveTo(x, y);
+    bbox->ScaleTo(scaleFactor);
+    bbox->RotateTo(rotationAngle);    
 }
 
 // -------------------------------------------------------------------------------

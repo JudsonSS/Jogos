@@ -2,7 +2,7 @@
 // Geometry (Arquivo de Cabeçalho)
 //
 // Criação:     05 Oct 2007
-// Atualização: 25 Ago 2021
+// Atualização: 07 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Agrupa a definição de todas as formas geométricas suportadas:
@@ -189,7 +189,8 @@ public:
     void Remove(Geometry * s);                          // remove geometria da lista
 
     void Translate(float dx, float dy);                 // move a geometria pelo delta (dx,dy)
-    void Scale(float factor);                           // altera escala da geometria
+    void Scale(float factor);                           // amplia/reduz geometria por um fator de escala
+    void ScaleTo(float value);                          // ajusta escala para o valor indicado
     void MoveTo(float px, float py);                    // move a geometria para a posição (px,py)
 };
 

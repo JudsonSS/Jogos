@@ -2,7 +2,7 @@
 // Geometry (Código Fonte)
 //
 // Criação:     05 Oct 2007
-// Atualização: 06 Out 2021
+// Atualização: 07 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Agrupa a definição de todas as formas geométricas suportadas:
@@ -286,10 +286,20 @@ void Mixed::Translate(float dx, float dy)
 
 void Mixed::Scale(float factor)
 {
-    scale = factor;
+    scale *= factor;
 
     for (auto i : shapes)
         i->Scale(factor);
+}
+
+// --------------------------------------------------------------------------
+
+void Mixed::ScaleTo(float value)
+{
+    scale = value;
+
+    for (auto i : shapes)
+        i->Scale(value);
 }
 
 // --------------------------------------------------------------------------

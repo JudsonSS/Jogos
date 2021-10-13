@@ -1,3 +1,3 @@
 
 #define IDI_ICON                       101
-#define IDC_CURSOR					   201
+#define IDC_CURSOR                     201
