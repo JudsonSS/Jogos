@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Projectile (Arquivo de Cabeçalho)
 // 
-// Criação:		01 Out 2012
-// Atualização:	18 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     01 Out 2012
+// Atualização: 18 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Movimento de projétil
+// Descrição:   Movimento de projétil
 //
 **********************************************************************************/
 
@@ -33,23 +33,23 @@ enum Sounds {CANNON, SPLASH};
 class Projectile : public Game
 {
 private:
-	Sprite * backg = nullptr;		// pano de fundo
-	Sprite * base = nullptr;		// base do canhão
-	Sprite * infoBox = nullptr;		// caixa de informações
-	Sprite * keyMap = nullptr;		// caixa para teclas de atalho	
-	Cannon * cannon = nullptr;		// canhão
+    Sprite * backg = nullptr;       // pano de fundo
+    Sprite * base = nullptr;        // base do canhão
+    Sprite * infoBox = nullptr;     // caixa de informações
+    Sprite * keyMap = nullptr;      // caixa para teclas de atalho    
+    Cannon * cannon = nullptr;      // canhão
 
-	stringstream text;				// texto temporário
+    stringstream text;              // texto temporário
 
 public:
-	static Scene * scene;			// cena do jogo
-	static Audio * audio;			// sistema de áudio
-	static Font  * font;			// fonte para texto
+    static Scene * scene;           // cena do jogo
+    static Audio * audio;           // sistema de áudio
+    static Font  * font;            // fonte para texto
 
-	void Init();					// inicialização
-	void Update();					// atualização
-	void Draw();					// desenho
-	void Finalize();				// finalização
+    void Init();                    // inicialização
+    void Update();                  // atualização
+    void Draw();                    // desenho
+    void Finalize();                // finalização
 };
 
 // ---------------------------------------------------------------------------------

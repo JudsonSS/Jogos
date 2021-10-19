@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Missile (Arquivo de Cabeçalho)
 // 
-// Criação:		23 Nov 2011
-// Atualização:	19 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Nov 2011
+// Atualização: 18 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Define uma classe para um míssil/projétil
+// Descrição:   Define uma classe para um míssil/projétil
 //
 **********************************************************************************/
 
@@ -24,15 +24,15 @@
 class Missile : public Object
 {
 private:
-	Sprite * sprite;							// sprite do míssil
-	Vector   speed;								// velocidade do míssil
-	
+    Sprite * sprite;                            // sprite do míssil
+    Vector   speed;                             // velocidade do míssil
+    
 public:
-	Missile(Ship * ship);						// construtor
-	~Missile();									// destrutor
+    Missile(Ship * ship);                       // construtor
+    ~Missile();                                 // destrutor
 
-	void Update();								// atualização
-	void Draw();								// desenho
+    void Update();                              // atualização
+    void Draw();                                // desenho
 }; 
 
 // ------------------------------------------------------------------------------
