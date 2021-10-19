@@ -20,8 +20,8 @@ Missile::Missile(Plane * plane, Image * img)
     sprite = new Sprite(img);
 
     // inicializa vetor velocidade
-    speed.angle = plane->Angle();
-    speed.magnitude = 500;
+    speed.RotateTo(plane->Angle());
+    speed.ScaleTo(500);
     
     // usa mesma rotação do avião
     RotateTo(plane->Rotation());
@@ -42,7 +42,7 @@ Missile::~Missile()
 void Missile::Update()
 {
     // desloca míssil pelas componentes do vetor speed
-    Translate(speed.X() * gameTime, -speed.Y() * gameTime);
+    Translate(speed.XComponent() * gameTime, -speed.YComponent() * gameTime);
     
     // se o míssil sair da janela
     if (x > window->Width() || x < 0 || y > window->Height() || y < 0)

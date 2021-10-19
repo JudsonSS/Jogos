@@ -65,7 +65,7 @@ inline int Plane::Height()
 { return sprite->Height(); }
 
 inline float Plane::Angle()
-{ return direction.angle; }
+{ return direction.Angle(); }
 
 // ---------------------------------------------------------------------------------
 

@@ -35,8 +35,8 @@ Plane::Plane()
     ScaleTo(0.5f);
 
     // direção inicial do avião
-    direction.angle = 90.0f;
-    direction.magnitude = 1.0f;
+    direction.RotateTo(90.0f);
+    direction.ScaleTo(1.0f);
 }
 
 // ---------------------------------------------------------------------------------
@@ -88,8 +88,8 @@ void Plane::Update()
     {
         MoveTo(window->CenterX(), window->CenterY());
         RotateTo(0);
-        direction.angle = 90.0f;
-        direction.magnitude = 1.0f;
+        direction.RotateTo(90.0f);
+        direction.ScaleTo(1.0f);
     }
 
     // dispara míssil
@@ -119,8 +119,8 @@ void Plane::Update()
         {
             MoveTo(window->CenterX(), window->CenterY());
             RotateTo(0);
-            direction.angle = 90.0f;
-            direction.magnitude = 1.0f;
+            direction.RotateTo(90.0f);
+            direction.ScaleTo(1.0f);
         }
 
         // movimento com o D-pad
@@ -181,7 +181,7 @@ void Plane::Draw()
     font->Draw(45, 104, text.str(), textColor);
 
     text.str("");
-    text << "Direção do Avião: " << int(direction.angle) << "°";
+    text << "Direção do Avião: " << int(direction.Angle()) << "°";
     font->Draw(45, 124, text.str(), textColor);
 
     text.str("");

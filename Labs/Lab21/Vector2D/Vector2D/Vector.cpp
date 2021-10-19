@@ -2,7 +2,7 @@
 // Vector (Codigo Fonte)
 // 
 // Criação:     18 Nov 2011
-// Atualização: 13 Out 2021
+// Atualização: 19 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Classe para representar um vetor

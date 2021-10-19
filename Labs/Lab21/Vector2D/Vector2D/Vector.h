@@ -2,7 +2,7 @@
 // Vector (Arquivo de Cabeçalho)
 // 
 // Criação:     18 Nov 2011
-// Atualização: 13 Out 2021
+// Atualização: 19 Out 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Classe para representar um vetor
@@ -22,39 +22,49 @@ class Vector
 {
 private:
     static const double PI;             // constante PI
-
-public:
     float angle;                        // ângulo do vetor com o eixo x
     float magnitude;                    // magnitude do vetor
 
+public:
     Vector();                           // construtor padrão
     Vector(float ang, float mag);       // construtor com ângulo e magnitude
 
+    void RotateTo(float value);         // ajusta rotação para valor indicado
+    void ScaleTo(float value);          // ajusta rotação para valor indicado
     void Rotate(float theta);           // rotaciona vetor por ângulo em graus
     void Scale(float factor);           // amplia ou reduz vetor por um fator
 
-    float X() const;                    // retorna componente X do vetor
-    float Y() const;                    // retorna componente Y do vetor
+    float Angle() const;                // retorna ângulo do vetor
+    float Magnitude() const;            // retorna magnitude do vetor
+    float XComponent() const;           // retorna componente X do vetor
+    float YComponent() const;           // retorna componente Y do vetor
     float Radians() const;              // retorna ângulo em radianos
 }; 
 
 // ---------------------------------------------------------------------------------
 // Funções Membro Inline
 
-// retorna componente X do vetor
-inline float Vector::X() const
+inline void Vector::RotateTo(float value)
+{ angle = value; }
+
+inline void Vector::ScaleTo(float value)
+{ magnitude = value; }
+
+inline float Vector::Angle() const
+{ return angle; }
+
+inline float Vector::Magnitude() const
+{ return magnitude; }
+
+inline float Vector::XComponent() const
 { return magnitude * cos(Radians()); }    
 
-// retorna componente Y do vetor
-inline float Vector::Y() const
+inline float Vector::YComponent() const
 { return magnitude * sin(Radians()); }    
 
-// retorna ângulo em radianos
 inline float Vector::Radians() const
 { return float(angle * PI / 180.0); }
 
 // ------------------------------------------------------------------------------
-
-
 
 #endif
