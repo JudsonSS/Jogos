@@ -247,7 +247,7 @@ bool Scene::Collision(Point * p, Circle * c)
 {
     // se a distância entre o ponto e o centro do círculo
     // for menor que o raio do círculo então há colisão
-    if (p->Distance(Point(c->CenterX(), c->CenterY())) <= c->Radius())
+    if (Point::Distance(*p, Point(c->CenterX(), c->CenterY())) <= c->Radius())
         return true;
     else
         return false;

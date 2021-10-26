@@ -92,7 +92,8 @@ public:
     Point(float posX, float posY);                      // construtor usando pontos-flutuantes
     Point(int posX, int posY);                          // construtor usando inteiros
     
-    float Distance(const Point & p) const;              // calcula a distância até outro ponto
+    // retorna a distância entre os pontos
+    static float Distance(const Point& pa, const Point& pb);              
 };
 
 // --------------------------------------------------------------------------
@@ -114,6 +115,9 @@ public:
     float Ay() const { return y + (a.Y() * scale); }    // coordenadas do mundo do ponto A eixo y
     float Bx() const { return x + (b.X() * scale); }    // coordenadas do mundo do ponto B eixo x
     float By() const { return y + (b.Y() * scale); }    // coordenadas do mundo do ponto B eixo y
+
+    // retorna o ângulo da linha formada pelos pontos
+    static float Angle(const Point& pa, const Point& pb);
 };
 
 // --------------------------------------------------------------------------

@@ -60,14 +60,12 @@ Point::Point(int posX, int posY)
 
 // --------------------------------------------------------------------------
 
-float Point::Distance(const Point & p) const
+float Point::Distance(const Point& pa, const Point& pb)
 {
-    // acha a distância para um outro ponto
-
     // os deltas podem resultar em valores negativos 
     // para evitar isso pega-se os valores absolutos
-    float deltaX = abs(p.X() - x);
-    float deltaY = abs(p.Y() - y);
+    float deltaX = abs(pb.x - pa.x);
+    float deltaY = abs(pb.y - pa.y);
 
     // calcula e retorna a distância
     return sqrt(deltaX*deltaX + deltaY*deltaY);
@@ -123,6 +121,62 @@ void Line::Rotate(float angle)
     xr = b.X() * cos(theta) - b.Y() * sin(theta);
     yr = b.X() * sin(theta) + b.Y() * cos(theta);
     b.MoveTo(xr, yr);
+}
+
+// --------------------------------------------------------------------------
+
+float Line::Angle(const Point& pa, const Point& pb)
+{
+    const double PI = 3.1415926535;
+
+    // obtém vetor que vai do ponto (pa) até (pb)
+    float dx, dy;
+    float ang;
+
+    // o cálculo do "dy" é invertido porque nas coordenadas da tela
+    // o eixo y é para baixo e no plano cartesiano ele é para cima
+    dx = pb.X() - pa.X();
+    dy = pa.Y() - pb.Y();
+
+    // ajusta o ângulo de acordo com o quadrante do vetor resultante
+    if (dx > 0)
+    {
+        // 1o Quadrante
+        if (dy >= 0)
+        {
+            // acha o ângulo em radianos
+            ang = atan(dy / dx);
+            // converte de radianos para graus
+            ang = float((180.0 * ang) / PI);
+        }
+        // 4o Quadrante
+        else // (ry < 0)
+        {
+            // acha o ângulo em radianos
+            ang = atan(dy / dx);
+            // converte de radianos para graus
+            ang = float((180.0 * ang) / PI) + 360.0f;
+        }
+    }
+    // 2o e 3o Quadrante
+    else if (dx < 0)
+    {
+        // acha o ângulo em radianos
+        ang = atan(dy / dx);
+        // converte de radianos para graus
+        ang = float((180.0 * ang) / PI) + 180.0f;
+    }
+    else // (rx == 0)
+    {
+        if (dy > 0)
+            ang = 90.0f;
+        else if (dy < 0)
+            ang = 270.0f;
+        else
+            ang = 0.0f;
+    }
+
+    return ang;
 }
 
 // --------------------------------------------------------------------------
@@ -309,7 +363,7 @@ void Poly::BuildBBox()
         float pY = vertexList[i].Y() * scale;
 
         // calcula o raio de cada vértice do polígono
-        curRadius = Point(pX,pY).Distance(Point());
+        curRadius = Point::Distance(Point(pX,pY), Point(0,0));
         if (maxRadius < curRadius)
             maxRadius = curRadius;
     }

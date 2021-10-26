@@ -53,10 +53,10 @@ Rock::Rock()
     // usa uma escala aleatória entre 0.8 e 1.0
     ScaleTo(1.0f - 0.02f * RandFactor(mt));
 
-    // define ângulo de rotação e velocidade aleatoriamente 
-    rAngle = -0.05f + (0.01f * RandFactor(mt));     // -0.05 a +0.05
-    speed.ScaleTo(5.0f + RandFactor(mt));           // 5.0 a 15.0
+    // define aleatoriamente giro e velocidade  
+    spin = -25.0f + (2.5f * RandFactor(mt));        // -25.0 a +25.0
     speed.RotateTo(RandAngle(mt));                  // 0 a 359
+    speed.ScaleTo(5.0f + RandFactor(mt));           // 5.0 a 15.0
 
     // mais uma rocha criada
     count++;
@@ -86,8 +86,10 @@ void Rock::OnCollision(Object * obj)
         Rock* rockA = this;
         Rock* rockB = static_cast<Rock*>(obj);
 
-        // ângulo formado pela linha que liga os centros dos objetos
-        float angleA = rockA->speed.Angle(rockA->X(), rockA->Y(), rockB->X(), rockB->Y());
+        // ângulo formado pela linha que interliga os centros das rochas
+        Point pA { rockA->X(), rockA->Y() };
+        Point pB { rockB->X(), rockB->Y() };
+        float angleA = Line::Angle(pA, pB);
         float angleB = angleA + 180.0f;
 
         // mantém ângulo na faixa de 0 a 359 graus
@@ -189,7 +191,7 @@ void Rock::OnCollision(Object * obj)
 void Rock::Update()
 {
     // rotaciona rocha pelo fator de rotação
-    Rotate(rAngle * 500 * gameTime);
+    Rotate(spin * gameTime);
 
     // move rocha usando o vetor velocidade
     Translate(speed.XComponent() * gameTime, -speed.YComponent() * gameTime);
@@ -200,7 +202,7 @@ void Rock::Update()
     // usa o raio como metade do tamanho do asteroide
     float half = pol->BBox()->Radius();
 
-    // mantém rocha dentro da tela
+    // passa rochas de um lado para outro da janela
     if (x + half < 0)
         MoveTo(float(window->Width()) + half, y);
     if (x - half > window->Width())

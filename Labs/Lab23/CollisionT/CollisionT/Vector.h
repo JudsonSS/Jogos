@@ -40,12 +40,6 @@ public:
     float XComponent() const;           // retorna componente X do vetor
     float YComponent() const;           // retorna componente Y do vetor
     float Radians() const;              // retorna ângulo em radianos
-
-    // retorna o ângulo formado pelos pontos (x1,y1) e (x2,y2)
-    float Angle(float x1, float y1, float x2, float y2);
-
-    // retorna a distância entre os pontos (x1,y1) e (x2,y2)
-    float Distance(float x1, float y1, float x2, float y2);    
 }; 
 
 // ---------------------------------------------------------------------------------

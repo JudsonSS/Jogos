@@ -145,13 +145,13 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Engine * engine = new Engine();
 
     // configura motor
-    engine->window->Mode(WINDOWED);
-    engine->window->Size(1200, 640);
+    //engine->window->Mode(WINDOWED);
+    //engine->window->Size(1200, 640);
     engine->window->Color(0, 0, 0);
     engine->window->Title("Asteroids");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
-    //engine->window->HideCursor(true);
+    engine->window->HideCursor(true);
     //engine->graphics->VSync(true);
 
     // inicia o jogo

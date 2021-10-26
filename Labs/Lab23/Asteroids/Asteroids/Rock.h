@@ -38,7 +38,7 @@ private:
     Animation * anim;                       // animação da rocha
     Vector speed;                           // velocidade da rocha
     uint frame;                             // quadro da folha a ser utilizado
-    float rAngle;                           // incremento de ângulo em cada atualização 
+    float spin;                             // delta de rotação em cada atualização 
 
     // números aleatórios
     random_device rd;
