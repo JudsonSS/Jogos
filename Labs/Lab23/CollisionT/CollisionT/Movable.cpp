@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Movable (Código Fonte)
 //
-// Criação:		27 Jul 2019
-// Atualização:	27 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     27 Jul 2019
+// Atualização: 25 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objeto movível através do mouse
+// Descrição:   Objeto movível através do mouse
 //
 **********************************************************************************/
 
@@ -16,10 +16,10 @@
 
 Movable::Movable()
 {
-	sprite = nullptr;
-	colliding = false;
-	following = false;
-	dx = dy = 0;
+    sprite = nullptr;
+    colliding = false;
+    following = false;
+    dx = dy = 0;
 }
 
 // ---------------------------------------------------------------------------------
@@ -33,48 +33,48 @@ Movable::~Movable()
 
 void Movable::OnCollision(Object * obj)
 {
-	if (obj->type != MOUSE)
-	{
-		// colisão com qualquer outro objeto
-		colliding = true;
-	}
-	else
-	{
-		// colisão com o cursor do mouse
-		if (window->KeyCtrl(VK_LBUTTON))
-		{
-			following = true;
-			dx = x - window->MouseX();
-			dy = y - window->MouseY();
-			CollisionT::index = type;
-		}
-		if (window->KeyUp(VK_LBUTTON))
-		{
-			following = false;
-		}
-	}
+    if (obj->Type() != MOUSE)
+    {
+        // colisão com qualquer outro objeto
+        colliding = true;
+    }
+    else
+    {
+        // colisão com o cursor do mouse
+        if (window->KeyPress(VK_LBUTTON))
+        {
+            following = true;
+            dx = x - window->MouseX();
+            dy = y - window->MouseY();
+            CollisionT::index = type;
+        }
+        if (window->KeyUp(VK_LBUTTON))
+        {
+            following = false;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------
 
 void Movable::Update()
 {
-	colliding = false;
+    colliding = false;
 
-	if (following)
-	{
-		MoveTo(window->MouseX() + dx, window->MouseY() + dy);
-	}
+    if (following)
+    {
+        MoveTo(window->MouseX() + dx, window->MouseY() + dy);
+    }
 }
 
 // ---------------------------------------------------------------------------------
 
 void Movable::Draw()
 {
-	if (colliding)
-		sprite->Draw(x, y, z, scale, rotation, Color(1, 0, 0, 1)); // vermelho
-	else
-		sprite->Draw(x, y, z, scale, rotation, Color(1, 1, 1, 1)); // normal
+    if (colliding)
+        sprite->Draw(x, y, z, scale, rotation, Color(1, 0, 0, 1)); // vermelho
+    else
+        sprite->Draw(x, y, z, scale, rotation, Color(1, 1, 1, 1)); // normal
 }
 
 // ---------------------------------------------------------------------------------

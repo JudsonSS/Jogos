@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Shapes (Arquivo de Cabeçalho)
 //
-// Criação:		27 Jul 2019
-// Atualização:	27 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     27 Jul 2019
+// Atualização: 25 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objetos de diferentes formas
+// Descrição:   Objetos de diferentes formas
 //
 **********************************************************************************/
 
@@ -21,8 +21,8 @@
 class Box : public Movable
 {
 public:
-	Box();									// construtor
-	~Box();									// destrutor
+    Box();
+    ~Box();
 };
 
 // ---------------------------------------------------------------------------------
@@ -30,8 +30,8 @@ public:
 class Wheel : public Movable
 {
 public:
-	Wheel();								// construtor
-	~Wheel();								// destrutor
+    Wheel();
+    ~Wheel();
 };
 
 // ---------------------------------------------------------------------------------
@@ -39,8 +39,8 @@ public:
 class Drop : public Movable
 {
 public:
-	Drop();									// construtor
-	~Drop();								// destrutor
+    Drop();
+    ~Drop();
 };
 
 // ---------------------------------------------------------------------------------
@@ -48,8 +48,8 @@ public:
 class Plane : public Movable
 {
 public:
-	Plane();								// construtor
-	~Plane();								// destrutor
+    Plane();
+    ~Plane();
 };
 
 // ---------------------------------------------------------------------------------
@@ -57,8 +57,8 @@ public:
 class Hammer : public Movable
 {
 public:
-	Hammer();								// construtor
-	~Hammer();								// destrutor
+    Hammer();
+    ~Hammer();
 };
 
 // ---------------------------------------------------------------------------------
@@ -66,8 +66,8 @@ public:
 class Display : public Movable
 {
 public:
-	Display();								// construtor
-	~Display();								// destrutor
+    Display();
+    ~Display();
 };
 
 // ---------------------------------------------------------------------------------
@@ -75,8 +75,8 @@ public:
 class Ball : public Movable
 {
 public:
-	Ball();									// construtor
-	~Ball();								// destrutor
+    Ball();
+    ~Ball();
 };
 
 // ---------------------------------------------------------------------------------
@@ -84,8 +84,8 @@ public:
 class Dot : public Movable
 {
 public:
-	Dot();									// construtor
-	~Dot();									// destrutor
+    Dot();
+    ~Dot();
 };
 
 // ---------------------------------------------------------------------------------
@@ -93,8 +93,8 @@ public:
 class Bolt : public Movable
 {
 public:
-	Bolt();									// construtor
-	~Bolt();								// destrutor
+    Bolt();
+    ~Bolt();
 };
 
 // ---------------------------------------------------------------------------------
@@ -102,8 +102,8 @@ public:
 class House : public Movable
 {
 public:
-	House();								// construtor
-	~House();								// destrutor
+    House();
+    ~House();
 };
 
 // ---------------------------------------------------------------------------------

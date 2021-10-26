@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Debris (Arquivo de Cabeçalho)
 // 
-// Criação:		07 Fev 2013
-// Atualização:	28 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Fev 2013
+// Atualização: 25 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Animação de explosão
+// Descrição:   Animação de explosão
 //
 **********************************************************************************/
 
@@ -15,23 +15,23 @@
 // ---------------------------------------------------------------------------------
 // Inclusões
 
-#include "Types.h"							// tipos específicos da engine
-#include "Object.h"							// objetos do jogo
-#include "Animation.h"						// animação de sprites
+#include "Types.h"                          // tipos específicos da engine
+#include "Object.h"                         // objetos do jogo
+#include "Animation.h"                      // animação de sprites
 
 // ---------------------------------------------------------------------------------
 
 class Debris : public Object
 {
 private:
-	Animation * anim;						// animação
+    Animation * anim;                       // animação
 
 public:
-	Debris(float posX, float posY);			// construtor
-	~Debris();								// destrutor
+    Debris(float posX, float posY);         // construtor
+    ~Debris();                              // destrutor
 
-	void Update();							// atualização
-	void Draw();							// desenho
+    void Update();                          // atualização
+    void Draw();                            // desenho
 };
 
 // ---------------------------------------------------------------------------------

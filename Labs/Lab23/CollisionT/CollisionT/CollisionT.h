@@ -1,11 +1,11 @@
 /**********************************************************************************
 // CollisionT (Arquivo de Cabeçalho)
 //
-// Criação:		26 Jul 2019
-// Atualização:	28 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     26 Jul 2019
+// Atualização: 25 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Teste de Colisão
+// Descrição:   Teste de Colisão
 //
 **********************************************************************************/
 
@@ -33,31 +33,33 @@ enum Objs { BOX, WHEEL, DROP, PLANE, HAMMER, DISPLAY, BALL, DOT, BOLT, HOUSE, MO
 class CollisionT : public Game
 {
 private:
-	Sprite * backg = nullptr;		// pano de fundo
-	Sprite * overlay = nullptr;		// painel sobreposto
-	TileSet * selSet = nullptr;		// folha de sprites da caixa de seleção
-	Animation * select = nullptr;	// animação da caixa de seleção
-	Font * font = nullptr;			// exibição de texto normal
-	Font * bold = nullptr;			// exibição de texto negrito
+    Sprite * backg = nullptr;       // pano de fundo
+    Sprite * overlay = nullptr;     // painel sobreposto
 
-	struct	{
-		float x;					// coordenada x
-		float y;					// coordenada y
-	} pos[10];						// posição inicial dos objetos
+    TileSet * selSet = nullptr;     // folha de sprites da caixa de seleção
+    Animation * select = nullptr;   // animação da caixa de seleção
+    
+    Font * font = nullptr;          // exibição de texto normal
+    Font * bold = nullptr;          // exibição de texto negrito
 
-	Object * obj[10] = {0};			// vetor de objetos
+    struct {
+        float x;                    // coordenada x
+        float y;                    // coordenada y
+    } pos[10];                      // posição inicial dos objetos
 
-	bool viewBBox = false;			// visualização da bounding box
-	stringstream text;				// conversão para texto	
+    Object * obj[10] = {0};         // vetor de objetos
+
+    bool viewBBox = false;          // visualização da bounding box
+    stringstream text;              // conversão para texto    
 
 public:
-	static int index;				// índice do vetor
-	static Scene * scene;			// cena do jogo
+    static int index;               // índice do vetor
+    static Scene * scene;           // cena do jogo
 
-	void Init();					// inicialização
-	void Update();					// atualização
-	void Draw();					// desenho
-	void Finalize();				// finalização
+    void Init();                    // inicialização
+    void Update();                  // atualização
+    void Draw();                    // desenho
+    void Finalize();                // finalização
 };
 
 // ---------------------------------------------------------------------------------
