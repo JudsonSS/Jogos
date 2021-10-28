@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Rock (Código Fonte)
 //
-// Criação:		18 Mar 2013
-// Atualização:	25 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     18 Mar 2013
+// Atualização: 25 Jul 2019
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Rocha espacial
+// Descrição:   Rocha espacial
 //
 **********************************************************************************/
 
@@ -25,196 +25,199 @@ uint      Rock::count = 0;
 
 Rock::Rock()
 {
-	// usa uma única folha de sprites para todas as rochas
-	if (!tile)
-		tile = new TileSet("Resources/Asteroids.png", 128, 128, 4, 4);
+    // usa uma única folha de sprites para todas as rochas
+    if (!tile)
+        tile = new TileSet("Resources/Asteroids.png", 128, 128, 4, 4);
 
-	// usa animação para desenhar rochas da folha
-	anim = new Animation(tile, 0.020f, false);
+    // usa animação para desenhar rochas da folha
+    anim = new Animation(tile, 0.020f, false);
 
-	// define bounding box das rochas
-	Point rocksVertex[4][8] =
-	{
-		{ Point(-11, -45), Point(12, -47), Point(38, -27), Point(46, 12), Point(37, 28), Point(-4, 53), Point(-33, 37), Point(-43, -20) },
-		{ Point(-10, -46), Point(41, -34), Point(52, 2), Point(44, 28), Point(18, 47), Point(-24, 47), Point(-44, 32), Point(-39, -12) },
-		{ Point(-4, -44), Point(40, -21), Point(43, 20), Point(37, 29), Point(-1, 49), Point(-34, 36), Point(-46, -11), Point(-19, -39) },
-		{ Point(-6, -46), Point(13, -42), Point(35, -16), Point(47, 25), Point(30, 42), Point(2, 50), Point(-46, 13), Point(-44, -8) }
-	};
-	
-	// seleciona aleatoriamente uma rocha do tileset
-	frame = randFrame(mt);
+    // define bounding box das rochas
+    Point rocksVertex[4][8] =
+    {
+        { Point(-11, -45), Point(12, -47), Point(38, -27), Point(46, 12), Point(37, 28), Point(-4, 53), Point(-33, 37), Point(-43, -20) },
+        { Point(-10, -46), Point(41, -34), Point(52, 2), Point(44, 28), Point(18, 47), Point(-24, 47), Point(-44, 32), Point(-39, -12) },
+        { Point(-4, -44), Point(40, -21), Point(43, 20), Point(37, 29), Point(-1, 49), Point(-34, 36), Point(-46, -11), Point(-19, -39) },
+        { Point(-6, -46), Point(13, -42), Point(35, -16), Point(47, 25), Point(30, 42), Point(2, 50), Point(-46, 13), Point(-44, -8) }
+    };
+    
+    // seleciona aleatoriamente uma rocha do tileset
+    frame = RandFrame(mt);
 
-	// cria bounding box
-	bbox = new Poly(rocksVertex[frame], 8);
-	
-	// move para posição aleatória dentro da tela
-	MoveTo(randWidth(mt), randHeight(mt));
-	
-	// usa uma escala aleatória entre 0.8 e 1.0
-	Scale(1.0f - 0.02f * randFactor(mt));
+    // cria bounding box
+    BBox(new Poly(rocksVertex[frame], 8));
+    
+    // move para posição aleatória dentro da tela
+    MoveTo(RandWidth(mt), RandHeight(mt));
+    
+    // usa uma escala aleatória entre 0.8 e 1.0
+    ScaleTo(1.0f - 0.02f * RandFactor(mt));
 
-	// define ângulo de rotação e velocidade aleatoriamente 
-	rAngle = -0.05f + (0.01f * randFactor(mt));		// -0.05 a +0.05
-	speed.magnitude = 5.0f + randFactor(mt);		// 5.0 a 15.0
-	speed.angle = randAngle(mt);					// 0 a 359
+    // define aleatoriamente giro e velocidade  
+    spin = -25.0f + (5.0f * RandFactor(mt));        // -25.0 a +25.0
+    speed.RotateTo(RandAngle(mt));                  // 0 a 359
+    speed.ScaleTo(5.0f + RandFactor(mt));           // 5.0 a 15.0
 
-	// mais uma rocha criada
-	count++;
+    // mais uma rocha criada
+    count++;
 
-	// tipo do objeto
-	type = ROCK;
+    // tipo do objeto
+    type = ROCK;
 }
 
 // ---------------------------------------------------------------------------------
 
 Rock::~Rock()
 {
-	// remove tileset se for a última rocha
-	if (--count == 0)
-		delete tile;
+    // remove tileset se for a última rocha
+    if (--count == 0)
+        delete tile;
 
-	delete bbox;
-	delete anim;
+    delete anim;
 }
 
 // ---------------------------------------------------------------------------------
 
 void Rock::OnCollision(Object * obj)
 {
-	if (obj->type == ROCK)
-	{
-		// colisão entre asteroides
-		Rock* rockA = this;
-		Rock* rockB = static_cast<Rock*>(obj);
+    if (obj->Type() == ROCK)
+    {
+        // ------------------------
+        // Colisão entre asteroides
+        // ------------------------
 
-		// ângulo formado pela linha que liga os centros dos objetos
-		float angleRA = rockA->speed.Angle(rockA->X(), rockA->Y(), rockB->X(), rockB->Y());
-		float angleRB = angleRA + 180.0f;
+        Rock* rockA = this;
+        Rock* rockB = static_cast<Rock*>(obj);
 
-		// mantém ângulo na faixa de 0 a 359 graus
-		if (angleRB > 360)
-			angleRB -= 360.0f;
+        // centros das rochas
+        Point pA { rockA->X(), rockA->Y() };
+        Point pB { rockB->X(), rockB->Y() };
 
-		// vetores gerados no impacto (com 25% de perda)
-		Vector impactRA{ angleRA, 0.75f * rockA->speed.magnitude };
-		Vector impactRB{ angleRB, 0.75f * rockB->speed.magnitude };
+        // ângulo formado pela linha que interliga os centros das rochas
+        float angleA = Line::Angle(pA, pB);
+        float angleB = angleA + 180.0f;
 
-		// adiciona vetor impacto à velocidade das rochas
-		rockA->speed.Add(impactRB);
-		rockB->speed.Add(impactRA);
+        // mantém ângulo na faixa de 0 a 359 graus
+        if (angleB > 360)
+            angleB -= 360.0f;
 
-		// limita velocidade das rochas
-		if (rockB->speed.magnitude > 15.0f)
-			rockB->speed.magnitude = 15.0f;
+        // vetores gerados no impacto (com 25% de perda)
+        Vector impactA{ angleA, 0.75f * rockA->speed.Magnitude() };
+        Vector impactB{ angleB, 0.75f * rockB->speed.Magnitude() };
 
-		if (rockA->speed.magnitude > 15.0f)
-			rockA->speed.magnitude = 15.0f;
-	}
-	else
-	{
-		// colisão de asteroide com míssil ou nave
+        // adiciona vetor impacto à velocidade das rochas
+        rockA->speed.Add(impactB);
+        rockB->speed.Add(impactA);
 
-		// toca som de explosão
-		Asteroids::audio->Play(EXPLOSION);
-		
-		// remove asteroide
-		Asteroids::scene->Delete(this, MOVING);
-		
-		// se colisão ocorreu com um asteroide grande ou médio
-		if (scale > 0.5f)
-		{
-			// remove míssil da cena
-			if (obj->type == MISSILE)
-			{
-				Explosion* explo = new Explosion(obj->x, obj->y);
-				Asteroids::scene->Add(explo, STATIC);
-				Asteroids::scene->Delete(obj, MOVING);
-			}
+        // limita velocidade das rochas
+        if (rockB->speed.Magnitude() > 15.0f)
+            rockB->speed.ScaleTo(15.0f);
 
-			// cria dois asteroids
-			Rock * rockA = new Rock();
-			Rock * rockB = new Rock();
-			rockA->MoveTo(x, y);
-			rockB->MoveTo(x, y);
-			
-			// asteroide grande gera dois médios
-			if (scale > 0.75f)
-			{
-				rockB->Scale(0.70f);
-				rockA->Scale(0.70f);
-			}
-			// asteroide médio gera dois pequenos
-			else
-			{
-				rockB->Scale(0.40f);
-				rockA->Scale(0.40f);
-			}
+        if (rockA->speed.Magnitude() > 15.0f)
+            rockA->speed.ScaleTo(15.0f);
+    }
+    else
+    {
+        // ---------------------------------------
+        // Colisão de asteroide com míssil ou nave
+        // ---------------------------------------
 
-			// adiciona dois asteroides menores na cena
-			Asteroids::scene->Add(rockA, MOVING);
-			Asteroids::scene->Add(rockB, MOVING);
-		}
-		// se colisão ocorreu com um asteroide pequeno
-		else
-		{
-			// remove míssil da cena
-			if (obj->type == MISSILE)
-			{
-				Explosion * explo = new Explosion(x,y);
-				Asteroids::scene->Add(explo, STATIC);
-				Asteroids::scene->Delete(obj, MOVING);
-			}
+        // toca som de explosão
+        Asteroids::audio->Play(EXPLOSION);
+        
+        // remove asteroide
+        Asteroids::scene->Delete(this, MOVING);
 
-			// cria explosão na posição do asteroide
-			Debris * debris = new Debris(x,y);
-			Asteroids::scene->Add(debris, STATIC);
+        // remove míssil da cena
+        if (obj->Type() == MISSILE)
+        {
+            Explosion* explo = new Explosion(obj->X(), obj->Y());
+            Asteroids::scene->Add(explo, STATIC);
+            Asteroids::scene->Delete(obj, MOVING);
+        }
+        
+        // se colisão ocorreu com um asteroide grande ou médio
+        if (scale > 0.5f)
+        {
+            // cria fragmentos de rocha na posição de contato
+            Asteroids::scene->Add(new Debris(obj->X(), obj->Y()), STATIC);
 
-			// se a quantidade de asteroides está baixa
-			if (count <= 50)
-			{
-				// adiciona asteroide grande na cena
-				Rock * rock = new Rock();
+            // cria dois asteroids
+            Rock * rockA = new Rock();
+            Rock * rockB = new Rock();
+            rockA->MoveTo(x, y);
+            rockB->MoveTo(x, y);
+            
+            // asteroide grande gera dois médios
+            if (scale > 0.75f)
+            {
+                rockB->Scale(0.70f);
+                rockA->Scale(0.70f);
+            }
+            // asteroide médio gera dois pequenos
+            else
+            {
+                rockB->Scale(0.40f);
+                rockA->Scale(0.40f);
+            }
 
-				// pega tamanho do asteroid pela sua bounding box
-				Poly * pol = static_cast<Poly*>(rock->bbox);
+            // adiciona dois asteroides menores na cena
+            Asteroids::scene->Add(rockA, MOVING);
+            Asteroids::scene->Add(rockB, MOVING);
+        }
+        // se colisão ocorreu com um asteroide pequeno
+        else
+        {
+            // cria fragmentos de rocha no centro do asteroid
+            Asteroids::scene->Add(new Debris(x, y), STATIC);
 
-				// usa o raio como metade do tamanho do asteroide
-				float half = pol->BBox()->Radius();
+            // se a quantidade de asteroides está baixa
+            if (count <= 50)
+            {
+                // adiciona asteroide grande na cena
+                Rock * rock = new Rock();
 
-				// asteroide nasce fora da tela
-				rock->MoveTo(randWidth(mt), -half);
+                // pega tamanho do asteroid pela sua bounding box
+                Poly * pol = static_cast<Poly*>(rock->BBox());
 
-				Asteroids::scene->Add(rock, MOVING);
-			}
-		}
-	}	
+                // usa o raio como metade do tamanho do asteroide
+                float half = pol->BBox()->Radius();
+
+                // asteroide nasce fora da tela
+                rock->MoveTo(RandWidth(mt), -half);
+
+                // adiciona asteroid na cena
+                Asteroids::scene->Add(rock, MOVING);
+            }
+        }
+    }    
 }
 
 // ---------------------------------------------------------------------------------
 
 void Rock::Update()
 {
-	// rotaciona rocha pelo fator de rotação
-	Rotate(rAngle);
+    // rotaciona rocha pelo fator de rotação
+    Rotate(spin * gameTime);
 
-	// move rocha usando o vetor velocidade
-	Translate(speed.XCom() * gameTime, -speed.YCom() * gameTime);
+    // move rocha usando o vetor velocidade
+    Translate(speed.XComponent() * gameTime, -speed.YComponent() * gameTime);
 
-	// pega tamanho do asteroid pela sua bounding box
-	Poly * pol = static_cast<Poly*>(bbox);
+    // pega tamanho do asteroid pela sua bounding box
+    Poly * pol = static_cast<Poly*>(BBox());
 
-	// usa o raio como metade do tamanho do asteroide
-	float half = pol->BBox()->Radius();
+    // usa o raio como metade do tamanho do asteroide
+    float half = pol->BBox()->Radius();
 
-	// mantém rocha dentro da tela
-	if (x + half < 0)
-		MoveTo(float(window->Width()) + half, y);
-	if (x - half > window->Width())
-		MoveTo(-half, y);
-	if (y + half < 0)
-		MoveTo(x, float(window->Height()) + half);
-	if (y - half > window->Height())
-		MoveTo(x, -half);
+    // passa rochas de um lado para outro da janela
+    if (x + half < 0)
+        MoveTo(float(window->Width()) + half, y);
+    if (x - half > window->Width())
+        MoveTo(-half, y);
+    if (y + half < 0)
+        MoveTo(x, float(window->Height()) + half);
+    if (y - half > window->Height())
+        MoveTo(x, -half);
 }
 
 // ---------------------------------------------------------------------------------

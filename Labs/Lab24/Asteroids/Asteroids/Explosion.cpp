@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Explosion (Código Fonte)
 //
-// Criação:		07 Fev 2013
-// Atualização:	19 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Fev 2013
+// Atualização: 25 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Animação de uma explosão
+// Descrição:   Animação de uma explosão
 //
 **********************************************************************************/
 
@@ -16,25 +16,25 @@
 
 Explosion::Explosion(float posX, float posY)
 {
-	anim = new Animation(Asteroids::exploSet, 0.010f, false);
-	MoveTo(posX, posY);
+    anim = new Animation(Asteroids::exploSet, 0.010f, false);
+    MoveTo(posX, posY);
 }
 
 // ---------------------------------------------------------------------------------
 
 Explosion::~Explosion()
 {
-	delete anim;
+    delete anim;
 }
 
 // ---------------------------------------------------------------------------------
 
 void Explosion::Update()
 {
-	anim->NextFrame();
+    anim->NextFrame();
 
-	if (anim->Inactive())
-		Asteroids::scene->Delete();	
+    if (anim->Inactive())
+        Asteroids::scene->Delete();    
 }
 
 // ---------------------------------------------------------------------------------

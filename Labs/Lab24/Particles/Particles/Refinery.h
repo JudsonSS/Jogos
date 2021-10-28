@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Refinery (Arquivo de Cabeçalho)
 //
-// Criação:		07 Out 2012
-// Atualização:	31 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Out 2012
+// Atualização: 27 Out 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Demonstração do sistema de partículas
+// Descrição:   Demonstração do sistema de partículas
 //
 **********************************************************************************/
 
@@ -31,7 +31,7 @@ using std::stringstream;
 using std::random_device;
 using std::uniform_real_distribution;
 using std::mt19937;
-using Random = uniform_real_distribution<float>;
+using Rnd = uniform_real_distribution<float>;
 
 // ------------------------------------------------------------------------------
 
@@ -43,29 +43,29 @@ enum SoundIds { MACHINERY };
 class Refinery : public Game
 {
 private:
-	Sprite * backg = nullptr;		// pano de fundo
-	Sprite * overlay = nullptr;		// moldura da interface
-	Sprite * onoff = nullptr;		// indicação de ligado/desligado
-	Smoke  * smoke[4] = { 0 };		// rastros de fumaça
-	Font   * font = nullptr;		// fonte normal
-	Font   * bold = nullptr;		// fonte negrito
+    Sprite * backg = nullptr;       // pano de fundo
+    Sprite * overlay = nullptr;     // moldura da interface
+    Sprite * onoff = nullptr;       // indicação de ligado/desligado
+    Smoke  * exhausts[4] = {0};     // exaustores de fumaça
+    Font   * font = nullptr;        // fonte normal
+    Font   * bold = nullptr;        // fonte negrito
 
-	bool smokeOn = false;			// estado da refinaria
-	bool nightOn = false;			// estado da iluminação
+    bool smokeOn = false;           // estado da refinaria
+    bool nightOn = false;           // estado da iluminação
 
-	stringstream text;				// texto temporário
-	random_device rd;				// gerador aleatório para a semente
-	mt19937 mt { rd() };			// gerador pseudoaleatório de números
-	Random smokeAng { 30, 150 };	// faixa de valores aleatórios para o ângulo
+    stringstream text;              // texto temporário
+    random_device rd;               // gerador aleatório para a semente
+    mt19937 mt { rd() };            // gerador pseudoaleatório de números
+    Rnd smokeAng { 30, 150 };       // faixa de valores aleatórios para o ângulo
 
 public:
-	static Audio * audio;			// sistema de áudio
-	static Scene * scene;			// cena do jogo
+    static Audio * audio;           // sistema de áudio
+    static Scene * scene;           // cena do jogo
 
-	void Init();					// inicialização
-	void Update();					// atualização
-	void Draw();					// desenho
-	void Finalize();				// finalização
+    void Init();                    // inicialização
+    void Update();                  // atualização
+    void Draw();                    // desenho
+    void Finalize();                // finalização
 };
 
 // ---------------------------------------------------------------------------------
