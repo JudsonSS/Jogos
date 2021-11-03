@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Blue (Arquivo de Cabeçalho)
 // 
-// Criação:		10 Out 2012
-// Atualização:	05 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     10 Out 2012
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objeto faz uma perseguição suavizada
+// Descrição:   Objeto faz uma perseguição suavizada
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Sprite.h"
 #include "Vector.h"
@@ -25,24 +25,24 @@
 class Blue : public Object
 {
 private:
-	Sprite * sprite;					// sprite do objeto
-	Vector * speed;						// velocidade e direção
-	Player * player;					// ponteiro para jogador
-	float factor;						// fator de escala
-	
+    Sprite * sprite;                    // sprite do objeto
+    Vector * speed;                     // velocidade e direção
+    Player * player;                    // ponteiro para jogador
+    float factor;                       // fator de escala
+    
 public:
-	Blue(Player * p);					// construtor
-	~Blue();							// destrutor
-	
-	void OnCollision(Object* obj);		// resolução da colisão
-	void Update();						// atualização
-	void Draw();						// desenho
+    Blue(Player * p);                   // construtor
+    ~Blue();                            // destrutor
+    
+    void OnCollision(Object* obj);      // resolução da colisão
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------
 
 inline void Blue::Draw()
-{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); }
+{ sprite->Draw(x, y, Layer::LOWER, scale, rotation); }
 
 // ---------------------------------------------------------------------------------
 

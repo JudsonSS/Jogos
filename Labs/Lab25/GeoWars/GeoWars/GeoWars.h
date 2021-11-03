@@ -1,11 +1,11 @@
 /**********************************************************************************
 // GeoWars (Arquivo de Cabeçalho)
 // 
-// Criação:		23 Out 2012
-// Atualização:	05 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Out 2012
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Demonstração de scrolling e IA
+// Descrição:   Demonstração da versão final do motor
 //
 **********************************************************************************/
 
@@ -25,6 +25,8 @@
 
 enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT };
 
+// ------------------------------------------------------------------------------
+
 enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
 
 // ------------------------------------------------------------------------------
@@ -32,20 +34,20 @@ enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
 class GeoWars : public Game
 {
 private:
-	Background * backg = nullptr;	// pano de fundo
-	Hud * hud = nullptr;			// heads up display
-	bool viewBBox = false;			// bouding box visível
+    Background * backg = nullptr;   // pano de fundo
+    Hud * hud = nullptr;            // painel de informações
+    bool viewBBox = false;          // visualização das bouding boxes
 
 public:
-	static Player * player;			// ponteiro para o jogador
-	static Audio * audio;			// sitema de áudio
-	static Scene * scene;			// cena do jogo
-	static bool viewHUD;			// hud visível
+    static Player * player;         // nave controlada pela jogador
+    static Audio * audio;           // sitema de áudio
+    static Scene * scene;           // cena do jogo
+    static bool viewHUD;            // visualização do painel
 
-	void Init();					// inicialização
-	void Update();					// atualização
-	void Draw();					// desenho
-	void Finalize();				// finalização
+    void Init();                    // inicialização
+    void Update();                  // atualização
+    void Draw();                    // desenho
+    void Finalize();                // finalização
 };
 
 // ---------------------------------------------------------------------------------

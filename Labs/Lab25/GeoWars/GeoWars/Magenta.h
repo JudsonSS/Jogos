@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Magenta (Arquivo de Cabeçalho)
 // 
-// Criação:		10 Out 2012
-// Atualização:	05 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     10 Out 2012
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objeto faz um perseguição direta
+// Descrição:   Objeto faz um perseguição direta
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Sprite.h"
 #include "Vector.h"
@@ -25,23 +25,23 @@
 class Magenta : public Object
 {
 private:
-	Sprite * sprite;					// sprite do objeto
-	Vector * speed;						// velocidade e direção
-	Player * player;					// ponteiro para jogador
-	
+    Sprite * sprite;                    // sprite do objeto
+    Vector * speed;                     // velocidade e direção
+    Player * player;                    // ponteiro para jogador
+    
 public:
-	Magenta(Player * p);				// construtor
-	~Magenta();							// destrutor
-	
-	void OnCollision(Object * obj);		// resolução da colisão
-	void Update();						// atualização
-	void Draw();						// desenho
+    Magenta(Player * p);                // construtor
+    ~Magenta();                         // destrutor
+    
+    void OnCollision(Object * obj);     // resolução da colisão
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------
 
 inline void Magenta::Draw()
-{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); }
+{ sprite->Draw(x, y, Layer::LOWER, scale, rotation); }
 
 // ---------------------------------------------------------------------------------
 

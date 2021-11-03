@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Green (Arquivo de Cabeçalho)
 // 
-// Criação:		15 Out 2012
-// Atualização:	05 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     15 Out 2012
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Objeto faz uma fuga suavizada
+// Descrição:   Objeto faz uma fuga suavizada
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Sprite.h"
 #include "Vector.h"
@@ -25,24 +25,24 @@
 class Green : public Object
 {
 private:
-	Sprite * sprite;					// sprite do objeto
-	Vector * speed;						// velocidade e direção
-	Player * player;					// ponteiro para jogador
-	int distance;						// mantém distância do jogador
-	
+    Sprite * sprite;                    // sprite do objeto
+    Vector * speed;                     // velocidade e direção
+    Player * player;                    // ponteiro para jogador
+    int distance;                       // mantém distância do jogador
+    
 public:
-	Green(Player * p);					// construtor
-	~Green();							// destrutor
-	
-	void OnCollision(Object* obj);		// resolução da colisão
-	void Update();						// atualização
-	void Draw();						// desenho
+    Green(Player * p);                  // construtor
+    ~Green();                           // destrutor
+    
+    void OnCollision(Object* obj);      // resolução da colisão
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------
 
 inline void Green::Draw()
-{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); }
+{ sprite->Draw(x, y, Layer::LOWER, scale, rotation); }
 
 // ---------------------------------------------------------------------------------
 
