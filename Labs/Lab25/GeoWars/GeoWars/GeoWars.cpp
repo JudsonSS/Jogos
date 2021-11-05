@@ -49,12 +49,12 @@ void GeoWars::Init()
     // cria o painel de informações
     hud = new Hud();
 
-    // adiciona objetos na cena
-    scene->Add(player, MOVING);
-    scene->Add(new Magenta(player), MOVING);
-    scene->Add(new Blue(player), MOVING);
-    scene->Add(new Green(player), MOVING);
-    scene->Add(new Orange(player), MOVING);
+    // adiciona objetos na cena (sem colisão)
+    scene->Add(player, STATIC);
+    scene->Add(new Magenta(player), STATIC);
+    scene->Add(new Blue(player), STATIC);
+    scene->Add(new Green(player), STATIC);
+    scene->Add(new Orange(player), STATIC);
     scene->Add(new Delay(), STATIC);
 
     // ----------------------
@@ -173,7 +173,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
     engine->window->HideCursor(true);
-    engine->graphics->VSync(true);
+    //engine->graphics->VSync(true);
 
     // cria o jogo
     Game * game = new GeoWars();

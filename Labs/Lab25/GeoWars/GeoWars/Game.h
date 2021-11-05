@@ -34,14 +34,14 @@ private:
     // derivadas de Game serão capazes de acessar estes membros.
 
 protected:
-    static Window* & window;                    // janela do jogo
-    static Game*   & game;						// jogo em execução
-    static float   & gameTime;                  // tempo do último quadro
+    static Window* & window;                        // janela do jogo
+    static Game*   & game;						    // jogo em execução
+    static float   & gameTime;                      // tempo do último quadro
 
 public:
-    ViewPort viewport;                                // área visível do jogo
+    ViewPort viewport;                              // área visível do jogo
     
-    Game();                                            // construtor 
+    Game();                                         // construtor 
 
     // Métodos virtuais garantem que uma chamada através de um
     // ponteiro para a classe base, vai invocar o método da classe
@@ -49,21 +49,21 @@ public:
     // da classe base.
 
     virtual ~Game();                                // destrutor
-    virtual void OnPause();                            // pausa do jogo
+    virtual void OnPause();                         // pausa do jogo
 
     static void Size(float width, float height);    // define o tamanho do jogo
-    static float Width();                            // retorna a largura do jogo
-    static float Height();                            // retorna a altura do jogo
-    static float CenterX();                            // retorna o centro do jogo no eixo x
-    static float CenterY();                            // retorna o centro do jogo no eixo y
+    static float Width();                           // retorna a largura do jogo
+    static float Height();                          // retorna a altura do jogo
+    static float CenterX();                         // retorna o centro do jogo no eixo x
+    static float CenterY();                         // retorna o centro do jogo no eixo y
 
     // Estes métodos são puramente virtuais, isto é, devem ser 
     // implementados em todas as classes derivas de Game.
 
-    virtual void Init() = 0;                    // inicialização do jogo
-    virtual void Update() = 0;                  // atualização do jogo
-    virtual void Draw() = 0;                    // desenho da cena
-    virtual void Finalize() = 0;                // finalização do jogo
+    virtual void Init() = 0;                        // inicialização do jogo
+    virtual void Update() = 0;                      // atualização do jogo
+    virtual void Draw() = 0;                        // desenho da cena
+    virtual void Finalize() = 0;                    // finalização do jogo
 };
 
 // ---------------------------------------------------------------------------------
