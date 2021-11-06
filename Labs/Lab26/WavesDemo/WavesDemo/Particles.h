@@ -1,54 +1,47 @@
 /**********************************************************************************
 // Particles (Arquivo de Cabeçalho)
 // 
-// Criação:		07 Out 2012
-// Atualização:	30 Jul 2019
-// Compilador:	Visual C++ 2019
+// Criação:     07 Out 2012
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Define um sistema de partículas
+// Descrição:   Define um sistema de partículas
 //
 **********************************************************************************/
 
-#ifndef _DESENVJOGOS_PARTICLES_H_
-#define _DESENVJOGOS_PARTICLES_H_
+#ifndef _PROGJOGOS_PARTICLES_H_
+#define _PROGJOGOS_PARTICLES_H_
 
 // ---------------------------------------------------------------------------------
 
-#include "Sprite.h"											// desenho de sprites
-#include "Timer.h"											// controle do tempo
-#include "Types.h"											// tipos específicos da engine
-#include "Vector.h"											// representação de vetores
-#include <vector>											// vetores de elementos
-#include <random>											// números aleatórios
+#include "Sprite.h"                                             // desenho de sprites
+#include "Timer.h"                                              // controle do tempo
+#include "Types.h"                                              // tipos específicos da engine
+#include "Vector.h"                                             // representação de vetores
+#include "Random.h"                                             // números aleatórios
+#include <list>                                                 // lista de elementos
+using std::list;
 
 // ---------------------------------------------------------------------------------
 
-using std::vector;
-using std::random_device;
-using std::uniform_real_distribution;
-using std::mt19937;
-using Rnd = uniform_real_distribution<float>;
-
-// ---------------------------------------------------------------------------------
-
-struct Emitter
+struct Generator
 {
-	string imgFile;											// arquivo de imagem da partícula
-	float  angle;											// direção do emissor de partículas
-	float  spread;											// ângulo de espalhamento das partículas
-	float  lifeTime;										// tempo de vida das partículas
-	float  genTime;											// tempo entre geração de partículas
-	float  percToDim;										// percentual de vida para começar a desaparecer
-	float  minSpeed;										// velocidade mínima das partículas
-	float  maxSpeed;										// velocidade máxima das partículas
-	float  r, g, b, a;										// cor das partículas
+    string imgFile;                                             // arquivo de imagem da partícula
+    float  angle;                                               // direção do emissor de partículas
+    float  spread;                                              // ângulo de espalhamento das partículas
+    float  lifetime;                                            // tempo de vida das partículas (em segundos)
+    float  frequency;                                           // frequência de geração de partículas (em segundos)
+    float  percentToDim;                                        // percentual de vida para começar a desaparecer
+    float  minSpeed;                                            // velocidade mínima das partículas
+    float  maxSpeed;                                            // velocidade máxima das partículas
+    Color  color;                                               // cor das partículas
 };
 
 struct Particle
 {
-	float  x, y;											// posição da partícula
-	Vector speed;											// direção e velocidade
-	llong  timeStamp;										// instante de criação
+    float  x, y;                                                // posição da partícula
+    Vector speed;                                               // direção e velocidade
+    llong  timestamp;                                           // instante de criação
 };
 
 // ---------------------------------------------------------------------------------
@@ -56,41 +49,38 @@ struct Particle
 class Particles
 {
 private:
-	Emitter emitter;										// emissor de partículas
-	Sprite * sprite;										// sprite da partícula	
-	vector<Particle*> particles;							// vetor de partículas
+    Generator config;                                           // configuração do gerador de partículas
+    Sprite * sprite;                                            // sprite da partícula    
+    list<Particle*> particles;                                  // lista de partículas
 
-	Timer timer;											// controle de tempo
-	
-	random_device rd;										// gerador de semente
-	mt19937 mt{ rd() };										// gerador de número aleatório
-	Rnd randSpread { -emitter.spread, emitter.spread };		// valores aleatórios para o espalhamento
-	Rnd randSpeed { emitter.minSpeed, emitter.maxSpeed };	// valores aleatórios para a velocidade
+    Timer timer;                                                // controle de tempo
+    RandF spread { -config.spread/2, config.spread/2 };         // valores aleatórios para o espalhamento
+    RandF speed  { config.minSpeed, config.maxSpeed };          // valores aleatórios para a velocidade
 
-	void Build(float posX, float posY);						// cria uma partícula
+    void Build(float posX, float posY);                         // cria uma partícula
 
 public:
-	Particles(const Emitter & desc);						// construtor
-	~Particles();											// destrutor
+    Particles(const Generator & generator);                     // construtor
+    ~Particles();                                               // destrutor
 
-	int  Size();											// retorna o número de partículas
-	bool Inactive();										// retorna o estado das partículas
-	Emitter& Generator();									// retorna ponteiro para o emissor
-	void Generate(float x, float y, int amount = 1);		// gera novas partículas
-	void Update(float delta);								// atualiza posição das partículas por delta
-	void Draw(float z, float factor = 0.0f);				// desenha partículas		
+    uint Size();                                                // retorna o número de partículas
+    bool Inactive();                                            // retorna o estado das partículas
+    Generator& Config();                                        // retorna referência para gerador
+    void Generate(float x, float y, int count = 1);             // gera novas partículas
+    void Update(float delta);                                   // atualiza posição das partículas por delta
+    void Draw(float z, float factor = 0.0f);                    // desenha partículas        
 }; 
 
 // ---------------------------------------------------------------------------------
 
-inline Emitter & Particles::Generator()
-{ return emitter; }
-
-inline int Particles::Size()
-{ return particles.size(); }
+inline uint Particles::Size()
+{ return uint(particles.size()); }
 
 inline bool Particles::Inactive()
 { return (particles.size() == 0); }
+
+inline Generator & Particles::Config()
+{ return config; }
 
 // ---------------------------------------------------------------------------------
 

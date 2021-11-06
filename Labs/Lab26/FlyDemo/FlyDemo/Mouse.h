@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Mouse (Arquivo de Cabeçalho)
 // 
-// Criação:		06 Ago 2019
-// Atualização:	06 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     06 Ago 2019
+// Atualização: 05 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Gerencia mouse na tela
+// Descrição:   Gerencia mouse na tela
 //
 **********************************************************************************/
 
@@ -14,19 +14,19 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"		
-#include "Types.h"		
+#include "Object.h"        
+#include "Types.h"        
 
 // ---------------------------------------------------------------------------------
 
 class Mouse : public Object
 {
 public:
-	Mouse();							// construtor
-	~Mouse();							// destrutor
+    Mouse();                // construtor
+    ~Mouse();               // destrutor
 
-	void Update();						// atualização
-	void Draw();						// desenho
+    void Update();          // atualização
+    void Draw();            // desenho
 }; 
 
 // ---------------------------------------------------------------------------------

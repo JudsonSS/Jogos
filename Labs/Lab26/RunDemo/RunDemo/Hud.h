@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Hud (Arquivo de Cabeçalho)
 //
-// Criação:		02 Ago 2019
-// Atualização:	07 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     02 Ago 2019
+// Atualização: 05 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Heads Up Display
+// Descrição:   Heads Up Display
 //
 **********************************************************************************/
 
@@ -25,22 +25,22 @@ using std::stringstream;
 class Hud : public Object
 {
 private:
-	Font * font;						// fonte para exibição normal
-	Font * bold;						// fonte para exibição negrito
-	Sprite * infoBox;					// área de informações do jogo
-	Sprite * keyMap;					// área para teclas de comando
-	stringstream text;					// texto temporário
+    Font * font;                    // fonte para exibição normal
+    Font * bold;                    // fonte para exibição negrito
+    Sprite * infoBox;               // área de informações do jogo
+    Sprite * keyMap;                // área para teclas de comando
+    stringstream text;              // texto temporário
 
 public:
-	static uint missiles;				// número de mísseis na tela
-	static uint enemies;				// número de inimigos na tela
-	static uint waves;					// número de ondas de inimigos
+    static uint missiles;           // número de mísseis na tela
+    static uint enemies;            // número de inimigos na tela
+    static uint waves;              // número de ondas de inimigos
 
-	Hud();								// construtor
-	~Hud();								// destrutor
+    Hud();                          // construtor
+    ~Hud();                         // destrutor
 
-	void Update();						// atualização
-	void Draw();						// desenho
+    void Update();                  // atualização
+    void Draw();                    // desenho
 };
 
 // ------------------------------------------------------------------------------

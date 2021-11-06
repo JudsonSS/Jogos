@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Wave (Arquivo de Cabeçalho)
 //
-// Criação:		06 Ago 2019
-// Atualização:	07 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     06 Ago 2019
+// Atualização: 05 Ago 2019
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Cria uma onda de inimigos
+// Descrição:   Cria uma onda de inimigos
 //
 **********************************************************************************/
 
@@ -23,16 +23,16 @@
 class Wave : public Object
 {
 private: 
-	FloatRand secs;				// valor aleatório de segundos
-	Timer timer;				// medidor de tempo
-	float delay;				// atraso para a próxima onda
+    RandF secs;             // valor aleatório de segundos
+    Timer timer;            // medidor de tempo
+    float delay;            // atraso para a próxima onda
 
 public:
-	Wave();						// construtor
-	~Wave();					// destrutor
+    Wave();                 // construtor
+    ~Wave();                // destrutor
 
-	void Update();				// atualização
-	void Draw();				// desenho
+    void Update();          // atualização
+    void Draw();            // desenho
 };
 
 // ------------------------------------------------------------------------------

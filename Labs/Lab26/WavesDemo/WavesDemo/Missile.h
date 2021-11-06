@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Missile (Arquivo de Cabeçalho)
 // 
-// Criação:		23 Nov 2011
-// Atualização:	07 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     23 Nov 2011
+// Atualização: 05 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Define uma classe para um míssil
+// Descrição:   Define uma classe para um míssil
 //
 **********************************************************************************/
 
@@ -24,17 +24,17 @@
 class Missile : public Object
 {
 private:
-	static Player* & player;					// referência para o player
-	Sprite * sprite;							// sprite do míssil
-	Vector speed;								// velocidade do míssil	
-	
+    static Player* & player;            // referência para o player
+    Sprite * sprite;                    // sprite do míssil
+    Vector speed;                       // velocidade do míssil    
+    
 public:
-	Missile();									// construtor
-	~Missile();									// destrutor
+    Missile();                          // construtor
+    ~Missile();                         // destrutor
 
-	Vector& Speed();							// retona vetor velocidade
-	void Update();								// atualização
-	void Draw();								// desenho
+    Vector& Speed();                    // retona vetor velocidade
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ inline Vector& Missile::Speed()
 { return speed; }
 
 inline void Missile::Draw()
-{ sprite->Draw(x, y, Layer::MIDFRONT, scale, rotation); }
+{ sprite->Draw(x, y, Layer::UPPER, scale, rotation); }
 
 // ------------------------------------------------------------------------------
 

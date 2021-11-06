@@ -1,11 +1,11 @@
 /**********************************************************************************
 // WallHit (Arquivo de Cabeçalho)
 // 
-// Criação:		03 Ago 2019
-// Atualização:	07 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     03 Ago 2019
+// Atualização: 05 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Efeito de explosão usando sistema de partículas
+// Descrição:   Efeito de explosão usando sistema de partículas
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Particles.h"
 #include "Missile.h"
@@ -24,24 +24,24 @@
 class WallHit : public Object
 {
 private:
-	Particles * starsGen;				// sistema de partículas
-	
+    Particles * sparks;                 // sistema de partículas
+    
 public:
-	WallHit(float pX, float pY);		// construtor
-	~WallHit();							// destrutor
+    WallHit(float pX, float pY);        // construtor
+    ~WallHit();                         // destrutor
 
-	int  Size();						// quantidade de partículas
-	void Update();						// atualização
-	void Draw();						// desenho
+    int  Size();                        // quantidade de partículas
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------
 
 inline int WallHit::Size()
-{	return starsGen->Size(); }
+{ return sparks->Size(); }
 
 inline void WallHit::Draw()
-{	starsGen->Draw(Layer::MIDDLE, 0.0f); }
+{ sparks->Draw(Layer::MIDDLE, 0.0f); }
 
 // ---------------------------------------------------------------------------------
 

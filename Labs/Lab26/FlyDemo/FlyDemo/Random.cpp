@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Random (Código Fonte)
 //
-// Criação:		03 Ago 2019
-// Atualização:	03 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     03 Ago 2019
+// Atualização: 01 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Gerador de números pseudoaleatórios
+// Descrição:   Gerador de números pseudoaleatórios
 //
 **********************************************************************************/
 
@@ -14,24 +14,18 @@
 // ---------------------------------------------------------------------------------
 
 random_device Random::seed;
-mt19937       Random::mt { seed() };
+mt19937 Random::mt { seed() };
 
 // ---------------------------------------------------------------------------------
 
-IntRand::IntRand(int min, int max): dist(min, max) {}
+RandI::RandI(int min, int max): dist(min, max) {}
+
+int RandI::Rand() { return dist(mt); }
 
 // ---------------------------------------------------------------------------------
 
-int IntRand::Rand()
-{ return dist(mt); }
+RandF::RandF(float min, float max) : dist(min, max) {}
 
-// ---------------------------------------------------------------------------------
-
-FloatRand::FloatRand(float min, float max) : dist(min, max) {}
-
-// ---------------------------------------------------------------------------------
-
-float FloatRand::Rand()
-{ return dist(mt); }
+float RandF::Rand() { return dist(mt); }
 
 // ---------------------------------------------------------------------------------

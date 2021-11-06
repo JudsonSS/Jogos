@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Mouse (Código Fonte)
 // 
-// Criação:		06 Ago 2019
-// Atualização:	06 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     06 Ago 2019
+// Atualização: 05 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Gerencia mouse na tela
+// Descrição:   Gerencia mouse na tela
 //
 **********************************************************************************/
 
@@ -16,24 +16,22 @@
 
 Mouse::Mouse()
 {
-	x = window->MouseX();
-	y = window->MouseY();
-	bbox = new Point(x, y);
-	type = MOUSE;
+    MoveTo(window->MouseX(), window->MouseY());
+    BBox(new Point(x, y));
+    type = MOUSE;
 }
 
 // ---------------------------------------------------------------------------------
 
 Mouse::~Mouse()
 {
-	delete bbox;
 }
 
 // -------------------------------------------------------------------------------
 
 void Mouse::Update()
 {
-	MoveTo(window->MouseX(), window->MouseY());
+    MoveTo(window->MouseX(), window->MouseY());
 }
 
 // -------------------------------------------------------------------------------
