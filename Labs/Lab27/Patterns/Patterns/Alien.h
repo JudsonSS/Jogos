@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Alien (Arquivo de Cabeçalho)
 // 
-// Criação:		25 Mar 2013
-// Atualização:	11 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     25 Mar 2013
+// Atualização: 11 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Executa scripts com padrões de movimentação
+// Descrição:   Executa scripts com padrões de movimentação
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Sprite.h"
 #include "TileSet.h"
@@ -28,31 +28,31 @@
 
 struct Instruction
 {
-	int instruction;
-	float angle;
-	float magnitude;
-	float duration;
+    int instruction;
+    float angle;
+    float magnitude;
+    float duration;
 };
 
 // MOVE      | Ângulo    | Magnitude | Duração
 // MOVETO    | PosX      | PosY      | Magnitude
 // SLIDE     | Ângulo    | Magnitude | Duração
-// SLIDET    | PosX      | PosY      | Magnitude
+// SLIDETO   | PosX      | PosY      | Magnitude
 // TURN      | Ângulo    | Magnitude | Duração
 // ROTATE    | Ângulo    | Magnitude | Duração
-// RANDOM    | Ângulo    | Magnitude | Duração
+// RANDOM    | -         | -         | Duração
 // JUMP      | Instrução | -         | -
 
 enum InstructionTypes 
 {
-	MOVE,			// move com em uma direção e velocidade por um tempo
-	MOVETO,			// move para uma posição x, y
-	SLIDE,			// o mesmo que MOVE, porém sem rotacionar
-	SLIDETO,		// o mesmo que MOVETO, porém sem rotacionar
-	TURN,			// indica a direção que o objeto deve ser trazido
-	ROTATE,			// rotaciona a direção do objeto por um tempo
-	RANDOM,			// move em uma direção aleatória por um tempo
-	JUMP			// pula para uma instrução podendo fazer um loop
+    MOVE,           // move em uma direção e velocidade por um tempo
+    MOVETO,         // move para uma posição x, y
+    SLIDE,          // o mesmo que MOVE, porém sem rotacionar
+    SLIDETO,        // o mesmo que MOVETO, porém sem rotacionar
+    TURN,           // indica a direção que o objeto deve seguir
+    ROTATE,         // rotaciona a direção do objeto por um tempo
+    RANDOM,         // move em uma direção aleatória por um tempo
+    JUMP            // pula para uma instrução podendo fazer um loop
 };
 
 // ---------------------------------------------------------------------------------
@@ -60,25 +60,26 @@ enum InstructionTypes
 class Alien : public Object
 {
 private:
-	TileSet * alienSet;					// tileset do objeto
-	Animation * anim;					// animação do objeto
-	Vector speed;						// velocidade e direção
-	
-	Instruction * script;				// vetor de instruções
-	int index;							// índice da instrução atual
-	int end;							// índice da última instrução
-	float duration;						// duração da instrução atual
-	Timer timer;						// timer para instruções
-	FloatRand angle;					// valor aleatório para ângulo
-	FloatRand magnitude;				// valor aleatório para magnitude
-	
+    TileSet * alienSet;                 // tileset do objeto
+    Animation * anim;                   // animação do objeto
+    Vector speed;                       // velocidade e direção
+    
+    Instruction * script;               // vetor de instruções
+    int index;                          // índice da instrução atual
+    int end;                            // índice da última instrução
+    float duration;                     // duração da instrução atual
+    
+    Timer timer;                        // timer para instruções
+    RandF angle;                        // valor aleatório para ângulo
+    RandF magnitude;                    // valor aleatório para magnitude
+    
 public:
-	Alien(uint alien, Instruction * vet, int tam, float iniX, float iniY);	
-	~Alien();
-	
-	void OnCollision(Object * obj);		// resolução da colisão
-	void Update();						// atualiza estado do objeto
-	void Draw();						// desenha objeto
+    Alien(uint alien, Instruction * vet, int tam, float pX, float pY);    
+    ~Alien();
+    
+    void OnCollision(Object * obj);     // resolução da colisão
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------

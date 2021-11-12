@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Stage (Arquivo de Cabeçalho)
 //
-// Criação:		09 Ago 2019
-// Atualização:	11 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     09 Ago 2019
+// Atualização: 10 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Cria um estágio do jogo
+// Descrição:   Cria um estágio do jogo
 //
 **********************************************************************************/
 
@@ -25,28 +25,28 @@
 class Stage : public Object
 {
 private:
-	Sprite * logo;				// logotipo do jogo
-	Timer timer;				// medidor de tempo
-	bool fase1;					// fase 1 lançada
-	bool fase2;					// fase 2 lançada
-	bool fase3;					// fase 3 lançada
-	bool fase4;					// fase 4 lançada
+    Sprite * logo;              // logotipo do jogo
+    Timer timer;                // medidor de tempo
+    bool fase1;                 // fase 1 lançada
+    bool fase2;                 // fase 2 lançada
+    bool fase3;                 // fase 3 lançada
+    bool fase4;                 // fase 4 lançada
 
-	Alien * first[4];			// primeira onda de inimigos
-	Alien * second[4];			// segunda onda de inimigos
-	Alien * third[8];			// terceira onda de inimigos
-	Alien * forth[8];			// quarta onda de inimigos
-	Alien * fifth[8];			// quinta onda de inimigos
-	Alien * sixth[8];			// sexta onda de inimigos
+    Alien * first[4];           // primeira onda de inimigos
+    Alien * second[4];          // segunda onda de inimigos
+    Alien * third[8];           // terceira onda de inimigos
+    Alien * forth[8];           // quarta onda de inimigos
+    Alien * fifth[8];           // quinta onda de inimigos
+    Alien * sixth[8];           // sexta onda de inimigos
 
 public:
-	static uint enemies;		// quantidade de inimigos vivos
+    static uint enemies;        // quantidade de inimigos vivos
 
-	Stage();					// construtor
-	~Stage();					// destrutor
+    Stage();                    // construtor
+    ~Stage();                   // destrutor
 
-	void Update();				// atualização
-	void Draw();				// desenho
+    void Update();              // atualização
+    void Draw();                // desenho
 };
 
 // ------------------------------------------------------------------------------
