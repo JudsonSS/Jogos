@@ -40,35 +40,32 @@ void TiledScroll::Init()
         101, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 113, 93, 32, 32, 91, 93, 102, 102, 102, 102, 102, 102, 102, 102, 102, 102, 103
     };
 
-    backImg = new Image("Resources/GroundTiles.bmp", 64, 64, 16, MapData, 30, 20);
+    // carrega pano de fundo
+    tiles = new Image("Resources/GroundTiles.bmp", 64, 64, 16, MapData, 30, 20);
+    backg = new Background(tiles);
 
     // carrega sprites
-    infoBox   = new Sprite("Resources/InfoBox.png");
-    keyMap    = new Sprite("Resources/Keymap.png");
-    backg     = new Sprite(backImg);
+    infoBox = new Sprite("Resources/InfoBox.png");
+    keyMap  = new Sprite("Resources/Keymap.png");
 
-    // ajusta tamanho do pano de fundo
-    maxWidth  = float(backg->Width());
-    maxHeight = float(backg->Height());
-
-    // cria fontes para exibição de texto
+    // carrega fontes
     font = new Font("Resources/Tahoma14.png");
     font->Spacing("Resources/Tahoma14.dat");
     bold = new Font("Resources/Tahoma14b.png");
     bold->Spacing("Resources/Tahoma14b.dat");
 
-    // calcula posição para manter viewport centralizada
-    float deltaX = (maxWidth - window->Width()) / 2.0f;
-    float deltaY = (maxHeight - window->Height()) / 2.0f;
-
     // inicializa viewport para o centro do background
-    viewport.left = 0.0f + deltaX;
+    viewport.left = (backg->Width() - window->Width()) / 2.0f;
     viewport.right = viewport.left + window->Width();
-    viewport.top = 0.0f + deltaY;
+    viewport.top = (backg->Height() - window->Height()) / 2.0f;
     viewport.bottom = viewport.top + window->Height();
 
     // inicializa velocidade de rolamento da tela
     scrollSpeed = 400;
+
+    // exibe ponto-flutuantes sem casas
+    text << std::fixed;
+    text.precision(0);
 }
 
 // ------------------------------------------------------------------------------
@@ -100,10 +97,10 @@ void TiledScroll::Update()
         viewport.left += delta;
         viewport.right += delta;
 
-        if (viewport.right > (maxWidth))
+        if (viewport.right > backg->Width())
         {
-            viewport.left = maxWidth - window->Width();
-            viewport.right = maxWidth;
+            viewport.left = backg->Width() - window->Width();
+            viewport.right = backg->Width();
         }
     }
 
@@ -124,10 +121,10 @@ void TiledScroll::Update()
         viewport.top += delta;
         viewport.bottom += delta;
 
-        if (viewport.bottom > maxHeight)
+        if (viewport.bottom > backg->Height())
         {
-            viewport.top = maxHeight - window->Height();
-            viewport.bottom = maxHeight;
+            viewport.top = backg->Height() - window->Height();
+            viewport.bottom = backg->Height();
         }
     }
 } 
@@ -136,9 +133,8 @@ void TiledScroll::Update()
 
 void TiledScroll::Draw()
 {
-    // desenha pano de fundo
-    RECT region = { long(viewport.left), long(viewport.top), long(viewport.right), long(viewport.bottom) };
-    backg->Draw(window->CenterX(), window->CenterY(), 1.0f, 1.0f, 0.0f, Color(1,1,1,1), region);
+    // desenha o pano de fundo
+    backg->Draw(viewport);
     
     // desenha elementos da interface
     infoBox->Draw(142, 98, 0.2f);
@@ -154,11 +150,11 @@ void TiledScroll::Draw()
     font->Draw(60, 100, text.str());
 
     text.str("");
-    text << "Background: " << maxWidth << " x " << maxHeight;
+    text << "Background: " << backg->Width() << " x " << backg->Height();
     font->Draw(60, 120, text.str());
     
     text.str("");
-    text << "Viewport: (" << region.left << "," << region.top << ") a (" << region.right << "," << region.bottom << ")";
+    text << "Viewport: (" << viewport.left << "," << viewport.top << ") a (" << viewport.right << "," << viewport.bottom << ")";
     font->Draw(60, 140, text.str());
     
     text.str("");
@@ -172,7 +168,7 @@ void TiledScroll::Finalize()
 {
     delete infoBox;
     delete keyMap;
-    delete backImg;
+    delete tiles;
     delete backg;
     delete font;
     delete bold;

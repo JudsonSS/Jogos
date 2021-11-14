@@ -2,7 +2,7 @@
 // Image (Arquivo de Cabeçalho)
 // 
 // Criação:     16 Mar 2012
-// Atualização: 12 Nov 2021
+// Atualização: 14 Nov 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Define uma classe para representar imagens
@@ -36,9 +36,9 @@ public:
         uint tileWidth,                          // largura dos blocos
         uint tileHeight,                         // altura dos blocos
         uint numColumns,                         // número de colunas 
-        int* tileMap,                            // matriz para montagem dos blocos
-        uint tileMapCols,                        // número de colunas da matriz
-        uint tileMapRows);                       // número de linhas da matriz
+        int* tiledMap,                           // matriz para montagem dos blocos
+        uint tiledMapCols,                       // número de colunas da matriz
+        uint tiledMapRows);                      // número de linhas da matriz
 
     ~Image();                                    // destrutor
 

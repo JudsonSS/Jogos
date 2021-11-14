@@ -2,7 +2,7 @@
 // Image (Código Fonte)
 // 
 // Criação:     16 Mar 2012
-// Atualização: 12 Nov 2021
+// Atualização: 14 Nov 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Define uma classe para representar imagens
@@ -29,20 +29,21 @@ Image::Image(string filename) : textureView(nullptr), width(0), height(0)
 
 // -------------------------------------------------------------------------------
 
-Image::Image(string filename, uint tileWidth, uint tileHeight, uint numColumns,
-    int* tileMap, uint tileMapCols, uint tileMapRows)
+Image::Image(string filename, 
+    uint tileWidth, uint tileHeight, uint numColumns,
+    int* tiledMap, uint tiledMapCols, uint tiledMapRows)
 {
-    // textura para guardar os blocos de imagem
-    ID3D11Resource* mapTexture = nullptr;
+    // textura para guardar a imagem com os blocos
+    ID3D11Resource* tilesTexture = nullptr;
     uint mapWidth = 0;
     uint mapHeight = 0;
 
-    // cria textura fonte (imagem dos blocos)
+    // carrega imagem dos blocos em uma textura
     D3D11CreateTextureFromFile(
         Graphics::device,           // dispositivo Direct3D
         Graphics::context,          // contexto do dispositivo
         filename.c_str(),           // nome do arquivo de imagem
-        &mapTexture,                // retorna textura 
+        &tilesTexture,              // retorna textura 
         nullptr,                    // retorna view da textura
         mapWidth,                   // retorna largura da imagem
         mapHeight);                 // retorna altura da imagem
@@ -50,8 +51,8 @@ Image::Image(string filename, uint tileWidth, uint tileHeight, uint numColumns,
 
     // descrição da textura de destino
     D3D11_TEXTURE2D_DESC desc;
-    desc.Width = tileWidth * tileMapCols;
-    desc.Height = tileHeight * tileMapRows;
+    desc.Width = tileWidth * tiledMapCols;
+    desc.Height = tileHeight * tiledMapRows;
     desc.MipLevels = 1;
     desc.ArraySize = 1;
     desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -62,22 +63,22 @@ Image::Image(string filename, uint tileWidth, uint tileHeight, uint numColumns,
     desc.CPUAccessFlags = 0;
     desc.MiscFlags = 0;
 
-    // cria textura de destino (imagem gerada a partir dos blocos) 
-    ID3D11Texture2D* texture = nullptr;
-    Graphics::device->CreateTexture2D(&desc, nullptr, &texture);
+    // cria textura de destino (imagem gerada)
+    ID3D11Texture2D* imgTexture;
+    Graphics::device->CreateTexture2D(&desc, nullptr, &imgTexture);
 
-    // preenche imagem destino a partir dos blocos de imagens
-    for (uint j = 0; j < tileMapRows; ++j)
+    // constrói imagem a partir do mapa de blocos
+    for (uint i = 0; i < tiledMapRows; ++i)
     {
-        for (uint i = 0; i < tileMapCols; ++i)
+        for (uint j = 0; j < tiledMapCols; ++j)
         {
             // os índices do mapa gerado pelo aplicativo Tiled iniciam em 1
             // e os índices do vetor de blocos no C++ iniciam em 0,
             // por isso é necessário subtrair um da variável tileNum
-            uint tileNum = tileMap[i + j * tileMapCols] - 1;
+            uint tileNum = tiledMap[j + i * tiledMapCols] - 1;
 
-            uint x = i * tileWidth;
-            uint y = j * tileHeight;
+            uint x = j * tileWidth;
+            uint y = i * tileHeight;
 
             D3D11_BOX sourceRegion;
             sourceRegion.left = (tileNum % numColumns) * tileWidth;
@@ -88,7 +89,7 @@ Image::Image(string filename, uint tileWidth, uint tileHeight, uint numColumns,
             sourceRegion.back = 1;
 
             // copia região de uma textura para outra
-            Graphics::context->CopySubresourceRegion(texture, 0, x, y, 0, mapTexture, 0, &sourceRegion);
+            Graphics::context->CopySubresourceRegion(imgTexture, 0, x, y, 0, tilesTexture, 0, &sourceRegion);
         }
     }
 
@@ -105,11 +106,11 @@ Image::Image(string filename, uint tileWidth, uint tileHeight, uint numColumns,
     height = desc.Height;
 
     // cria uma shader resource view para a textura obtida
-    Graphics::device->CreateShaderResourceView(texture, &viewDesc, &textureView);
+    Graphics::device->CreateShaderResourceView(imgTexture, &viewDesc, &textureView);
 
     // texturas não são mais necessárias
-    mapTexture->Release();
-    texture->Release();
+    tilesTexture->Release();
+    imgTexture->Release();
 }
 
 // -------------------------------------------------------------------------------

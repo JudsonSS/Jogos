@@ -18,6 +18,7 @@
 #include "Game.h"                   // definição da classe jogo
 #include "Font.h"                   // fonte para exibição de texto
 #include "Sprite.h"                 // definição dos sprites
+#include "Background.h"             // pano de fundo
 #include <sstream>                  // saída para strings
 using std::stringstream;    
 
@@ -27,17 +28,14 @@ class TiledScroll : public Game
 {
 private:
     Sprite * infoBox = nullptr;     // caixa de informações
-    Sprite * keyMap  = nullptr;     // caixa para teclas de atalho
-    Font   * font    = nullptr;     // fonte para texto normal
-    Font   * bold    = nullptr;     // fonte para texto negrito
+    Sprite * keyMap = nullptr;      // caixa para teclas de atalho
+    Font * font = nullptr;          // fonte para texto normal
+    Font * bold = nullptr;          // fonte para texto negrito
     stringstream text;              // texto temporário
 
-    Image  * backImg = nullptr;     // imagem formada por blocos
-    Sprite * backg   = nullptr;     // pano de fundo com scrolling
-
-    ViewPort viewport;              // viewport do jogo
-    float maxWidth;                 // largura máxima do background
-    float maxHeight;                // altura máxima do background
+    Image * tiles = nullptr;        // imagem formada por blocos
+    Background * backg = nullptr;   // pano de fundo
+    ViewPort viewport;              // área de visualização
     float scrollSpeed;              // velocidade de scrolling
 
 public:

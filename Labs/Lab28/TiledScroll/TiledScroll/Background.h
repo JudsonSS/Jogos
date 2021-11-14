@@ -2,7 +2,7 @@
 // Background (Arquivo de Cabeçalho)
 // 
 // Criação:     07 Dez 2011
-// Atualização: 01 Nov 2021
+// Atualização: 12 Nov 2021
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Representa um pano de fundo maior que a janela
@@ -27,25 +27,27 @@ class Background
 private:
     SpriteData spriteData;              // informações do sprite 
     const Image * image;                // imagem de fundo
+    bool localImage;                    // imagem local ou externa
 
 public:
-    Background(string filename);        // construtor    
+    Background(string filename);        // construtor padrão
+    Background(const Image* img);       // construtor a partir de imagem
     ~Background();                      // destrutor
 
     void Draw(ViewPort & sourceRect);   // desenha uma porção da imagem 
-    uint Width();                       // retorna a largura do pano de fundo
-    uint Height();                      // retorna a altura do pano de fundo
+    float Width();                      // retorna a largura do pano de fundo
+    float Height();                     // retorna a altura do pano de fundo
 }; 
 
 // ---------------------------------------------------------------------------------
 
 // retorna a largura do sprite
-inline uint Background::Width() 
-{ return image->Width(); }
+inline float Background::Width()
+{ return float(image->Width()); }
 
 // retorna a altura do sprite
-inline uint Background::Height() 
-{ return image->Height(); }
+inline float Background::Height()
+{ return float(image->Height()); }
 
 // -------------------------------------------------------------------------------
 

@@ -18,6 +18,7 @@
 #include "Game.h"                   // definição da classe jogo
 #include "Font.h"                   // fonte para exibição de texto
 #include "Sprite.h"                 // definição dos sprites
+#include "Background.h"             // pano de fundo
 #include <sstream>                  // saída para strings
 using std::stringstream;    
 
@@ -27,15 +28,13 @@ class BackScroll : public Game
 {
 private:
     Sprite * infoBox;               // caixa de informações
-    Sprite * keyMap;                // caixa para teclas de atalho
-    Font   * font;                  // fonte para texto normal
-    Font   * bold;                  // fonte para texto negrito
+    Sprite * keyMap;                // teclas de atalho
+    Font   * font;                  // fonte normal
+    Font   * bold;                  // fonte negrito
     stringstream text;              // texto temporário
 
-    ViewPort viewport;              // viewport do jogo
-    Sprite * backg;                 // pano de fundo com scrolling
-    float maxWidth;                 // largura máxima do background
-    float maxHeight;                // altura máxima do background
+    ViewPort viewport;              // área de visualização
+    Background * backg;             // pano de fundo
     float scrollSpeed;              // velocidade de scrolling
 
 public:
