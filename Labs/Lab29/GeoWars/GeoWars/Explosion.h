@@ -1,11 +1,11 @@
 /**********************************************************************************
 // Explosion (Arquivo de Cabeçalho)
 // 
-// Criação:		17 Mar 2013
-// Atualização:	10 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     17 Mar 2013
+// Atualização: 15 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Efeito de explosão usando sistema de partículas
+// Descrição:   Efeito de explosão usando sistema de partículas
 //
 **********************************************************************************/
 
@@ -14,7 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"	
+#include "Object.h"    
 #include "Types.h"
 #include "Particles.h"
 
@@ -23,24 +23,24 @@
 class Explosion : public Object
 {
 private:
-	Particles * starsGen;				// sistema de partículas
-	
+    Particles * sparks;                 // sistema de partículas
+    
 public:
-	Explosion(float pX, float pY);		// construtor
-	~Explosion();						// destrutor
+    Explosion(float pX, float pY);      // construtor
+    ~Explosion();                       // destrutor
 
-	int Size();							// quantidade de partículas
-	void Update();						// atualização
-	void Draw();						// desenho
+    int Size();                         // quantidade de partículas
+    void Update();                      // atualização
+    void Draw();                        // desenho
 }; 
 
 // ---------------------------------------------------------------------------------
 
 inline int Explosion::Size()
-{	return starsGen->Size(); }
+{ return sparks->Size(); }
 
 inline void Explosion::Draw()
-{	starsGen->Draw(Layer::MIDDLE, 0.0f); }
+{ sparks->Draw(Layer::MIDDLE, 1.0f); }
 
 // ---------------------------------------------------------------------------------
 

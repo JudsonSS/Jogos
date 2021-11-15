@@ -1,11 +1,11 @@
 /**********************************************************************************
 // WaveM (Código Fonte)
 //
-// Criação:		06 Ago 2019
-// Atualização:	10 Ago 2019
-// Compilador:	Visual C++ 2019
+// Criação:     06 Ago 2019
+// Atualização: 15 Nov 2021
+// Compilador:  Visual C++ 2019
 //
-// Descrição:	Cria uma onda de inimigos Magenta
+// Descrição:   Cria uma onda de inimigos Magenta
 //
 **********************************************************************************/
 
@@ -16,14 +16,14 @@
 
 // ------------------------------------------------------------------------------
 
-WaveM::WaveM() : posX(50, window->Width()-50), posY(50,game->Height()-50), secs(2.0f, 4.0f)
+WaveM::WaveM() : posX(50, window->Width()-50), posY(50, game->Height()-50), secs(2.0f, 4.0f)
 {
-	// posição dos inimigos
-	pX = posX.Rand();
-	pY = posY.Rand();
+    // posição dos inimigos
+    pX = posX.Rand();
+    pY = posY.Rand();
 
-	// atraso para a próxima onda 
-	delay = secs.Rand();
+    // atraso para a próxima onda 
+    delay = secs.Rand();
 }
 
 // ------------------------------------------------------------------------------
@@ -37,29 +37,29 @@ WaveM::~WaveM()
 
 void WaveM::Update()
 {
-	// se passou o tempo de atraso
-	if (timer.Elapsed(delay) && Hud::magentas < 5)
-	{
-		// toca som de nova onda
-		GeoWars::audio->Play(MAGENTA);
+    // se passou o tempo de atraso
+    if (timer.Elapsed(delay) && Hud::magentas < 5)
+    {
+        // toca som de nova onda
+        BasicAI::audio->Play(MAGENTA);
 
-		// adiciona novo inimigo
-		GeoWars::scene->Add(new Magenta(pX, pY, GeoWars::player), MOVING);
+        // adiciona novo inimigo
+        BasicAI::scene->Add(new Magenta(pX, pY, BasicAI::player), MOVING);
 
-		// nova posição do inimigo
-		pX = posX.Rand();
-		pY = posY.Rand();
+        // nova posição do inimigo
+        pX = posX.Rand();
+        pY = posY.Rand();
 
-		// reinicia o timer
-		timer.Start();
-	}
+        // reinicia o timer
+        timer.Start();
+    }
 }
 
 // -------------------------------------------------------------------------------
 
 void WaveM::Draw()
 {
-	
+    
 }
 
 // -------------------------------------------------------------------------------
