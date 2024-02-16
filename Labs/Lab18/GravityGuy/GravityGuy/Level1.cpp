@@ -2,7 +2,7 @@
 // Level1 (Código Fonte) 
 // 
 // Criação:     14 Fev 2013
-// Atualização: 27 Set 2021
+// Atualização: 15 Fev 2024
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Nível 1 do jogo
@@ -115,7 +115,6 @@ void Level1::Update()
 
 void Level1::Draw()
 {
-    backg->Draw();
     scene->Draw();
 
     if (GravityGuy::viewBBox)
