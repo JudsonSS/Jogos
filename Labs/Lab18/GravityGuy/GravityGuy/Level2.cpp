@@ -2,7 +2,7 @@
 // Level2 (Código Fonte)
 //
 // Criação:     27 Set 2021
-// Atualização: 27 Set 2021
+// Atualização: 18 Fev 2024
 // Compilador:  Visual C++ 2019
 //
 // Descrição:   Nível 2 do jogo
@@ -108,7 +108,6 @@ void Level2::Update()
 
 void Level2::Draw()
 {
-    backg->Draw();
     scene->Draw();
 
     if (GravityGuy::viewBBox)
